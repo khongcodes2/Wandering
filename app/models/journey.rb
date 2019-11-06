@@ -11,4 +11,5 @@ class Journey < ActiveRecord::Base
     has_many :spaces, through: :region
     has_many :item_journeys
     has_many :items, through: :item_journeys
+    validates :traveler_name, presence: true
 end

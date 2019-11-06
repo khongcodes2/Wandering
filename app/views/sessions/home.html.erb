@@ -1,6 +1,9 @@
 <% title "Wandering"%>
 <h1>Wandering</h1>
 
+<%= link_to "Begin Journey", new_journey_path %>
+<p>link to past journeys</p>
+
 <% if session[:user_id].present? %>
     <h3>Welcome back, <%= current_user.username %></h3>
     <%= form_tag ({controller:'sessions',action:'destroy'}) do %>
