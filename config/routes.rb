@@ -10,4 +10,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
 
+  #journeys
+  get '/journey', to: 'journeys#new'
+  post '/journey', to: 'journeys#create'
+  get '/journeys', to: 'journeys#index'
+  get '/journeys/:id', to: 'journeys#show'
+  get '/users/:id/journeys', to: 'journeys#user_index'
+
 end
