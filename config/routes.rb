@@ -11,10 +11,16 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
 
   #journeys
-  get '/journey', to: 'journeys#new'
-  post '/journey', to: 'journeys#create'
-  get '/journeys', to: 'journeys#index'
-  get '/journeys/:id', to: 'journeys#show'
+  get '/journey', to: 'journeys#new', as: :new_journey
+  post '/journeys', to: 'journeys#create', as: :create_journey
+  get '/journeys', to: 'journeys#index', as: :journeys
+  get '/journeys/:id', to: 'journeys#show', as: :journey
   get '/users/:id/journeys', to: 'journeys#user_index'
+
+
+  #items
+  get '/items/new', to: 'items#new'
+  post '/items', to: 'items#create'
+  get '/items/:id', to: 'items#show'
 
 end

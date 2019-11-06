@@ -3,5 +3,9 @@ class Item < ActiveRecord::Base
     has_many :item_journeys
     has_many :journeys, through: :item_journeys
     has_many :users, through: :journeys
-    belongs_to :space
+    belongs_to :space, optional: true
+
+    def name
+        adjective+" "+noun
+    end
 end
