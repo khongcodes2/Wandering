@@ -1,0 +1,9 @@
+<% title "Wandering"%>
+<h1>Wandering</h1>
+
+<% if session[:user_id].present? %>
+    <h3>Welcome back, <%= current_user.username %></h3>
+    <%= form_tag ({controller:'sessions',action:'destroy'}) do %>
+        <%= submit_tag "Log Out" %>
+    <% end %>
+<% end %>
