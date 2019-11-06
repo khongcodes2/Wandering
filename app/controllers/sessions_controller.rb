@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     end
 
     def create
-        @user = User.find_by(username:login_params[:username])
+        @user = User.find_by(username:login_params[:username])||User.new
         return head(:forbidden) unless @user.authenticate(login_params[:password])
         session[:user_id] = @user.id
         redirect_to :root

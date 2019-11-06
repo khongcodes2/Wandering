@@ -1,2 +1,25 @@
-<% title "New Journey" %>
-Form for journeys
+<% title "Initiate Journey" %>
+<%= current_user.username if session[:user_id] %>
+
+<h2>Before we begin...</h2>
+
+<%= render partial:'layouts/error_display', locals:{obj:@journey} %>
+
+<%= form_for @journey do |f| %>
+    <%= f.label :traveler_name, "What is the name of your traveler?" %><br>
+    <%= f.text_field :traveler_name %><br>
+    <!-- or random-select -->
+    <!-- If time for custom error message - "You must pick a name for you traveler!" -->
+
+    <!-- make this a select option field -->
+    <%= f.label :region, "What region are you traveling through?" %><br>
+    <%= f.text_field :region %><br>
+    <!-- or random select -->
+    <!-- If time for custom error message - "You must pick a region!" -->
+
+    <%= f.label :items, "Which item do you bring with you?" %><br>
+    <%#= f.text_field :items %>
+    <!-- radio buttons, first one already selected -->
+
+    <%= f.submit "Begin Journey" %>
+<% end %>

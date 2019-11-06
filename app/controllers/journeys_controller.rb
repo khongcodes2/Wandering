@@ -1,8 +1,11 @@
 class JourneysController < ApplicationController
     def new
+        @journey = Journey.new
+        #initialize itemjourney
     end
 
     def create
+        raise params.inspect
     end
 
     def index
@@ -13,4 +16,11 @@ class JourneysController < ApplicationController
 
     def user_index
     end
+
+    private
+
+    def journey_params
+        params.require(:journey).permit()
+    end
+
 end
