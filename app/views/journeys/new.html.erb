@@ -6,37 +6,41 @@
 <%= render partial:'layouts/error_display', locals:{obj:@journey} %>
 
 <%= form_for @journey do |f| %>
-    <p>
-      <%= f.label :traveler_id, "Pick a traveler" %><br>
-      <% if current_user %>
-        <%= f.collection_select :traveler_id, current_user.travelers, :id, :name %><br>
-      <% else %>
-        <%= f.text_field :traveler_id %><br>
-      <% end %>
-      <!-- or random-select -->
-      <!-- If time for custom error message - "You must pick a name for you traveler!" -->
-    </p>
+  <p>
+    <!-- If user is logged in,    pick from their travelers   -->
+    <!-- If no user is logged in, pick from no-user travelers -->
+    <!-- Checkbox to select from available travelers randomly -->
+    <%= f.label :traveler_id, "Pick a traveler" %><br>
+    <%= f.collection_select :traveler_id, @available_travelers, :id, :name %><br>
 
-    <p>
-      <%= f.label :name, "Give this journey a name" %><br>
-      <%= f.text_field :name %><br>
-    </p>
+    <%= f.label :random_traveler, "(Or - select a random traveler for me)" %>
+    <%= f.check_box :random_traveler %>
+  </p>
 
-    <p>
-      <%= f.label :region_id, "What region are you traveling through?" %><br>
-      <%= f.collection_select :region_id, Region.all, :id, :name %><br>
-      
-      <%#= f.label :random_region, "(Or - select a random region for me)" %>
-      <%#= f.check_box :random_region %>
-      <!-- If time for custom error message - "You must pick a region!" -->
-    </p>
+  <p>
+    <!-- if no name supplied, name= "traveler"'s name -->
+    <%= f.label :name, "Give this journey a name" %><br>
+    <%= f.text_field :name %><br>
+  </p>
 
-    <p>
-      <%= f.label :items, "Which item do you bring with you?" %><br>
-      <% Item.starting_three.each do |i| %>
-        <%= f.radio_button :items, i.id %><%= i.name %>. <%= i.descript %><br>
-      <% end %>
-    </p>
+  <p>
+    <!-- dropdown selection from existing regions -->
+    <!-- or checkbox to select region randomly    -->
+    <%= f.label :region_id, "What region are you traveling through?" %><br>
+    <%= f.collection_select :region_id, @regions, :id, :name %><br>
+    
+    <%= f.label :random_region, "(Or - select a random region for me)" %>
+    <%= f.check_box :random_region %>
+  </p>
 
-    <%= f.submit "Begin Journey" %>
+  <p>
+    <!-- Each time page is refreshed, pull 3 random items that are not associated to a space -->
+    <!-- Optional -->
+    <%= f.label :items, "Which item do you bring with you?" %><br>
+    <% @starting_three.each do |i| %>
+      <%= f.radio_button :items, i.id %><%= i.name %>. <%= i.descript %><br>
+    <% end %>
+  </p>
+
+  <%= f.submit "Begin Journey" %>
 <% end %>

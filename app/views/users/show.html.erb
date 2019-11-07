@@ -7,3 +7,12 @@
   <%= link_to "Edit #{@user.username}", edit_user_path(@user) %>
 <% end %>
 
+<h4>Travelers</h4>
+<ul><% @user.travelers.each do |t| %>
+  <li><%= link_to t.name, traveler_path(t) %></li>
+<% end %></ul>
+
+<h4>Journeys</h4>
+<ul><% @user.journeys.each do |j| %>
+  <li><%= link_to j.name, journey_path(j) %></li>
+<% end %></ul>

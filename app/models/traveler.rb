@@ -4,8 +4,16 @@ class Traveler < ActiveRecord::Base
   has_many :items, through: :journeys
   # has_many :memories, through: :journeys
 
+  scope :no_user, -> {where(user:nil)}
+
   def username
     user.present? ? user.username : "none"
+  end
+
+  def pickup_item(item)
+  end
+
+  def drop_item(item)
   end
 
 end

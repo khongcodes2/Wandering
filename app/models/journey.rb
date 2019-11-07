@@ -7,7 +7,5 @@ class Journey < ActiveRecord::Base
     has_many :items, through: :item_journeys
     # has_many :memories
 
-    validates :name, presence: true
-
-    attr_accessor :random_region
+    attr_accessor :random_region, :random_traveler
 end

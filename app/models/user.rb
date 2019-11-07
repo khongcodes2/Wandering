@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
     has_many :items, through: :journeys
 
     validates :username, presence: true, uniqueness: true
+    
 end
