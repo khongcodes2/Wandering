@@ -5,16 +5,22 @@
 
 <%= render partial:'layouts/error_display', locals:{obj:@journey} %>
 
-<%= form_for @journey do |f| %>
-    <%= f.label :traveler_name, "Pick a traveler id" %><br>
-    <%= f.text_field :traveler_name %><br>
+<%= form_for :journey do |f| %>
+    <%= f.label :traveler_id, "Pick a traveler" %><br>
+    <% if current_user %>
+      <%= f.collection_select :traveler_id, current_user.travelers, :id, :name %><br>
+    <% else %>
+      <%= f.text_field :traveler_id %><br>
+    <% end %>
     <!-- or random-select -->
     <!-- If time for custom error message - "You must pick a name for you traveler!" -->
 
     <!-- make this a select option field -->
-    <%= f.label :region, "What region are you traveling through?" %><br>
-    <%= f.text_field :region %><br>
-    <!-- or random select -->
+    <%= f.label :region_id, "What region are you traveling through?" %><br>
+    <%= f.collection_select :region_id, Region.all, :id, :name %><br>
+    
+    <%#= f.label :random_region, "(Or - select a random region for me)" %>
+    <%#= f.check_box :random_region %>
     <!-- If time for custom error message - "You must pick a region!" -->
 
     <%= f.label :items, "Which item do you bring with you?" %><br>

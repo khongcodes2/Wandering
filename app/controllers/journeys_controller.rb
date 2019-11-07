@@ -3,16 +3,12 @@ class JourneysController < ApplicationController
 
     def new
         @journey = Journey.new
-        #initialize itemjourney
+        #initialize itemjourney?
     end
 
     def create
-        if current_user
-            @journey = current_user.journeys.build(traveler_name: journey_params[:traveler_name])
-        else
-            @journey = Journey.new(traveler_name:journey_params[:traveler_name])
-        end
-        
+        @journey = Journey.new(traveler_id:journey_params[:traveler_id])
+        @journey.user = current_user
         if @journey.save
             redirect_to journey_path(@journey)
         else
@@ -40,7 +36,7 @@ class JourneysController < ApplicationController
     private
 
     def journey_params
-        params.require(:journey).permit(:traveler_name, :region, :items)
+        params.require(:journey).permit(:traveler_id, :region_id, :items)
     end
 
 end
