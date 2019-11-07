@@ -1,0 +1,13 @@
+<% title "Edit Traveler #{@traveler.name}" %>
+<h1>Edit Traveler <%= @traveler.name %></h1>
+
+<% if current_user %>
+  <p>Logged in as <%= current_user.username %></p>
+<% end %>
+
+<% if traveler_user_permission(@traveler) %>
+  <%= render partial:"form", locals:{traveler:@traveler} %>
+  <%= button_to "Delete Traveler", @traveler, method: :delete, data:{confirm:"Really?"} %>
+<% else %>
+  <p>Sorry - You don't have permission to make changes.</p>
+<% end %>

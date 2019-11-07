@@ -1,6 +1,9 @@
 <% title "Editing #{@user.username}" %>
 <h1>Editing <%= @user.username %></h1>
 
-<%= render partial:"form", locals:{user:@user} %>
-
-<%= button_to "Delete User", @user, method: :delete, data:{confirm:"Really?"} %>
+<% if user_self_permission(@user) %>
+  <%= render partial:"form", locals:{user:@user} %>
+  <%= button_to "Delete User", @user, method: :delete, data:{confirm:"Really?"} %>
+<% else %>
+  <p>Sorry - You don't have permission to make changes.</p>
+<% end %>

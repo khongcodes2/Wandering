@@ -1,0 +1,10 @@
+<% title @traveler.name %>
+<h1>Show Traveler</h1>
+
+<p>Name: <%= @traveler.name %></p>
+<p>Description: <%= @traveler.descript %></p>
+<p>User: <%= @traveler.username %></p>
+
+<% if traveler_user_permission(@traveler) %>
+  <%= link_to "Edit #{@traveler.name}", edit_traveler_path(@traveler) %>
+<% end %>

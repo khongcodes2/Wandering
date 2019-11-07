@@ -4,25 +4,27 @@ Rails.application.routes.draw do
   # users
   resources :users
   
-  #sessions
+  # sessions
   root 'sessions#home'
   get '/login', to: 'sessions#login'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
 
-  #journeys
-  resources :journeys, only: [:index, :show, :new, :create]
-  get '/users/:id/journeys', to: 'journeys#user_index'
+  # travelers
+  resources :travelers
 
-  #regions
+  # journeys
+  resources :journeys, only: [:index, :show, :new, :create]
+
+  # regions
   get '/regions', to: 'regions#index' #comment out later
   get '/regions/:id', to: 'regions#show', as: :region
 
-  #spaces
+  # spaces
   get '/spaces', to: 'spaces#index' #comment out later
   get '/spaces/:id', to: 'spaces#show', as: :space
 
-  #items
+  # items
   get '/items', to: 'items#index' #comment out later
   get '/items/:id', to: 'items#show', as: :item
   get '/items/new', to: 'items#new' 

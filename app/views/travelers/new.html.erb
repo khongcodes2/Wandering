@@ -1,0 +1,8 @@
+<% title "New Traveler" %>
+<h1>New Traveler</h1>
+
+<% if current_user %>
+  <p>Logged in as <%= current_user.username %></p>
+<% end %>
+
+<%= render partial:"form", locals:{traveler:@traveler} %>

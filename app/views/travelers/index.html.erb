@@ -1,0 +1,7 @@
+<% title "Book of Travelers" %>
+<h1>Book of Travelers</h1>
+
+
+<ul><% @travelers.each do |t| %>
+  <li><%= link_to t.name, traveler_path(t) %></li>
+<% end %></ul>

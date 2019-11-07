@@ -6,7 +6,7 @@
 <%= render partial:'layouts/error_display', locals:{obj:@journey} %>
 
 <%= form_for @journey do |f| %>
-    <%= f.label :traveler_name, "What is the name of your traveler?" %><br>
+    <%= f.label :traveler_name, "Pick a traveler id" %><br>
     <%= f.text_field :traveler_name %><br>
     <!-- or random-select -->
     <!-- If time for custom error message - "You must pick a name for you traveler!" -->
