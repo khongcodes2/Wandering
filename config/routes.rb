@@ -16,16 +16,16 @@ Rails.application.routes.draw do
 
   #regions
   get '/regions', to: 'regions#index' #comment out later
-  get '/regions/:id', to: 'regions#show'
+  get '/regions/:id', to: 'regions#show', as: :region
 
   #spaces
   get '/spaces', to: 'spaces#index' #comment out later
-  get '/spaces/:id', to: 'spaces#show'
+  get '/spaces/:id', to: 'spaces#show', as: :space
 
   #items
   get '/items', to: 'items#index' #comment out later
+  get '/items/:id', to: 'items#show', as: :item
   get '/items/new', to: 'items#new' 
   post '/items', to: 'items#create'
-  get '/items/:id', to: 'items#show'
 
 end

@@ -1,0 +1,7 @@
+<% title "Regions" %>
+<h1>Regions Index</h1>
+
+<!-- Delete later -->
+<ul> <% @regions.each do |r| %>
+  <li><%= link_to r.name, region_path(r) %></li>
+<% end %></ul>

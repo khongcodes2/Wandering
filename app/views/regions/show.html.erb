@@ -1,0 +1,7 @@
+<% title @region.name %>
+<h1><%= @region.name %></h1>
+
+<!-- Delete later -->
+<ul> <% @region.spaces.each do |s| %>
+  <li><%= link_to s.name, space_path(s) %></li>
+<% end %></ul>

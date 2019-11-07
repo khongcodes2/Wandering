@@ -5,4 +5,15 @@ class Space < ActiveRecord::Base
     
     # Items can be left behind on spaces
     has_many :items
+
+    def name
+        if adjective.present? && noun.present?
+            adjective+" "+noun
+        elsif !adjective.present?
+            noun
+        else
+            adjective
+        end
+    end
+    
 end

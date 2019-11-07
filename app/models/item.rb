@@ -4,8 +4,16 @@ class Item < ActiveRecord::Base
     has_many :journeys, through: :item_journeys
     has_many :users, through: :journeys
     belongs_to :space, optional: true
+    # make noun required
+    # make adjective optional
 
     def name
-        adjective+" "+noun
+        if adjective.present? && noun.present?
+            adjective+" "+noun
+        elsif !adjective.present?
+            noun
+        else
+            adjective
+        end
     end
 end
