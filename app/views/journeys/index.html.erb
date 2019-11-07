@@ -5,6 +5,6 @@ list of 15 most recent completed journeys with links
 
 <ul>
 <% @journeys.each do |j| %>
-    <li><%= link_to "#{j.traveler_name}'s journey", journey_path(j) %></li>
+    <li><%= link_to j.name, journey_path(j) %></li>
 <% end %>
 </ul>

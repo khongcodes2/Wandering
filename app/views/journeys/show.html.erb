@@ -1,8 +1,13 @@
-<% title "Traveler Name's Journey" %>
+<% title @journey.name %>
 
 <!-- this represents history of current journey -->
-<p>Traveler name: <%= @journey.traveler_name %></p>
-<p>Region</p>
+<p>Traveler: <%= @journey.traveler.name %></p>
+<p>Name: <%= @journey.name %></p>
+<p>Region: <%= @journey.region.name %></p>
+<p>Items: <% @journey.items.each do |i| %><ul>
+    <li><%= i.name %></li>
+    <% end %></ul>
+</p>
 Spaces Traveled
     Description
     At this space - item picked up? dropped?

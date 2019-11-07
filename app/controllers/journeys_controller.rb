@@ -3,12 +3,18 @@ class JourneysController < ApplicationController
 
     def new
         @journey = Journey.new
-        #initialize itemjourney?
     end
 
     def create
-        @journey = Journey.new(traveler_id:journey_params[:traveler_id])
+        @journey = Journey.new(
+            traveler_id:journey_params[:traveler_id],
+            region_id:journey_params[:region_id])
+
+        # if left blank, traveler_name's journey
+        @journey.name = journey_params[:name] || "#{@journey.traveler.name}'s journey"
+        
         @journey.user = current_user
+        @journey.items.push(Item.find(journey_params[:items])) unless journey_params[:items].nil?
         if @journey.save
             redirect_to journey_path(@journey)
         else

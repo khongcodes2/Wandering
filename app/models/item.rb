@@ -8,7 +8,7 @@ class Item < ActiveRecord::Base
 
     validates :noun, presence: true
 
-    scope :unspaced,        -> {where(space:nil)}
+    scope :unspaced,            -> {where(space:nil)}
     scope :starting_three,  -> {unspaced.order('RANDOM()').limit(3)}
 
     def name
@@ -19,9 +19,5 @@ class Item < ActiveRecord::Base
         else
             adjective
         end
-    end
-
-    def self.first_three
-        
     end
 end

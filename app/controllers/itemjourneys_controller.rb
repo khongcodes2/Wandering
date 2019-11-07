@@ -1,2 +1,0 @@
-class ItemJourneysController < ApplicationController
-end
