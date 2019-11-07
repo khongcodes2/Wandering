@@ -12,7 +12,7 @@ class JourneysController < ApplicationController
         else
             @journey = Journey.new(traveler_name:journey_params[:traveler_name])
         end
-
+        
         if @journey.save
             redirect_to journey_path(@journey)
         else

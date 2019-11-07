@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_174757) do
+ActiveRecord::Schema.define(version: 2019_11_07_172221) do
 
   create_table "item_journeys", force: :cascade do |t|
     t.integer "item_id"
@@ -25,10 +25,11 @@ ActiveRecord::Schema.define(version: 2019_11_06_174757) do
   end
 
   create_table "journeys", force: :cascade do |t|
-    t.string "traveler_name"
-    t.integer "user_id"
-    t.integer "region_id"
+    t.string "name"
     t.boolean "completed", default: false
+    t.integer "user_id"
+    t.integer "traveler_id"
+    t.integer "region_id"
   end
 
   create_table "regions", force: :cascade do |t|
@@ -40,6 +41,12 @@ ActiveRecord::Schema.define(version: 2019_11_06_174757) do
     t.string "adjective"
     t.string "descript"
     t.integer "region_id"
+  end
+
+  create_table "travelers", force: :cascade do |t|
+    t.string "name"
+    t.string "descript"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
