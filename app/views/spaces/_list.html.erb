@@ -1,0 +1,3 @@
+<ul> <% spaces.each do |s| %>
+  <li><%= link_to s.name, region_space_path(s.region.id, s) %></li>
+<% end %></ul>

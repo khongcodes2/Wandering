@@ -17,18 +17,18 @@ Rails.application.routes.draw do
   resources :journeys, only: [:index, :show, :new]
   post '/journeys/new', to: 'journeys#create'
 
-  # regions
-  get '/regions', to: 'regions#index' #comment out later
-  get '/regions/:id', to: 'regions#show', as: :region
-
-  # spaces
-  get '/spaces', to: 'spaces#index' #comment out later
-  get '/spaces/:id', to: 'spaces#show', as: :space
+  # regions and spaces
+  # comment out index functions later?
+  resources :regions, only: [:show, :index] do
+    resources :spaces, only: [:index, :show, :new]
+  end
+  post '/spaces', to: 'spaces#create'
+  get '/spaces', to: 'spaces#total_index'
 
   # items
   get '/items', to: 'items#index' #comment out later
-  get '/items/:id', to: 'items#show', as: :item
   get '/items/new', to: 'items#new' 
   post '/items', to: 'items#create'
+  get '/items/:id', to: 'items#show', as: :item
 
 end

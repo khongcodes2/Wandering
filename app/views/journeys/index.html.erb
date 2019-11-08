@@ -3,8 +3,4 @@
 Most recent 3 journeys completed, displayed
 list of 15 most recent completed journeys with links
 
-<ul>
-<% @journeys.each do |j| %>
-    <li><%= link_to j.name, journey_path(j) %></li>
-<% end %>
-</ul>
+<%= render partial:'layouts/list', locals:{objs:@journeys} %>

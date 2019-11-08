@@ -1,0 +1,13 @@
+<% title "New #{@region_name} Space" %>
+<h1>New <%= @region_name %> Space</h1>
+
+<%= render partial:'layouts/error_display', locals:{obj:@space} %>
+
+<!-- Don't show form if navigated to bad region id -->
+<% unless @space.errors.messages.include?(:region) %>
+  <%= form_for @space do |s| %>
+    <%= s.hidden_field :region_id %>
+    <%= render partial:'layouts/items_spaces_form', locals:{o:s} %>
+    <%= s.submit %><br>
+  <% end %>
+<% end %>

@@ -3,7 +3,6 @@ class TravelersController < ApplicationController
   include SessionsHelper
 
   def index
-    # show only travelers not associated with users
     @travelers = Traveler.all
   end
 

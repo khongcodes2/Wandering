@@ -1,7 +1,5 @@
-<% title "Spaces" %>
-<h1>Spaces Index</h1>
+<% title @region.name %>
+<h1><%= @region.name %> Spaces</h1>
 
 <!-- Delete later -->
-<ul> <% @spaces.each do |s| %>
-  <li><%= link_to s.name, space_path(s) %></li>
-<% end %></ul>
+<%= render partial:"list", locals:{spaces:@spaces} %>

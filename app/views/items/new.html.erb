@@ -1,0 +1,7 @@
+<% title "New Item" %>
+<h1>New Item</h1>
+
+<%= form_for @item do |i| %>
+  <%= render partial:'layouts/items_spaces_form', locals:{o:i}  %>
+  <%= i.submit %>
+<% end %>
