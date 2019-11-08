@@ -6,7 +6,7 @@
 <% end %>
 
 <% if traveler_user_permission(@traveler) %>
-  <%= render partial:"form", locals:{traveler:@traveler} %>
+  <%= render partial:"form", locals:{traveler:@traveler,new_path:false} %>
   <%= button_to "Delete Traveler", @traveler, method: :delete, data:{confirm:"Really?"} %>
 <% else %>
   <p>Sorry - You don't have permission to make changes.</p>

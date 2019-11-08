@@ -1,6 +1,6 @@
 <% if obj.errors.any? %>
     <div id='error_explanation'>
-        <h2><%= pluralize(obj.errors.count, "error") %>:</h2>
+        <h2><%= pluralize(obj.errors.count, "#{obj.class} error") %>:</h2>
         <ul><% obj.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
         <% end %></ul>

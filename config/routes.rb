@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   resources :travelers
 
   # journeys
-  resources :journeys, only: [:index, :show, :new, :create]
+  resources :journeys, only: [:index, :show, :new]
+  post '/journeys/new', to: 'journeys#create'
 
   # regions
   get '/regions', to: 'regions#index' #comment out later

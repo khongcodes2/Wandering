@@ -7,5 +7,11 @@ class Journey < ActiveRecord::Base
     has_many :items, through: :item_journeys
     # has_many :memories
 
-    attr_accessor :random_region, :random_traveler
+    #just to allow checkboxes to be used in new_journey form
+    attr_accessor :random_region_box, :random_traveler_box, :new_traveler_box
+
+    def new_traveler(hash)
+        self.traveler = Traveler.new(name:hash[:name],descript:hash[:descript])
+    end
+
 end

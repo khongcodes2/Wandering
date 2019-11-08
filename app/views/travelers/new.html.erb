@@ -5,4 +5,4 @@
   <p>Logged in as <%= current_user.username %></p>
 <% end %>
 
-<%= render partial:"form", locals:{traveler:@traveler} %>
+<%= render partial:"form", locals:{traveler:@traveler,new_path:true} %>

@@ -4,8 +4,11 @@
 <h2>Before we begin...</h2>
 
 <%= render partial:'layouts/error_display', locals:{obj:@journey} %>
+<% if @journey.traveler.present? %>
+  <%= render partial:'layouts/error_display', locals:{obj:@journey.traveler} %>
+<% end %>
 
-<%= form_for @journey do |f| %>
+<%= form_for :journey do |f| %>
   <p>
     <!-- If user is logged in,    pick from their travelers   -->
     <!-- If no user is logged in, pick from no-user travelers -->
@@ -13,8 +16,20 @@
     <%= f.label :traveler_id, "Pick a traveler" %><br>
     <%= f.collection_select :traveler_id, @available_travelers, :id, :name %><br>
 
-    <%= f.label :random_traveler, "(Or - select a random traveler for me)" %>
-    <%= f.check_box :random_traveler %>
+    <%= f.label :random_traveler_box, "(Or - check box to randomly select a traveler)" %>
+    <%= f.check_box :random_traveler_box %>
+  </p>
+
+  <p>
+    <%= f.label :new_traveler_box, "(Or - check box to create a new traveler)" %>
+    <%= f.check_box :new_traveler_box %><br>
+
+    <%= f.fields_for :new_traveler do |tr| %>
+      <%= tr.label :name %><br>
+      <%= tr.text_field :name %><br>
+      <%= tr.label :descript, "Description" %><br>
+      <%= tr.text_field :descript %><br>
+    <% end %>
   </p>
 
   <p>
@@ -29,8 +44,8 @@
     <%= f.label :region_id, "What region are you traveling through?" %><br>
     <%= f.collection_select :region_id, @regions, :id, :name %><br>
     
-    <%= f.label :random_region, "(Or - select a random region for me)" %>
-    <%= f.check_box :random_region %>
+    <%= f.label :random_region_box, "(Or - select a random region for me)" %>
+    <%= f.check_box :random_region_box %>
   </p>
 
   <p>
