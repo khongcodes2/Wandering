@@ -2,4 +2,4 @@
 
 <p><%= @item.name %></p>
 <p><%= @item.descript||"nil" %></p>
-<p><%= link_to @item.space.name, region_space_path(@item.space.region_id, @item.space) %></p>
+<p><%= item_space? %></p>

@@ -12,12 +12,18 @@ class ItemsController < ApplicationController
   end
 
   def create
-    byebug
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to item_path(@item)
+    else
+      render :new
+    end
   end
 
   private
 
   def item_params
+    params.require(:item).permit(:noun,:adjective,:descript)
   end
 
 end
