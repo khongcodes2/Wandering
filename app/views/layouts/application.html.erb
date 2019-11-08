@@ -10,6 +10,10 @@
   </head>
 
   <body>
+    <% if session[:journey_id].present? %>
+      <%= render "layouts/sidebar" %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

@@ -239,7 +239,7 @@ DATA = {
   :item_nouns_descript => [
     ["sword","it has a simple golden handle"],
     ["rapier","it has a fancy handguard"],
-    ["falchion","it's got some heft, normally"],
+    ["falchion","it's got some heft"],
     ["practice sword","the edge is dull"],
     ["staff","it's long but practical"],
     ["bow","it's still got its bowstring"],
@@ -299,11 +299,11 @@ end
 def generate_attributes(part1, part2)
   get={}
   d20 = rand(1..20)
-  conjunction = d20.even? ? ", and " : ", but "
+  # conjunction = d20.even? ? ", and " : ", but "
 
   get[:noun] = part1[0]
   get[:adjective] = part2[0]
-  get[:descript] = d20<=10 ? part1[1]+conjunction+part2[1] : part2[1]+conjunction+part1[1]
+  get[:descript] = d20<=10 ? part1[1]+", and "+part2[1] : part2[1]+", and "+part1[1]
   get
 end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_172221) do
+ActiveRecord::Schema.define(version: 2019_11_08_205423) do
 
   create_table "item_journeys", force: :cascade do |t|
     t.integer "item_id"
@@ -30,10 +30,16 @@ ActiveRecord::Schema.define(version: 2019_11_07_172221) do
     t.integer "user_id"
     t.integer "traveler_id"
     t.integer "region_id"
+    t.integer "clock"
   end
 
   create_table "regions", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "space_journeys", force: :cascade do |t|
+    t.integer "space_id"
+    t.integer "journey_id"
   end
 
   create_table "spaces", force: :cascade do |t|

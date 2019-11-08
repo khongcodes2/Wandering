@@ -31,4 +31,7 @@ Rails.application.routes.draw do
   post '/items', to: 'items#create'
   get '/items/:id', to: 'items#show', as: :item
 
+  # game flow
+  get '/wrapup', to: 'journeys#wrapup'
+
 end

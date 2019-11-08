@@ -1,0 +1,13 @@
+<div>
+  <% journey = Journey.find(session[:journey_id]) %>
+  <%= link_to journey.traveler.name, traveler_path(journey.traveler) %><br>
+  at <%= link_to journey.spaces.last.name, region_space_path(journey.region,journey.spaces.last) %><br>
+  item1<br>
+  item2<br>
+  item3<br>
+  item4<br>
+  <%#= form_tag({controller:'journeys', action:'wrapup'}) do %>
+    <%#= submit_tag "End Journey" %>
+  <%# end %>
+  <%= link_to "End Journey", '/wrapup' %><br>
+</div>

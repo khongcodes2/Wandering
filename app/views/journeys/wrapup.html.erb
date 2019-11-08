@@ -1,0 +1,8 @@
+<% title "Your journey ends..."%>
+<h1>Your journey ends...</h1>
+
+<h3>Choose: </h3>
+<ul>
+  <li><%= link_to "The last thing #{@journey.traveler.name} sees in the distance (Create new space)", new_region_space_path(@journey.region) %></li>
+  <li><%= link_to "The last thing #{@journey.traveler.name} sees before their feet (Create new item)", items_new_path %></li>
+</ul>

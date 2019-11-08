@@ -36,10 +36,15 @@ class JourneysController < ApplicationController
         @journey.items.push(Item.find(journey_params[:items])) unless journey_params[:items].nil?
         
         if @journey.save
-            #updates parents - traveler and user
+            # updates parents - traveler and user
             @journey.traveler.user = current_user
             @journey.traveler.save
-            redirect_to journey_path(@journey)
+            
+            # start journey
+            # put it in session to indicate to browser we want journey UI
+            @journey.start
+            session[:journey_id] = @journey.id
+            redirect_to region_space_path(@journey.region, @journey.spaces.last)
         else
             render :new
         end
@@ -53,7 +58,10 @@ class JourneysController < ApplicationController
         @journey = Journey.find(params[:id])
     end
 
-    def user_index
+    def wrapup
+        @journey = Journey.find(session[:journey_id])  
+        #session[:wrapup] = true      
+
     end
 
     private
