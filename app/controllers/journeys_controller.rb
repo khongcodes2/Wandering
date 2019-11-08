@@ -15,12 +15,11 @@ class JourneysController < ApplicationController
         if journey_params[:new_traveler_box]=="1"
             @journey.new_traveler(journey_params[:new_traveler])
             if @journey.traveler.save
-                byebug
             else
+                # reinitialize form to display New Traveler errors
                 @regions = Region.all
                 @starting_three = Item.starting_three
                 render '/journeys/new' and return
-                byebug
             end
         elsif journey_params[:random_traveler_box]=="1"
             @journey.traveler = @available_travelers.sample
@@ -33,9 +32,13 @@ class JourneysController < ApplicationController
         # if left blank, traveler_name's journey
         @journey.name = journey_params[:name].present? ? journey_params[:name] : "#{@journey.traveler.name}'s journey"
         @journey.user = current_user
+        # @journey not listed in @journey.user.journeys
         @journey.items.push(Item.find(journey_params[:items])) unless journey_params[:items].nil?
         
         if @journey.save
+            #updates parents - traveler and user
+            @journey.traveler.user = current_user
+            @journey.traveler.save
             redirect_to journey_path(@journey)
         else
             render :new
