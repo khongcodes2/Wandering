@@ -55,15 +55,15 @@ load show journey.spaces.last, load a template/partial to extend functionality-
     [v] make it so if session[:wrapup] 1, post redirect to wrapup_cast
     [v] disallow if session wrapup not 1
     [v] session[:wrapup_resource] = link_to new resource
-    [^] session[:wrapup]=2
+    [ ] session[:wrapup]=2
 
 
 [v] 3/controller#wrapup_cast/ pre-wrapup_cast
     [v] if session[:wrapup]!=1 redirect
 
 [ ] 3/GET wrapup_cast_/
-    [^] disallow if session[:wrapup] !=2
-    [ ] pick an item to cast into the ether (form, radio buttons)
+    [ ] disallow if session[:wrapup] !=2
+    [v] pick an item to cast into the ether (form, radio buttons)
 
 [ ] 3/controller#post_wrapup_cast/
     [ ] disallow if session[:wrapup] !=2

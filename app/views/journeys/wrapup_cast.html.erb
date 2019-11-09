@@ -4,9 +4,15 @@
 Pick an item to bring with you into the Ether - the remaining items will be left here.
 <%= form_tag({controller:'journeys', action:'wrapup_cast'}) do %>
   <% @items.each do |i| %>
-    <p><%= radio_button_tag :item, i.id %><br>
-    <%= i.name %><br>
-    <small><%= i.descript %></small></p>
+    <p>
+      <%= radio_button_tag :item, i.id %><br>
+      
+      <label for="item_<%= i.id %>">
+        <%= i.name %><br>
+        <small><%= i.descript %></small>
+      </label>
+      
+    </p>
   <% end %><br>
   <%= submit_tag "End Journey" %>
 <% end %>

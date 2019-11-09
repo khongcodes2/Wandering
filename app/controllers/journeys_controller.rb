@@ -89,7 +89,7 @@ class JourneysController < ApplicationController
     end
 
     def wrapup_casting
-        
+        raise params.inspect
     end
 
     private
