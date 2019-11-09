@@ -60,7 +60,7 @@ class JourneysController < ApplicationController
 
     def wrapup
         @journey = Journey.find(session[:journey_id])  
-        #session[:wrapup] = true      
+        session[:wrapup] = true      
 
     end
 

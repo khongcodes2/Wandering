@@ -1,10 +1,13 @@
-  # journey.start
-  [v] pick a random space in journey.region and assign to journey.spaces
+# journey.start
+[v] pick a random space in journey.region and assign to journey.spaces
 
-  [v] add journey.clock to journey and session
+[v] add journey.clock to journey and session
           (journey.clock = journey.spaces.count)
           dont define method as journey.spaces.count - we dont want to run it every time
           this should load a traveler info sidebar
+
+[ ] if already on journey
+    continue journey?
 
   # travel loop
   load show journey.spaces.last, load a template/partial to extend functionality-
@@ -25,13 +28,60 @@
                   journey.end
               end
       
-  # journey.end    
-  tell player their journey has ended
-      [v] let player choose to record:
-          [v] last thing traveler saw in the distance (new space)
-          [v] last thing traveler saw before their feet (new item)
-           -  make it so if session[:wrapup] true, redirect to wrapup_cast
-      - pick an item to cast into the ether
-      - travelers remaining items are dropped at current space
-      - session.delete journey.clock
-      - take user to home page
+# journey.end    
+[ ] 1/journeys#wrapup/
+    [ ] if session[:wrapup].exists? && session[:wrapup] == 2 redirect to /GET wrapup_cast/
+    [ ] session[:wrapup] == 1
+
+[v] 1/GET wrapup/ tell player journey ended & let player choose to record:
+    [v] last thing traveler saw in the distance (new space)
+    [v] last thing traveler saw before their feet (new item)
+
+
+[ ] 2/resource#new/
+    [ ] new: if session[:wrapup]!=1 return header forbidden
+
+[v] 2/GET new_resource/ let player submit new resource
+
+[ ] 2/controller#create/ let player create
+    [ ] if item, add to traveler's items
+    [ ] if space, session[:wrapup_new_space] = id
+    [ ] make it so if session[:wrapup] 1, post redirect to wrapup_cast
+    [ ] else make it return header forbidden
+    [ ] session[:wrapup_resource] = link_to new resource
+
+
+[ ] 3/controller#wrapup_cast/ pre-wrapup_cast
+    [ ] if session[:wrapup]!=1 return header forbidden
+    [ ] session[:wrapup]=2
+
+[ ] 3/GET wrapup_cast_/
+    [ ] disallow if session[:wrapup] !=2
+    [ ] pick an item to cast into the ether (form, radio buttons)
+
+[ ] 3/controller#post_wrapup_cast/
+    [ ] disallow if session[:wrapup] !=2
+    [ ] item chosen gets space re-assigned to traveler.space.last
+    [ ] travelers remaining items are dropped at current space
+    [ ] if session[:wrapup_new_space].exists?, to new space
+    [ ] session[:wrapup] = 3
+    [ ] redirect to journey_end page
+
+
+[ ] 4/controller#journey_end/
+    [ ] disallow if session[:wrapup] !=3
+    [ ] Assign attributes for page
+        @traveler
+        @items
+        @space
+        @journey_name
+    [ ] session.delete  :journey_id
+                        :wrapup
+                        :wrapup_new_space
+                        :wrapup_resource
+    [ ] redirect to root after 15 seconds
+
+[ ] 4/GET journey_end/
+    [ ] each item left behind, 1 message: "traveler left X left behind at Y"
+    [ ] "Journey ends. Redirecting.."
+    [ ] also display root link
