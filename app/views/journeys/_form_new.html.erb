@@ -9,9 +9,11 @@
   <p>
     <!-- If user is logged in,    pick from their travelers   -->
     <!-- If no user is logged in, pick from no-user travelers -->
-    <%= f.label :traveler_id, "Pick a traveler" %><br>
+    <%= f.label :traveler_id, var[:traveler_label] %><br>
     <%= f.collection_select :traveler_id, var[:available_travelers], :id, :name %><br>
-    
+  </p>
+  
+  <p>
     <!-- Checkbox to select from available travelers randomly -->
     <%= f.label :random_traveler_box, "(Or - check box to randomly select a traveler)" %>
     <%= f.check_box :random_traveler_box %>
@@ -21,6 +23,10 @@
     <!-- New traveler section -->
     <%= f.label :new_traveler_box, "(Or - check box to create a new traveler)" %>
     <%= f.check_box :new_traveler_box %><br>
+    
+    <% if !current_user %>
+      <small>Note: This traveler will not be associated with a user as you are not logged in.</small><br>
+    <% end %>
 
     <%= f.fields_for :new_traveler do |tr| %>
       <%= tr.label :name %><br>

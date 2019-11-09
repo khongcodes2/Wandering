@@ -5,6 +5,7 @@ class JourneysController < ApplicationController
         if !session[:journey_id].present?
             @var_hash = {
                 journey: Journey.new,
+                traveler_label: current_user ? "Pick one of your travelers" : "Pick a free traveler",
                 available_travelers: current_user ? current_user.travelers : Traveler.no_user,
                 regions: Region.all,
                 starting_three: Item.starting_three
@@ -64,10 +65,18 @@ class JourneysController < ApplicationController
         @journey = Journey.find(params[:id])
     end
 
-    def wrapup
-        @journey = Journey.find(session[:journey_id])  
-        session[:wrapup] = 1      
+    def enter_wrapup
+        session[:wrapup] = 1
+        redirect_to wrapup_path
+    end
 
+    def wrapup
+        redirect_to root_path and return if session[:wrapup]!=1
+        @journey = Journey.find(session[:journey_id])
+    end
+
+    def wrapup_cast
+        @journey = Journey.find(session[:journey_id])  
     end
 
     private

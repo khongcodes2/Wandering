@@ -48,6 +48,7 @@ load show journey.spaces.last, load a template/partial to extend functionality-
 [v] 2/GET new_resource/ let player submit new resource
 
 [ ] 2/controller#create/ let player create
+    [v] new: if session[:wrapup]!=1 disallow
     [ ] if item, add to traveler's items
     [ ] if space, session[:wrapup_new_space] = id
     [ ] make it so if session[:wrapup] 1, post redirect to wrapup_cast

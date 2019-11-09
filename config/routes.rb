@@ -26,12 +26,11 @@ Rails.application.routes.draw do
   get '/spaces', to: 'spaces#total_index'
 
   # items
-  get '/items', to: 'items#index' #comment out later
-  get '/items/new', to: 'items#new' 
-  post '/items', to: 'items#create'
-  get '/items/:id', to: 'items#show', as: :item
+  resources :items, only: [:index, :show, :new, :create]
 
   # game flow
-  get '/wrapup', to: 'journeys#wrapup'
+  post '/wrapup', to: 'journeys#enter_wrapup', as: :enter_wrapup
+  get '/wrapup', to: 'journeys#wrapup', as: :wrapup
+  get '/wrapup_cast', to: 'journeys#wrapup_cast', as: :wrapup_cast
 
 end

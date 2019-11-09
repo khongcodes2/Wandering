@@ -16,7 +16,7 @@ class SpacesController < ApplicationController
   def new
     @space = Space.new(region_id:params[:region_id])
     
-    # validate allowed to make new
+    # lock new-space process to journey-end process
     # validate space region exists
     if session[:wrapup]!=1
       @space.errors.add(:base, "You don't have permission to edit this resource right now.")
@@ -31,7 +31,11 @@ class SpacesController < ApplicationController
 
   def create
     @space = Space.new(space_params)
-    if @space.save
+    
+    # lock new-space process to journey-end process
+    if session[:wrapup]!=1
+      redirect_to "/regions/#{space_params[:region_id]}/spaces/new"
+    elsif @space.save
       redirect_to "/regions/#{space_params[:region_id]}/spaces"
     else
       redirect_to "/regions/#{space_params[:region_id]}/spaces/new"

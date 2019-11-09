@@ -9,6 +9,8 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+
+    # lock new-item process to journey-end process
     if session[:wrapup]!=1
       @item.errors.add(:base, "You don't have permission to edit this resource right now.")
     end
@@ -16,8 +18,12 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
-      redirect_to item_path(@item)
+
+    # lock new-item process to journey-end process
+    if session[:wrapup]!=1
+      redirect_to new_item_path
+    elsif @item.save
+      redirect_to wrapup_cast_path
     else
       render :new
     end

@@ -6,8 +6,7 @@
   item2<br>
   item3<br>
   item4<br>
-  <%#= form_tag({controller:'journeys', action:'wrapup'}) do %>
-    <%#= submit_tag "End Journey" %>
-  <%# end %>
-  <%= link_to "End Journey", '/wrapup' %><br>
+  <%= form_tag({controller:'journeys', action:'wrapup'}) do %>
+    <%= submit_tag "End Journey" %>
+  <% end %>
 </div>
