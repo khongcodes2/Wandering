@@ -1,6 +1,16 @@
 <% title "Your journey ends..."%>
 <h1>Your journey ends...</h1>
 
+Pick an item to bring with you into the Ether - the remaining items will be left here.
+<%= form_tag({controller:'journeys', action:'wrapup_cast'}) do %>
+  <% @items.each do |i| %>
+    <p><%= radio_button_tag :item, i.id %><br>
+    <%= i.name %><br>
+    <small><%= i.descript %></small></p>
+  <% end %><br>
+  <%= submit_tag "End Journey" %>
+<% end %>
+
 <p>session - journey_id: <%= session[:journey_id] %></p>
 <p>session - wrapup: <%= session[:wrapup] %></p>
 <p>session - wrapup_resource: <%= session[:wrapup_resource] || "none" %></p>

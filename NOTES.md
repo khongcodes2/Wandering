@@ -34,7 +34,8 @@ load show journey.spaces.last, load a template/partial to extend functionality-
       
 ## journey.end    
 [ ] 1/journeys#wrapup/
-    [ ] if session[:wrapup].exists? && session[:wrapup] == 2 redirect to /GET wrapup_cast/
+    [ ] if session[:wrapup].exists?
+        [ ] session[:wrapup] == 2 redirect to /GET wrapup_cast/
     [v] session[:wrapup] == 1
 
 [v] 1/GET wrapup/ tell player journey ended & let player choose to record:
@@ -43,7 +44,7 @@ load show journey.spaces.last, load a template/partial to extend functionality-
 
 
 [v] 2/resource#new/
-    [v] new: if session[:wrapup]!=1 disallow
+    [v] new: if session[:wrapup]!=1 redirect
 
 [v] 2/GET new_resource/ let player submit new resource
 
@@ -54,14 +55,14 @@ load show journey.spaces.last, load a template/partial to extend functionality-
     [v] make it so if session[:wrapup] 1, post redirect to wrapup_cast
     [v] disallow if session wrapup not 1
     [v] session[:wrapup_resource] = link_to new resource
-
-
-[ ] 3/controller#wrapup_cast/ pre-wrapup_cast
-    [ ] if session[:wrapup]!=1 return header forbidden
     [^] session[:wrapup]=2
 
+
+[v] 3/controller#wrapup_cast/ pre-wrapup_cast
+    [v] if session[:wrapup]!=1 redirect
+
 [ ] 3/GET wrapup_cast_/
-    [ ] disallow if session[:wrapup] !=2
+    [^] disallow if session[:wrapup] !=2
     [ ] pick an item to cast into the ether (form, radio buttons)
 
 [ ] 3/controller#post_wrapup_cast/
@@ -90,3 +91,5 @@ load show journey.spaces.last, load a template/partial to extend functionality-
     [ ] each item left behind, 1 message: "traveler left X left behind at Y"
     [ ] "Journey ends. Redirecting.."
     [ ] also display root link
+
+    uncomment out session[:wrapup] change in items#create spaces#create

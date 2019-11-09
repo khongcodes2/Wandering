@@ -32,5 +32,6 @@ Rails.application.routes.draw do
   post '/wrapup', to: 'journeys#enter_wrapup', as: :enter_wrapup
   get '/wrapup', to: 'journeys#wrapup', as: :wrapup
   get '/wrapup_cast', to: 'journeys#wrapup_cast', as: :wrapup_cast
+  post '/wrapup_cast', to: 'journeys#wrapup_casting', as: :wrapup_casting
 
 end

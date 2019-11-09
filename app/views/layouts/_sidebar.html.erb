@@ -14,6 +14,7 @@
   <% end %></ul>
 
   <%= form_tag({controller:'journeys', action:'wrapup'}) do %>
+    <%= hidden_field_tag "wrapup", session[:wrapup] %>
     <%= submit_tag "End Journey" %>
   <% end %>
 </div>

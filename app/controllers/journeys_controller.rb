@@ -66,17 +66,30 @@ class JourneysController < ApplicationController
     end
 
     def enter_wrapup
-        session[:wrapup] = 1
-        redirect_to wrapup_path
+        wrapup = params.permit(:wrapup)[:wrapup]
+        if wrapup == "1" || wrapup.empty? 
+            session[:wrapup] = 1
+            redirect_to wrapup_path and return
+        elsif wrapup =="2"
+            redirect_to wrapup_cast_path and return
+        else
+            redirect_to root_path
+        end
     end
 
     def wrapup
-        redirect_to root_path and return if session[:wrapup]!=1
         @journey = Journey.find(session[:journey_id])
+        redirect_to region_space_path(@journey.region, @journey.spaces.last) if session[:wrapup]!=1
     end
 
     def wrapup_cast
-        @journey = Journey.find(session[:journey_id])  
+        journey = Journey.find(session[:journey_id])
+        @items = journey.items
+        # redirect_to region_space_path(@journey.region, @journey.spaces.last) if session[:wrapup]!=2
+    end
+
+    def wrapup_casting
+        
     end
 
     private

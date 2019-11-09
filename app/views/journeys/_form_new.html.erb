@@ -55,7 +55,7 @@
   <p>
     <!-- Each time page is refreshed, pull 3 random items that are not associated to a space -->
     <!-- Optional -->
-    <%= f.label :items, "Which item do you bring with you?" %><br>
+    <%= f.label :items, "Which item do you bring with you from the Ether?" %><br>
     <% var[:starting_three].each do |i| %>
       <%= f.radio_button :items, i.id %><%= i.name %>. <%= i.descript %><br>
     <% end %>
