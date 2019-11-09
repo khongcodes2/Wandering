@@ -36,9 +36,13 @@ class SpacesController < ApplicationController
     if session[:wrapup]!=1
       redirect_to "/regions/#{space_params[:region_id]}/spaces/new"
     elsif @space.save
-      redirect_to "/regions/#{space_params[:region_id]}/spaces"
+      journey = Journey.find(session[:journey_id])
+      journey.spaces.push(@space)
+      session[:wrapup_resource] = region_space_path(@space.region,@space)
+      # session[:wrapup] = 2
+      redirect_to wrapup_cast_path
     else
-      redirect_to "/regions/#{space_params[:region_id]}/spaces/new"
+      render :new
     end
   end
 

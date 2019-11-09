@@ -5,6 +5,16 @@
 <p>Description: <%= @traveler.descript %></p>
 <p>User: <%= @traveler.username %></p>
 
+<p>Remembered items:
+  <ul><% @traveler.items.each do |i| %>
+    <li>
+      <%= link_to i.name, item_path(i) %><br>
+      <small><%= i.descript %></small><br>
+    </li>
+  <% end %></ul>
+</p>
+
+
 <% if traveler_user_permission(@traveler) %>
   <%= link_to "Edit #{@traveler.name}", edit_traveler_path(@traveler) %>
 <% end %>

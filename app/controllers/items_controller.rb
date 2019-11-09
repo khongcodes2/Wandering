@@ -18,11 +18,18 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    if @item.descript.empty?
+      @item.descript = @item.adjective+" "+@item.noun
+    end
 
     # lock new-item process to journey-end process
     if session[:wrapup]!=1
       redirect_to new_item_path
     elsif @item.save
+      journey = Journey.find(session[:journey_id])
+      journey.items.push(@item)
+      session[:wrapup_resource] = item_path(@item)
+      # session[:wrapup] = 2
       redirect_to wrapup_cast_path
     else
       render :new

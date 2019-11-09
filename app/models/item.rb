@@ -6,7 +6,7 @@ class Item < ActiveRecord::Base
     belongs_to :space, optional: true
     # has_many :memories
 
-    validates :noun, presence: true
+    validates :noun, :adjective, presence: true
 
     scope :unspaced,        -> {where(space:nil)}
     scope :starting_three,  -> {unspaced.order('RANDOM()').limit(3)}

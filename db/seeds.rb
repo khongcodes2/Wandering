@@ -250,7 +250,7 @@ DATA = {
     #10
     ["shield","it looks sufficiently protective"],
     ["spoon","handy"],
-    ["pack","you've already got one"],
+    ["pack","it holds just enough"],
     ["arrowhead","it digs into your palm when you clench your fist with it inside"],
     ["deck of cards","the card on top is The Tower"],
     ["deck of cards","the card on top is the ace of spades"],

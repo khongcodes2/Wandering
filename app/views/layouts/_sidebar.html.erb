@@ -1,11 +1,18 @@
 <div>
   <% journey = Journey.find(session[:journey_id]) %>
   <%= link_to journey.traveler.name, traveler_path(journey.traveler) %><br>
+  
   at <%= link_to journey.spaces.last.name, region_space_path(journey.region,journey.spaces.last) %><br>
-  item1<br>
-  item2<br>
-  item3<br>
-  item4<br>
+ 
+  <!-- not rendering a partial here because this will likely go into divs? -->
+  Items:<br>
+  <ul><% journey.items.each do |i| %>
+    <li>
+      <%= link_to i.name, item_path(i) %><br>
+      <small><%= i.descript %></small><br>
+    </li>
+  <% end %></ul>
+
   <%= form_tag({controller:'journeys', action:'wrapup'}) do %>
     <%= submit_tag "End Journey" %>
   <% end %>
