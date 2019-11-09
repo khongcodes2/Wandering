@@ -1,4 +1,6 @@
-# journey.start
+# Rough game implementation notes
+
+## journey.start
 [v] pick a random space in journey.region and assign to journey.spaces
 
 [v] add journey.clock to journey and session
@@ -6,40 +8,42 @@
           dont define method as journey.spaces.count - we dont want to run it every time
           this should load a traveler info sidebar
 
-[ ] if already on journey
+[v] if already on journey
     continue journey?
 
-  # travel loop
-  load show journey.spaces.last, load a template/partial to extend functionality-
-          - allow navigation (traveler.go)
-          - allow for item pickup/drop (traveler.pickup)
-      on traveler.go, run journey.tick
-              use journey.clock to determine probability of journey.end (set journey.clock to 10)
-              # reverse order of these 2 below
-              if journey.tick == true
-                  space selected for traveler.go added to journey.spaces
-                  (journey.clock += 1)
-                  show that one (enter beginning of loop)
-              elsif journey.tick == false || journey.clock==9
-                  inform player their journey is ending
-                  journey.clock set to 9
-              elsif journey.clock == 10
-              if on any space and session[:wrapup] true, redirect
-                  journey.end
-              end
+# travel loop
+journey.start
+
+load show journey.spaces.last, load a template/partial to extend functionality-
+        - allow navigation (traveler.go)
+        - allow for item pickup/drop (traveler.pickup)
+    on traveler.go, run journey.tick
+            use journey.clock to determine probability of journey.end (set journey.clock to 10)
+            # reverse order of these 2 below
+            if journey.tick == true
+                space selected for traveler.go added to journey.spaces
+                (journey.clock += 1)
+                show that one (enter beginning of loop)
+            elsif journey.tick == false || journey.clock==9
+                inform player their journey is ending
+                journey.clock set to 9
+            elsif journey.clock == 10
+            if on any space and session[:wrapup] true, redirect
+                journey.end
+            end
       
-# journey.end    
+## journey.end    
 [ ] 1/journeys#wrapup/
     [ ] if session[:wrapup].exists? && session[:wrapup] == 2 redirect to /GET wrapup_cast/
-    [ ] session[:wrapup] == 1
+    [v] session[:wrapup] == 1
 
 [v] 1/GET wrapup/ tell player journey ended & let player choose to record:
     [v] last thing traveler saw in the distance (new space)
     [v] last thing traveler saw before their feet (new item)
 
 
-[ ] 2/resource#new/
-    [ ] new: if session[:wrapup]!=1 return header forbidden
+[v] 2/resource#new/
+    [v] new: if session[:wrapup]!=1 disallow
 
 [v] 2/GET new_resource/ let player submit new resource
 

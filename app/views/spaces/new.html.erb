@@ -4,7 +4,7 @@
 <%= render partial:'layouts/error_display', locals:{obj:@space} %>
 
 <!-- Don't show form if navigated to bad region id -->
-<% unless @space.errors.messages.include?(:region) %>
+<% unless @space.errors.messages.include?(:region) || @space.errors.messages.include?(:base) %>
   <%= form_for @space do |s| %>
     <%= s.hidden_field :region_id %>
     <%= render partial:'layouts/items_spaces_form', locals:{o:s} %>

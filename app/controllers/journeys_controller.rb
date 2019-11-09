@@ -2,10 +2,16 @@ class JourneysController < ApplicationController
     include SessionsHelper
 
     def new
-        @journey = Journey.new
-        @available_travelers = current_user ? current_user.travelers : Traveler.no_user
-        @regions = Region.all
-        @starting_three = Item.starting_three
+        if !session[:journey_id].present?
+            @var_hash = {
+                journey: Journey.new,
+                available_travelers: current_user ? current_user.travelers : Traveler.no_user,
+                regions: Region.all,
+                starting_three: Item.starting_three
+            }
+        else
+            @journey = Journey.find(session[:journey_id])
+        end
     end
 
     def create
@@ -60,7 +66,7 @@ class JourneysController < ApplicationController
 
     def wrapup
         @journey = Journey.find(session[:journey_id])  
-        session[:wrapup] = true      
+        session[:wrapup] = 1      
 
     end
 

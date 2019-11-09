@@ -9,6 +9,9 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    if session[:wrapup]!=1
+      @item.errors.add(:base, "You don't have permission to edit this resource right now.")
+    end
   end
 
   def create

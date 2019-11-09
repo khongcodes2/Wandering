@@ -1,61 +1,8 @@
 <% title "Initiate Journey" %>
 <%= current_user.username if session[:user_id] %>
 
-<h2>Before we begin...</h2>
-
-<%= render partial:'layouts/error_display', locals:{obj:@journey} %>
-<% if @journey.traveler.present? %>
-  <%= render partial:'layouts/error_display', locals:{obj:@journey.traveler} %>
-<% end %>
-
-<%= form_for :journey do |f| %>
-  <p>
-    <!-- If user is logged in,    pick from their travelers   -->
-    <!-- If no user is logged in, pick from no-user travelers -->
-    <!-- Checkbox to select from available travelers randomly -->
-    <%= f.label :traveler_id, "Pick a traveler" %><br>
-    <%= f.collection_select :traveler_id, @available_travelers, :id, :name %><br>
-
-    <%= f.label :random_traveler_box, "(Or - check box to randomly select a traveler)" %>
-    <%= f.check_box :random_traveler_box %>
-  </p>
-
-  <p>
-    <%= f.label :new_traveler_box, "(Or - check box to create a new traveler)" %>
-    <%= f.check_box :new_traveler_box %><br>
-
-    <%= f.fields_for :new_traveler do |tr| %>
-      <%= tr.label :name %><br>
-      <%= tr.text_field :name %><br>
-      <%= tr.label :descript, "Description" %><br>
-      <%= tr.text_field :descript %><br>
-    <% end %>
-  </p>
-
-  <p>
-    <!-- if no name supplied, name= "traveler"'s name -->
-    <%= f.label :name, "Give this journey a name" %><br>
-    <%= f.text_field :name %><br>
-  </p>
-
-  <p>
-    <!-- dropdown selection from existing regions -->
-    <!-- or checkbox to select region randomly    -->
-    <%= f.label :region_id, "What region are you traveling through?" %><br>
-    <%= f.collection_select :region_id, @regions, :id, :name %><br>
-    
-    <%= f.label :random_region_box, "(Or - select a random region for me)" %>
-    <%= f.check_box :random_region_box %>
-  </p>
-
-  <p>
-    <!-- Each time page is refreshed, pull 3 random items that are not associated to a space -->
-    <!-- Optional -->
-    <%= f.label :items, "Which item do you bring with you?" %><br>
-    <% @starting_three.each do |i| %>
-      <%= f.radio_button :items, i.id %><%= i.name %>. <%= i.descript %><br>
-    <% end %>
-  </p>
-
-  <%= f.submit "Begin Journey" %>
+<% if !session[:journey_id].present? %>
+  <%= render partial:"form_new", locals:{var:@var_hash} %>
+<% else %>
+  <%= render partial:"resume_journey", locals:{journey:@journey} %>
 <% end %>

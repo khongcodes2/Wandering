@@ -12,10 +12,15 @@ class SpacesController < ApplicationController
     @space = Space.find(params[:id])
   end
 
-  # form for new space, under region
+
   def new
     @space = Space.new(region_id:params[:region_id])
-    if Region.exists?(params[:region_id])
+    
+    # validate allowed to make new
+    # validate space region exists
+    if session[:wrapup]!=1
+      @space.errors.add(:base, "You don't have permission to edit this resource right now.")
+    elsif Region.exists?(params[:region_id])
       @region = Region.find(params[:region_id])
       @region_name = @region.name
     else
