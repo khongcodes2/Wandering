@@ -3,7 +3,27 @@
 <p><%= @space.descript || "descript" %></p>
 <p>Inside of <%= link_to @space.region.name, region_path(@space.region) %></p>
 <!-- Delete later -->
-<h3>Items at this space</h3>
+<h4>Items at this space...</h4>
 <ul> <% @space.items.each do |i| %>
-  <li><%= link_to i.name, item_path(i) %></li>
+  <li><%= link_to i.name, item_path(i) %> 
+  <!-- if current_journey, link to pickup -->
+  </li>
 <% end %></ul>
+
+<% if current_journey %>
+  <div>
+  <h4>Two paths lie ahead...</h4>
+    <%= link_to @space1.name, region_space_path(@journey.region,@space1) %><br>
+    <%= link_to @space2.name, region_space_path(@journey.region,@space2) %>
+  </div>
+
+  <ul><% @journey.spaces.each do |s| %>
+    <li><%= link_to s.name, region_space_path(@journey.region,s) %></li>
+  <% end %></ul>
+
+  Clock: <%= @journey.clock %>
+<% end %>
+
+<% if current_journey %>
+  
+<% end %>

@@ -5,8 +5,8 @@ module JourneysHelper
       wrapup_path
     when 2
       wrapup_cast_path
-    when
-      wrapup_end_journey_path
+    when 3
+      end_journey_path
     else
       root_path
     end

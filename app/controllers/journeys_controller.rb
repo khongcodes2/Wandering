@@ -45,13 +45,13 @@ class JourneysController < ApplicationController
         @journey.items.push(Item.find(journey_params[:items])) unless journey_params[:items].nil?
         
         if @journey.traveler.save && @journey.save
+            # start journey
+            @journey.start
             # updates parents - traveler and user
             @journey.traveler.user = current_user
             @journey.traveler.save
             
-            # start journey
             # put it in session to indicate to browser we want journey UI
-            @journey.start
             session[:journey_id] = @journey.id
             redirect_to region_space_path(@journey.region, @journey.spaces.last) and return
         else
@@ -81,7 +81,7 @@ class JourneysController < ApplicationController
     ########################################################
 
     def enter_wrapup
-        wrapup = params.permit(:wrapup)[:wrapup]
+        wrapup = params.permit(:wrapup)[:wrapup]||session[:wrapup]
         if wrapup == "1" || wrapup.empty? 
             session[:wrapup] = 1
             redirect_to wrapup_path and return

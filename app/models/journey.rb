@@ -10,15 +10,46 @@ class Journey < ActiveRecord::Base
     # has_many :memories
 
     #just to allow checkboxes to be used in new_journey form
-    attr_accessor :random_region_box, :random_traveler_box, :new_traveler_box, :clock
+    attr_accessor :random_region_box, :random_traveler_box, :new_traveler_box
 
     def new_traveler(hash)
         self.traveler = Traveler.new(name:hash[:name],descript:hash[:descript])
     end
        
     def start
-        clock = 0
+        self.clock = 0
         spaces.push(region.spaces.sample)
+        save
+    end
+
+    def tick_clock
+        case self.clock
+        when 0..2
+            self.clock += 1
+        when 3..6
+            case self.clock
+            when 3
+                continue_chance = 7
+            when 4
+                continue_chance = 5
+            when 5
+                continue_chance = 3
+            when 6
+                continue_chance = 2
+            when 7
+                continue_chance = 1
+            end
+            
+            if rand(1..10)>continue_chance
+                # begin signaling end to user
+                self.clock = 9
+            else
+                self.clock += 1
+            end
+        when 8..9
+            self.clock += 1
+        end
+        self.save
     end
 
     def current_space=(arg)

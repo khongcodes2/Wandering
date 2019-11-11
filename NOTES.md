@@ -34,7 +34,25 @@ load show journey.spaces.last, load a template/partial to extend functionality-
 
 [ ] SessionsHelper::clear_journey drops all items in the journey (relevant on user logout)
 
-      
+clock=8
+journey.tick, before the SHOW view
+    if can_go = true
+    tick clock up 1
+   
+    if can_go=false
+    tick clock to 9
+    run almost_end; let player know the next step is your last
+end
+
+if clock is 9
+    run last_step; let player know this is their last step
+    tick clock up 1; to 10
+end
+
+if clock is 10
+    run end_journey
+end
+
 ## journey.end    
 [v] 1/journeys#wrapup/
     [v] if session[:wrapup].exists?

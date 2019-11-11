@@ -1,4 +1,6 @@
 class SpacesController < ApplicationController
+  include SessionsHelper
+
   def index
     @region = Region.find(params[:region_id])
     @spaces = @region.spaces
@@ -10,6 +12,20 @@ class SpacesController < ApplicationController
   
   def show
     @space = Space.find(params[:id])
+    if current_journey
+      if current_journey.clock == 10
+        session[:wrapup] = 1
+        redirect_to enter_wrapup_path and return
+      end
+      @journey.spaces.push(@space) unless @journey.spaces.include?(@space)
+      
+      two_random_spaces = @journey.region.spaces.where.not(id:@journey.spaces).order('RANDOM()').limit(2)
+      @space1 = two_random_spaces[0]
+      @space2 = two_random_spaces[1]
+      @journey.tick_clock
+
+
+    end
   end
 
 
