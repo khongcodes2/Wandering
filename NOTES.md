@@ -31,6 +31,9 @@ load show journey.spaces.last, load a template/partial to extend functionality-
             if on any space and session[:wrapup] true, redirect
                 journey.end
             end
+
+[ ] SessionsHelper::clear_journey drops all items in the journey (relevant on user logout)
+
       
 ## journey.end    
 [v] 1/journeys#wrapup/

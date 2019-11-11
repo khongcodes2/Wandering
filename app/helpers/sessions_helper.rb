@@ -21,16 +21,20 @@ module SessionsHelper
         end
     end
 
+    # checks if user has permission to edit traveler
+    # only users can edit their own travelers
+    # no-users and users can both edit no-user travelers
     def traveler_user_permission(traveler)
         !traveler.user.present? || current_user == traveler.user
     end
 
+    # checks if user has permission to edit user
     def user_self_permission(user)
         current_user == user
     end
 
     def clear_journey
-        # Journey.find(session[:journey_id]).drop_all if session[:journey_id].present?
+        # current_journey.drop_all if current_journey
         session.delete :journey_id
         session.delete :wrapup
         session.delete :wrapup_resource_type

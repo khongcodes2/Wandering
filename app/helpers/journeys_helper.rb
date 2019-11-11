@@ -12,6 +12,7 @@ module JourneysHelper
     end
   end
   
+  # just helps JourneysController know what class to check for last resource created
   def wrapup_cast_created(resource)
     if resource.class.name=="Space"
       link_to resource.name, region_space_path(resource.region,resource)
