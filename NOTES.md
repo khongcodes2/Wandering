@@ -33,9 +33,9 @@ load show journey.spaces.last, load a template/partial to extend functionality-
             end
       
 ## journey.end    
-[ ] 1/journeys#wrapup/
-    [ ] if session[:wrapup].exists?
-        [ ] session[:wrapup] == 2 redirect to /GET wrapup_cast/
+[v] 1/journeys#wrapup/
+    [v] if session[:wrapup].exists?
+        [v] session[:wrapup] == 2 redirect to /GET wrapup_cast/
     [v] session[:wrapup] == 1
 
 [v] 1/GET wrapup/ tell player journey ended & let player choose to record:
@@ -55,41 +55,46 @@ load show journey.spaces.last, load a template/partial to extend functionality-
     [v] make it so if session[:wrapup] 1, post redirect to wrapup_cast
     [v] disallow if session wrapup not 1
     [v] session[:wrapup_resource] = link_to new resource
-    [ ] session[:wrapup]=2
+    [v] session[:wrapup]=2
 
 
 [v] 3/controller#wrapup_cast/ pre-wrapup_cast
     [v] if session[:wrapup]!=1 redirect
+    [v] disallow if session[:wrapup] !=2
 
-[ ] 3/GET wrapup_cast_/
-    [ ] disallow if session[:wrapup] !=2
+[v] 3/GET wrapup_cast_/
     [v] pick an item to cast into the ether (form, radio buttons)
 
-[ ] 3/controller#post_wrapup_cast/
-    [ ] disallow if session[:wrapup] !=2
-    [ ] item chosen gets space re-assigned to traveler.space.last
-    [ ] travelers remaining items are dropped at current space
-    [ ] if session[:wrapup_new_space].exists?, to new space
-    [ ] session[:wrapup] = 3
-    [ ] redirect to journey_end page
+[v] 3/controller#post_wrapup_cast/
+    [v] disallow if session[:wrapup] !=2
+    [x] require an item to be chosen (NO LONGER REQUIRED)
+    [v] item chosen gets space re-assigned to nil
+    [v] travelers remaining items are dropped at current space
+    [v] session[:wrapup] = 3
+    [v] redirect to journey_end page
 
 
-[ ] 4/controller#journey_end/
-    [ ] disallow if session[:wrapup] !=3
-    [ ] Assign attributes for page
+[v] 4/controller#journey_end/
+    [v] disallow if session[:wrapup] !=3
+    [v] Assign attributes for page
         @traveler
         @items
         @space
         @journey_name
-    [ ] session.delete  :journey_id
+    [v] session.delete  :journey_id
                         :wrapup
-                        :wrapup_new_space
-                        :wrapup_resource
-    [ ] redirect to root after 15 seconds
+                        :wrapup_resource_type
+    [x] redirect to root after 15 seconds
+        #couldn't figure it out oops
 
-[ ] 4/GET journey_end/
-    [ ] each item left behind, 1 message: "traveler left X left behind at Y"
-    [ ] "Journey ends. Redirecting.."
-    [ ] also display root link
+[v] 4/GET journey_end/
+    [v] each item left behind, 1 message: "traveler left X left behind at Y"
+    [v] "Journey ends. Redirecting.."
+    [v] also display root link
 
     uncomment out session[:wrapup] change in items#create spaces#create
+
+    added to session
+    :journey_id
+    :wrapup
+    :wrapup_resource_type

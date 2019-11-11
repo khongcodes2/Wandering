@@ -38,8 +38,8 @@ class SpacesController < ApplicationController
     elsif @space.save
       journey = Journey.find(session[:journey_id])
       journey.spaces.push(@space)
-      session[:wrapup_resource] = region_space_path(@space.region,@space)
-      # session[:wrapup] = 2
+      session[:wrapup_resource_type] = "space"
+      session[:wrapup] = 2
       redirect_to wrapup_cast_path
     else
       render :new

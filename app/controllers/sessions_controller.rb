@@ -17,9 +17,8 @@ class SessionsController < ApplicationController
     end
 
     def destroy
+        clear_journey
         session.delete :user_id
-        session.delete :journey_id
-        session.delete :wrapup
         redirect_to :root
     end
 

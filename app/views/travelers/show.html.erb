@@ -14,6 +14,9 @@
   <% end %></ul>
 </p>
 
+<p>Remembered journeys:
+  <%= render partial:"layouts/list", locals:{objs:@traveler.journeys} %>
+</p>
 
 <% if traveler_user_permission(@traveler) %>
   <%= link_to "Edit #{@traveler.name}", edit_traveler_path(@traveler) %>

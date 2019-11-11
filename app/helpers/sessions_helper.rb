@@ -21,4 +21,12 @@ module SessionsHelper
         current_user == user
     end
 
+    def clear_journey
+        # Journey.find(session[:journey_id]).drop_all if session[:journey_id].present?
+        session.delete :journey_id
+        session.delete :wrapup
+        session.delete :wrapup_resource_type
+        session.delete :cast
+    end
+
 end

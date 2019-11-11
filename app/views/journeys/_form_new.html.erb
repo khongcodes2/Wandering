@@ -1,5 +1,9 @@
 <h2>Before we begin...</h2>
 
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
 <%= render partial:'layouts/error_display', locals:{obj:var[:journey]} %>
 <% if var[:journey].traveler.present? %>
   <%= render partial:'layouts/error_display', locals:{obj:var[:journey].traveler} %>

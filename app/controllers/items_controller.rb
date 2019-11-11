@@ -28,8 +28,8 @@ class ItemsController < ApplicationController
     elsif @item.save
       journey = Journey.find(session[:journey_id])
       journey.items.push(@item)
-      session[:wrapup_resource] = item_path(@item)
-      # session[:wrapup] = 2
+      session[:wrapup_resource_type] = "item"
+      session[:wrapup] = 2
       redirect_to wrapup_cast_path
     else
       render :new

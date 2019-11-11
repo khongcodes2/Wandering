@@ -3,12 +3,28 @@
 <!-- this represents history of current journey -->
 <p>Traveler: <%= @journey.traveler.name %></p>
 <p>Name: <%= @journey.name %></p>
+
+<% if @journey.completed %>
+<p>COMPLETED</p>
+<% end %>
+
 <p>Region: <%= @journey.region.name %></p>
+
+<p>Spaces Traveled:
+<ul><% @journey.spaces.each do |s| %>
+    <li><%= link_to s.name, region_space_path(s.region, s) %><br>
+    <small><%= s.descript %></small></li>
+<% end %></ul>
+</p>
+
 <p>Items: <% @journey.items.each do |i| %><ul>
-    <li><%= i.name %></li>
+    <li>
+        <%= link_to i.name, item_path(i) %><br>
+        <small><%= i.descript %></small><br>
+    </li>
     <% end %></ul>
 </p>
-Spaces Traveled
+
     Description
     At this space - item picked up? dropped?
 if backtrack, no need to redescribe

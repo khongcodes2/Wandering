@@ -13,10 +13,22 @@ class Traveler < ActiveRecord::Base
     user.present? ? user.username : "none"
   end
 
-  def pickup_item(item)
+  def current_journey
+    journeys.last
   end
 
-  def drop_item(item)
+  def pickup(item)
+    current_journey.push(item)
+  end
+
+  def drop(item)
+    current_journey.current_space.push(item)
+  end
+  
+  def drop_all
+    current_journey.items.each do |i|
+      current_journey.current_space.push(i)
+    end
   end
 
 end

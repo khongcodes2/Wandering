@@ -21,4 +21,16 @@ class Journey < ActiveRecord::Base
         spaces.push(region.spaces.sample)
     end
 
+    def current_space=(arg)
+        spaces << arg
+    end
+
+    def current_space
+        spaces.last
+    end
+
+    def drop_items
+        current_space.items.push(self.items)
+    end
+
 end

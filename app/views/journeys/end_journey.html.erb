@@ -1,0 +1,15 @@
+<% title "Ending Journey..." %>
+
+<h1><%= @journey_name %> ends</h1>
+
+<p><%= @traveler %>:</p>
+
+left behind:<br>
+<% @items.each do |i| %>
+<p>name: <%= i.name %><br>
+location: <%= i.space.name %></p>
+<% end %><br>
+
+brought <%= @cast %> into the Ether.<br>
+
+<p><%= link_to 'Home', '/' %></p>

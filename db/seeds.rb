@@ -280,6 +280,7 @@ DATA = {
     ["delicate","it would break easily if you used it carelessly"],
     ["digital","it seems to contain information for an old-world machine"],
     ["dowsing","when you hold it, you feel it pulling you in a direction"],
+    ["discarded","it's been crumpled and thrown away"]
 
   ]
 }
@@ -300,10 +301,11 @@ def generate_attributes(part1, part2)
   get={}
   d20 = rand(1..20)
   # conjunction = d20.even? ? ", and " : ", but "
+  conjunction = ", and "
 
   get[:noun] = part1[0]
   get[:adjective] = part2[0]
-  get[:descript] = d20<=10 ? part1[1]+", and "+part2[1] : part2[1]+", and "+part1[1]
+  get[:descript] = d20<=10 ? part1[1]+conjunction+part2[1] : part2[1]+conjunction+part1[1]
   get
 end
 

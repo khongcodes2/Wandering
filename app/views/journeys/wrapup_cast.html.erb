@@ -1,7 +1,16 @@
 <% title "Your journey ends..."%>
 <h1>Your journey ends...</h1>
 
-Pick an item to bring with you into the Ether - the remaining items will be left here.
+<%= render partial:'layouts/error_display', locals:{obj:@journey} %>
+
+<% if @resource %>
+  <p>
+    Created <%= wrapup_cast_created(@resource) %>
+  </p>
+<% end %>
+
+<p>
+Choose one item to bring with you into the Ether - the rest must remain here.
 <%= form_tag({controller:'journeys', action:'wrapup_cast'}) do %>
   <% @items.each do |i| %>
     <p>
@@ -11,12 +20,12 @@ Pick an item to bring with you into the Ether - the remaining items will be left
         <%= i.name %><br>
         <small><%= i.descript %></small>
       </label>
-      
+
     </p>
   <% end %><br>
   <%= submit_tag "End Journey" %>
 <% end %>
+</p>
 
 <p>session - journey_id: <%= session[:journey_id] %></p>
 <p>session - wrapup: <%= session[:wrapup] %></p>
-<p>session - wrapup_resource: <%= session[:wrapup_resource] || "none" %></p>
