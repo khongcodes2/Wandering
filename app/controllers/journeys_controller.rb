@@ -2,6 +2,8 @@ class JourneysController < ApplicationController
     include SessionsHelper
     include JourneysHelper
 
+    before_action :current_journey, only:[:wrapup, :wrapup_cast, :wrapup_casting, :end_journey]
+
     def new
         # User can only create new journey if not already on journey
         if !session[:journey_id].present?
@@ -74,7 +76,9 @@ class JourneysController < ApplicationController
         @journey = Journey.find(params[:id])
     end
 
-    #sections for end-journey process
+    ########################################################
+    ######      sections for end-journey process      ######
+    ########################################################
 
     def enter_wrapup
         wrapup = params.permit(:wrapup)[:wrapup]
@@ -89,12 +93,10 @@ class JourneysController < ApplicationController
     end
 
     def wrapup
-        @journey = Journey.find(session[:journey_id])
         redirect_to where_do_i_go_integer(session[:wrapup]) if session[:wrapup]!=1
     end
 
     def wrapup_cast
-        @journey = Journey.find(session[:journey_id])
         @items = @journey.items
         if session[:wrapup_resource_type] == "space"
             @resource = @journey.spaces.last
@@ -108,8 +110,6 @@ class JourneysController < ApplicationController
         if session[:wrapup]!=2
             redirect_to where_do_i_go_integer(session[:wrapup]) and return
         else
-            @journey = Journey.find(session[:journey_id])
-
             # if user selected item
             if params.permit(:item)[:item].present?
                 item = Item.find(params.permit(:item)[:item])
@@ -134,12 +134,11 @@ class JourneysController < ApplicationController
         if session[:wrapup]!=3
             redirect_to where_do_i_go_integer(session[:wrapup]) and return
         else 
-            journey = Journey.find(session[:journey_id])
-            @journey_name = journey.name
-            @traveler = journey.traveler.name
-            @items = journey.items
+            @journey_name = @journey.name
+            @traveler = @journey.traveler.name
+            @items = @journey.items
             @cast = session[:cast]
-            journey.update(completed:true)
+            @journey.update(completed:true)
 
             clear_journey
         end

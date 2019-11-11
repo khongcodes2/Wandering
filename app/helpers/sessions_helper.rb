@@ -13,6 +13,14 @@ module SessionsHelper
         end
     end
 
+    def current_journey
+        if session[:journey_id].present? 
+            @journey = Journey.find(session[:journey_id])
+        else
+            nil
+        end
+    end
+
     def traveler_user_permission(traveler)
         !traveler.user.present? || current_user == traveler.user
     end

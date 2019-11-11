@@ -1,5 +1,5 @@
 <div>
-  <% journey = Journey.find(session[:journey_id]) %>
+  <% journey = current_journey %>
   <%= link_to journey.traveler.name, traveler_path(journey.traveler) %><br>
   
   at <%= link_to journey.spaces.last.name, region_space_path(journey.region,journey.spaces.last) %><br>

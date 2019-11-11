@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <% if session[:journey_id].present? %>
+    <% if current_journey %>
       <%= render "layouts/sidebar" %>
     <% end %>
 
