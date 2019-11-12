@@ -34,7 +34,6 @@ module SessionsHelper
     end
 
     def clear_journey
-        # current_journey.drop_all if current_journey
         session.delete :journey_id
         session.delete :wrapup
         session.delete :wrapup_resource_type

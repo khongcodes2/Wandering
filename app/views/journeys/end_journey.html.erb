@@ -7,8 +7,10 @@
 left behind:<br>
 <% @items.each do |i| %>
 <p>name: <%= i.name %><br>
-location: <%= i.space.name %></p>
+location: <%= @space.name %></p>
 <% end %><br>
+
+<% @journey.traveler.drop_all %>
 
 brought <%= @cast %> into the Ether.<br>
 

@@ -28,7 +28,11 @@ Rails.application.routes.draw do
   # items
   resources :items, only: [:index, :show, :new, :create]
 
-  # game flow
+  #game flow
+  post '/drop_item', to: 'journeys#drop_item', as: :drop_item
+  post '/pickup_item', to: 'journeys#pickup_item', as: :pickup_item
+
+  # game flow - end journey
   post '/wrapup', to: 'journeys#enter_wrapup', as: :enter_wrapup
   get '/wrapup', to: 'journeys#wrapup', as: :wrapup
   get '/wrapup_cast', to: 'journeys#wrapup_cast', as: :wrapup_cast

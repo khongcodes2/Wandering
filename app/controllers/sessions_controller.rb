@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
 
     def destroy
         clear_journey
+        current_journey.traveler.drop_all if current_journey
         session.delete :user_id
         redirect_to :root
     end

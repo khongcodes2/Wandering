@@ -2,7 +2,7 @@ class JourneysController < ApplicationController
     include SessionsHelper
     include JourneysHelper
 
-    before_action :current_journey, only:[:wrapup, :wrapup_cast, :wrapup_casting, :end_journey]
+    before_action :current_journey, only:[:drop_item, :pickup_item, :wrapup, :wrapup_cast, :wrapup_casting, :end_journey]
 
     def new
         # User can only create new journey if not already on journey
@@ -79,6 +79,28 @@ class JourneysController < ApplicationController
     end
 
     ########################################################
+    ########      sections for item handling        ########
+    ########################################################
+
+    def drop_item
+        item = Item.find(params.permit(:items)[:items].to_i)
+        # if item is valid
+        if @journey.items.include?(item)
+            @journey.traveler.drop_item(item)
+        end
+        redirect_to region_space_path(@journey.region, session[:was_just_on])
+    end
+
+    def pickup_item
+        item = Item.find(params.permit(:items)[:items].to_i)
+        # if on same space as item
+        if session[:was_just_on] == item.space.id.to_s
+            @journey.traveler.pickup(item)
+        end
+        redirect_to region_space_path(@journey.region, session[:was_just_on])
+    end
+
+    ########################################################
     ######      sections for end-journey process      ######
     ########################################################
 
@@ -126,7 +148,6 @@ class JourneysController < ApplicationController
                 # if no item selected
                 session[:cast] = "nothing"
             end
-            @journey.drop_items
             session[:wrapup] = 3
             redirect_to end_journey_path and return
         end
@@ -141,7 +162,7 @@ class JourneysController < ApplicationController
             @items = @journey.items
             @cast = session[:cast]
             @journey.update(completed:true)
-
+            @space = Space.find(session[:was_just_on])
             clear_journey
         end
     end

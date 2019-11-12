@@ -10,6 +10,10 @@
     <li>
       <%= link_to i.name, item_path(i) %><br>
       <small><%= i.descript %></small><br>
+      <%= form_tag({controller:'journeys', action:'drop_item'}) do %>
+        <%= hidden_field_tag "items", i.id %>
+        <%= submit_tag "Drop Item" %>
+      <% end %>
     </li>
   <% end %></ul>
 

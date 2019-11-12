@@ -18,17 +18,19 @@ class Traveler < ActiveRecord::Base
   end
 
   def pickup(item)
-    current_journey.push(item)
+    item.space.items.delete(item) if item.space.present?
+    current_journey.items.push(item)
   end
 
-  def drop(item)
-    current_journey.current_space.push(item)
+  def drop_item(item)
+    current_journey.items.delete(item)
+    current_journey.current_space.items.push(item)
   end
   
   def drop_all
     current_journey.items.each do |i|
-      current_journey.current_space.push(i)
-    end
+      drop_item(i)
+    eznd
   end
 
 end

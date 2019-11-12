@@ -60,8 +60,4 @@ class Journey < ActiveRecord::Base
         spaces.last
     end
 
-    def drop_items
-        current_space.items.push(self.items)
-    end
-
 end
