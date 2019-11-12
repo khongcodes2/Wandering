@@ -1,8 +1,9 @@
 <div>
   <% journey = current_journey %>
+  <% space = Space.find(session[:was_just_on]) %>
   <%= link_to journey.traveler.name, traveler_path(journey.traveler) %><br>
   
-  at <%= link_to journey.spaces.last.name, region_space_path(journey.region,journey.spaces.last) %><br>
+  at <%= link_to space.name, region_space_path(journey.region,space) %><br>
  
   <!-- not rendering a partial here because this will likely go into divs? -->
   Items:<br>

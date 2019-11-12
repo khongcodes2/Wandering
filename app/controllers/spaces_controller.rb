@@ -122,6 +122,7 @@ class SpacesController < ApplicationController
     elsif @space.save
       journey = Journey.find(session[:journey_id])
       journey.spaces.push(@space)
+      session[:was_just_on] = @space.id
       session[:wrapup_resource_type] = "space"
       session[:wrapup] = 2
       redirect_to wrapup_cast_path

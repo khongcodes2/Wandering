@@ -95,7 +95,13 @@ class JourneysController < ApplicationController
         item = Item.find(params.permit(:items)[:items].to_i)
         # if on same space as item
         if session[:was_just_on] == item.space.id.to_s
-            @journey.traveler.pickup(item)
+            if @journey.items.count>=4
+                flash[:notice] = "You can't carry more than 4 items!"
+            else
+                @journey.traveler.pickup(item)
+                flash[:notice] = "Picked up #{item.name}"
+            end
+            
         end
         redirect_to region_space_path(@journey.region, session[:was_just_on])
     end

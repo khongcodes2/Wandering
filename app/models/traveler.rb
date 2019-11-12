@@ -30,7 +30,7 @@ class Traveler < ActiveRecord::Base
   def drop_all
     current_journey.items.each do |i|
       drop_item(i)
-    eznd
+    end
   end
 
 end
