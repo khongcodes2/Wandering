@@ -124,16 +124,60 @@ DATA = {
     },
     "Forest" => {
       :space_nouns_descript => [
-        ["forest.A","1"],
-        ["forest.B","2"],
-        ["forest.C","3"],
-        ["forest.D","4"]
+        ["glade","six trees mark the edges of the glade, all equidistant from the center and sporting differnet bones hanging off them"],
+        ["glade","there's a fairy ring here that you give a wide berth"],
+        ["hollow","you can just barely fit inside this tree trunk"],
+        ["hollow","you think you see something move inside the empty trunk"],
+        ["burrow","the roots of a sturdy tree form the ceiling of this little enclave"],
+        ["burrow","a curious spider dangles down from the ceiling, inspecting you"],
+        ["clearing","the trees give way to a small, grassy space."],
+        ["mossy boulder","it sits in the middle of the path in contemplatively"],
+        ["pathway","it stretches and dives further into the woods"],
+        ["pathway","roots break the earth and spread through the pathway"],
+        #10
+        ["copse","the trees sway gently"],
+        ["copse","each tree has a yellow tag with identifying information on it"],
+        ["sapling nursery","they're getting all A's"],
+        ["sapling nursery","they're growing handsomely, though slowly"],
+        ["fungal nursery","they bloom slowly and pridfeully, overtaking a statue of a figure and the surrounding vegetation"],
+        ["thicket","it's verdant"],
+        ["grove","young trees are able to grow here"],
+        ["orchard","small yellow fruit, dappled in vermillion ripen here"],
+        ["stream","the water is cool and refreshing"],
+        ["bridge","it's a very large white marble structure that crosses such a small brook"],
+        #20
+        ["shelter","you feel safe in the abandoned makeshift shelter of piled branches"],
+        ["shelter","there is a hollow-ness left behind in this abandoned place"],
+        ["weald","it's verdant"],
+        ["cluster of bushes","they are perfectly round"],
+        ["cluster of bushes","you briefly wonder what might live inside"],
+        ["coppice","you feel the air weave through and around the cut saplings"],
+        ["school of saplings","they stand near yet apart, in awkward, gangly adolescence"],
+        ["graveyard","it's sprawling"],
+        ["graveyard","it's dense; there's hardly any room to walk between the gravestones"],
+        ["gates","the spindly metal is falling apart"],
+        #30
       ],
       :space_adj_descript => [
-        ["forest.a","5"],
-        ["forest.b","6"],
-        ["forest.c","7"],
-        ["forest.d","8"]
+        ["shaded","the undergrowth is heavier here"],
+        ["shaded","you spy a snail inching forward on a tree branch"],
+        ["breezy","the wind makes you feel light"],
+        ["breezy","you hear faint laughter from somewhere"],
+        ["windy","all you can hear are deafening waves of an ocean of leaves crashing against the shore of each other"],
+        ["peaceful","you feel calm here"],
+        ["peaceful","you try not to disturb anything here"],
+        ["quiet","the only sounds here are your footsteps",
+        ["still","it almost feels like time itself stands still"],
+        ["teeming","the wind moves such that the vines and leaves come to life, whipping and thrashing the air"],
+        #10
+        ["teeming","the air buzzes around you with insects and birds performing the play of their lives"],
+        ["lively","the air is abuzz with a thounsand birdsongs"],
+        ["thick","life grows on top of life, crowding itself"],
+        ["thick","pollen hangs in the air, dense enough to see"],
+        ["thick","spores hang in the air"],
+        ["enclosed","this space feels protected"],
+        ["enclosed","this space feels isolated"],
+        ["enclosed","the air doesn't move much here"],
       ]
     },
     "Ruins" => {
@@ -255,6 +299,13 @@ DATA = {
     ["deck of cards","the card on top is The Tower"],
     ["deck of cards","the card on top is the ace of spades"],
     ["deck of cards","the card on top is The Golden Son"],
+    ["icon","a saint holding a head in one hand and a ceremonial knife in another, anointed with a necklace of skulls"],
+    ["datapad","it looks like it contains lists of ingredients for recipes (the top one is cornbread)"],
+    ["picture frame","it's empty"],
+    #20
+    ["picture frame","it holds a drawing of a cat"],
+    ["gauntlet","it's hot"],
+    ["device","it has buttons and an empty compartment in the back"],
 
   ],
 
@@ -280,7 +331,10 @@ DATA = {
     ["delicate","it would break easily if you used it carelessly"],
     ["digital","it seems to contain information for an old-world machine"],
     ["dowsing","when you hold it, you feel it pulling you in a direction"],
-    ["discarded","it's been crumpled and thrown away"]
+    #20
+    ["discarded","it's been crumpled and thrown away"],
+    ["ornate","studded with precious stones"],
+    ["ritual","the decoration seems to indicate that it was made with a ceremonial purpose in mind"],
 
   ]
 }
