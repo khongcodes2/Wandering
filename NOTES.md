@@ -49,9 +49,9 @@ if clock is 9
     tick clock up 1; to 10
 end
 
-if clock is 10
-    run end_journey
-end
+session[:map] = "(521.f445.t349.t877)(445.f666.t777.t888)"
+session[:map].split(/\(|\)/).reject(&:empty?).map{|a|a.split(".")}
+#=> [[],[]]
 
 ## journey.end    
 [v] 1/journeys#wrapup/
@@ -119,3 +119,6 @@ end
     :journey_id
     :wrapup
     :wrapup_resource_type
+    :was_just_on
+    :map
+    :fully_linked_spaces

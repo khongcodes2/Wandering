@@ -1,0 +1,37 @@
+<div>
+  <% if three_paths %>
+    <h4>Three paths lie ahead...</h4>
+
+    <%= link_to to_space1.name, region_space_path(journey.region,to_space1) %><br>
+    <%= link_to to_space2.name, region_space_path(journey.region,to_space2) %><br>
+    <%= link_to from_space.name, region_space_path(journey.region,from_space) %>
+
+  <% else %>
+    <h4>Two paths lie ahead...</h4>
+
+    <%= link_to to_space1.name, region_space_path(journey.region,to_space1) %><br>
+  
+    <% if to_space2.present? %>
+      <%= link_to to_space2.name, region_space_path(journey.region,to_space2) %>
+    <% else %>
+      A blocked passage
+    <% end %>
+
+    <h4>Arrived from:</h4>
+    <% if from_space.present? %>
+      <%= link_to from_space.name, region_space_path(journey.region, from_space) %>
+    <% else %>
+      The Ether
+    <% end %>
+  <% end %>
+</div>
+
+<ul><% journey.spaces.each do |s| %>
+  <li><%= link_to s.name, region_space_path(journey.region,s) %></li>
+<% end %></ul>
+
+was just on <%= session[:was_just_on] %>
+<!-- set session[:was_just_on] -->
+<% session[:was_just_on] = params[:id] %>
+
+Clock: <%= journey.clock %>

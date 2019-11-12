@@ -53,7 +53,9 @@ class JourneysController < ApplicationController
             
             # put it in session to indicate to browser we want journey UI
             session[:journey_id] = @journey.id
-            redirect_to region_space_path(@journey.region, @journey.spaces.last) and return
+            # initialize array of no-random spaces to be pushed to
+            session[:fully_linked_spaces]=[]
+            redirect_to region_space_path(@journey.region, @journey.region.spaces.sample) and return
         else
             # save failed - prepare to reinitialize form
             @var_hash = {

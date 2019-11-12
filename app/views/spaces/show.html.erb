@@ -10,20 +10,13 @@
   </li>
 <% end %></ul>
 
-<% if current_journey %>
-  <div>
-  <h4>Two paths lie ahead...</h4>
-    <%= link_to @space1.name, region_space_path(@journey.region,@space1) %><br>
-    <%= link_to @space2.name, region_space_path(@journey.region,@space2) %>
-  </div>
-
-  <ul><% @journey.spaces.each do |s| %>
-    <li><%= link_to s.name, region_space_path(@journey.region,s) %></li>
-  <% end %></ul>
-
-  Clock: <%= @journey.clock %>
-<% end %>
+<%= flash[:notice] if flash[:notice].present? %>
 
 <% if current_journey %>
-  
+  <%= render partial:"travel_links", locals:{
+    three_paths:@three_paths,
+    to_space1:@to_space1,
+    to_space2:@to_space2,
+    from_space:@from_space,
+    journey:@journey} %>
 <% end %>
