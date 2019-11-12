@@ -26,12 +26,14 @@
   <% end %>
 </div>
 
+<!--
 <ul><% journey.spaces.each do |s| %>
   <li><%= link_to s.name, region_space_path(journey.region,s) %></li>
 <% end %></ul>
+-->
 
-was just on <%= session[:was_just_on] %>
-<!-- set session[:was_just_on] -->
+<!-- was just on <%= session[:was_just_on] %> -->
+
 <% session[:was_just_on] = params[:id] %>
 
-Clock: <%= journey.clock %>
+<!-- Clock: <%= journey.clock %> -->

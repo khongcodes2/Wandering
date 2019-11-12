@@ -1,6 +1,6 @@
 <% title "Journeys" %>
 
-Most recent 3 journeys completed, displayed
-list of 15 most recent completed journeys with links
+<h1>Journeys</h1>
+<h4>The 10 most recently completed journeys</h4>
 
-<%= render partial:'layouts/list', locals:{objs:@journeys} %>
+<%= render partial:'layouts/list', locals:{objs:@journeys.where(completed:true).last(10)} %>

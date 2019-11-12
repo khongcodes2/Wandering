@@ -1,8 +1,8 @@
 <% title @journey.name %>
 
 <!-- this represents history of current journey -->
-<p>Traveler: <%= @journey.traveler.name %></p>
-<p>Name: <%= @journey.name %></p>
+<p>Traveler: <%= link_to @journey.traveler.name, @journey.traveler %></p>
+<p><%= @journey.name %></p>
 
 <% if @journey.completed %>
 <p>COMPLETED</p>

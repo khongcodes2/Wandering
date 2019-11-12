@@ -1,7 +1,7 @@
 <% title @space.name %>
 <h1><%= @space.name %></h1>
 <p><%= @space.descript || "descript" %></p>
-<p>Inside of <%= link_to @space.region.name, region_path(@space.region) %></p>
+<p>In the <%= link_to @space.region.name, region_path(@space.region) %> Region</p>
 <!-- Delete later -->
 <p><%= flash[:notice] if flash[:notice].present? %></p>
 

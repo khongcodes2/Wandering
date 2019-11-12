@@ -1,9 +1,13 @@
 <% title @traveler.name %>
-<h1>Show Traveler</h1>
+<h1>Traveler: <%= @traveler.name %></h1>
 
 <p>Name: <%= @traveler.name %></p>
 <p>Description: <%= @traveler.descript %></p>
-<p>User: <%= @traveler.username %></p>
+<p>User: <% if @traveler.user %>
+            <%= link_to @traveler.username, @traveler.user %>
+          <% else %>
+              none
+          <% end %></p>
 
 <p>Remembered items:
   <ul><% @traveler.items.each do |i| %>
@@ -16,6 +20,10 @@
 
 <p>Remembered journeys:
   <%= render partial:"layouts/list", locals:{objs:@traveler.journeys} %>
+</p>
+
+<p>Remembered regions:
+  <%= render partial:"layouts/list", locals:{objs:@traveler.journeys.map{|a|a.region}} %>
 </p>
 
 <% if traveler_user_permission(@traveler) %>
