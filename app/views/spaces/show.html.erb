@@ -10,7 +10,7 @@
   </li>
 <% end %></ul>
 
-<%= flash[:notice] if flash[:notice].present? %>
+<strong><%= flash[:notice] if flash[:notice].present? %></strong>
 
 <% if current_journey %>
   <%= render partial:"travel_links", locals:{

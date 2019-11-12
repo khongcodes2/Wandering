@@ -39,6 +39,9 @@ module SessionsHelper
         session.delete :wrapup
         session.delete :wrapup_resource_type
         session.delete :cast
+        session.delete :was_just_on
+        session.delete :map
+        session.delete :fully_linked_spaces
     end
 
 end
