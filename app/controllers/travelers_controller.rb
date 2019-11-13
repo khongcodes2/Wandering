@@ -37,8 +37,10 @@ class TravelersController < ApplicationController
 
   def destroy
     #scatter items to the random regions/spaces
+    @traveler.drop_all
+    clear_journey
     @traveler.destroy
-    redirect_to travelers_path
+    redirect_to root_path
   end
 
   private

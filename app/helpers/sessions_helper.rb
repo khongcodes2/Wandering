@@ -35,6 +35,7 @@ module SessionsHelper
 
     def clear_journey
         session.delete :journey_id
+        session.delete :continue
         session.delete :wrapup
         session.delete :wrapup_resource_type
         session.delete :cast
