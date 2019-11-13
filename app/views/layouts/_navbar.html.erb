@@ -7,7 +7,7 @@
     <%= link_to "Begin Journey", new_journey_path, class:'nav_link' %>
 
   <% elsif !session[:wrapup].present? %>
-    <%= link_to "Continue Journey", region_space_path(current_journey.region, session[:was_just_on]), class:'nav_link' %>
+    <%= link_to "Continue Journey", continue_path, class:'nav_link' %>
 
   <% else %>
     <%= link_to "Continue Journey", where_do_i_go_integer(session[:wrapup]), class:'nav_link' %>

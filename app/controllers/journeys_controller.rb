@@ -74,9 +74,15 @@ class JourneysController < ApplicationController
         @journeys = Journey.all
     end
 
+    def continue
+        session[:continue] = true
+        redirect_to region_space_path(current_journey.region, session[:was_just_on])
+    end
+
     def show
         @journey = Journey.find(params[:id])
     end
+
 
     ########################################################
     ########      sections for item handling        ########
@@ -84,17 +90,19 @@ class JourneysController < ApplicationController
 
     def drop_item
         item = Item.find(params.permit(:items)[:items].to_i)
+        session[:continue] = true
         # if item is valid
         if @journey.items.include?(item)
             @journey.traveler.drop_item(item)
+            flash[:notice] = "Dropped #{item.name}"
         end
-        flash[:notice] = "Dropped #{item.name}"
         redirect_to where_do_i_go_integer(session[:wrapup]) and return if session[:wrapup].present?
         redirect_to region_space_path(@journey.region, session[:was_just_on])
     end
 
     def pickup_item
         item = Item.find(params.permit(:items)[:items].to_i)
+        session[:continue] = true
         # if on same space as item
         if session[:was_just_on] == item.space.id.to_s
             if @journey.items.count>=4

@@ -14,23 +14,25 @@ class SpacesController < ApplicationController
   def show
     @space = Space.find(params[:id])
     if current_journey
-      if current_journey.clock == 10
+      if current_journey.clock == 10 && !session[:continue]
         session[:wrapup] = 1
         redirect_to enter_wrapup_path and return
       end
+
       # visited this space before?
       # DON'T PUSH to space[:map]
       if @journey.spaces.include?(@space)
-        # does session[:was_just_on] correspond to any of the links?
-        if expanded_map.any?{|a|a[0]==session[:was_just_on].to_s}
+        session.delete :continue if session[:continue]
+
+        if expanded_map.any?{|a|a[0]==session[:was_just_on].to_s} && session[:was_just_on] != params[:id]
         # if so, make it the "from" link, and the other two the "to" links
           @from = session[:was_just_on]
           @to = current_space_in_map.find_all{|a|a[0]=="a"&&remove_a(a)!=session[:was_just_on].to_s}.map{|s|remove_a(s)}
         else
-        # if not, make to3
+        # first link should be the original from link
           @from = current_space_in_map.find_all{|a|a[0]=="a"}.map{|s|remove_a(s)}[0]
             # "id" in string
-          @to = current_space_in_map.find_all{|a|a[0]=="a"&&a[1..3]!=@from}.map{|s|remove_a(s)}
+          @to = current_space_in_map.find_all{|a|a[0]=="a"&&remove_a(a)!=@from}.map{|s|remove_a(s)}
             # "id"s in string
         end
         
@@ -79,7 +81,8 @@ class SpacesController < ApplicationController
         end
          
         # only tick if not backtracking
-        @journey.tick_clock
+        @journey.tick_clock if !session[:continue] || session[:was_just_on]!= params[:id]
+        session.delete :continue if session[:continue]
 
         if @journey.clock == 9
           flash.now.notice = "You can feel your journey will end soon..."

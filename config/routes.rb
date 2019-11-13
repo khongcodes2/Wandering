@@ -15,8 +15,10 @@ Rails.application.routes.draw do
   resources :travelers
 
   # journeys
+  get '/journeys/continue', to: 'journeys#continue', as: :continue
   resources :journeys, only: [:index, :show, :new]
   post '/journeys/new', to: 'journeys#create'
+  
 
   # regions and spaces
   # comment out index functions later?
