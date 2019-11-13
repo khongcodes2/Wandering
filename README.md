@@ -1,5 +1,6 @@
 # README
 
+Wandering is a short, little game that relies on its persistent database to allow users to explore and wander through procedurally generated spaces.
 
 Media touchstones:
 

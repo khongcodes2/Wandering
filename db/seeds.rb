@@ -33,53 +33,53 @@
 #  - Tundra
 #  - Mountain
 
-# 40 of each ["",""] in space
-# 60 of each ["",""] in items
+# 40 nouns and adjective descriptions within each region
+# 60 noun and adjective descriptions within items
 
 DATA = {
   :regions => {
-    "Lab" => {
-      :space_nouns_descript => [
-        ["lab.A","1"],
-        ["lab.B","2"],
-        ["lab.C","3"],
-        ["lab.D","4"]
-      ],
-      :space_adj_descript => [
-        ["lab.a","5"],
-        ["lab.b","6"],
-        ["lab.c","7"],
-        ["lab.d","8"]
-      ]
-    },
-    "Underground City" => {
-      :space_nouns_descript => [
-        ["ug.A","1"],
-        ["ug.B","2"],
-        ["ug.C","3"],
-        ["ug.D","4"]
-      ],
-      :space_adj_descript => [
-        ["ug.a","5"],
-        ["ug.b","6"],
-        ["ug.c","7"],
-        ["ug.d","8"]
-      ]
-    },
-    "Beach" => {
-      :space_nouns_descript => [
-        ["beach.A","1"],
-        ["beach.B","2"],
-        ["beach.C","3"],
-        ["beach.D","4"]
-      ],
-      :space_adj_descript => [
-        ["beach.a","5"],
-        ["beach.b","6"],
-        ["beach.c","7"],
-        ["beach.d","8"]
-      ]
-    },
+    # "Lab" => {
+    #   :space_nouns_descript => [
+    #     ["lab.A","1"],
+    #     ["lab.B","2"],
+    #     ["lab.C","3"],
+    #     ["lab.D","4"]
+    #   ],
+    #   :space_adj_descript => [
+    #     ["lab.a","5"],
+    #     ["lab.b","6"],
+    #     ["lab.c","7"],
+    #     ["lab.d","8"]
+    #   ]
+    # },
+    # "Underground City" => {
+    #   :space_nouns_descript => [
+    #     ["ug.A","1"],
+    #     ["ug.B","2"],
+    #     ["ug.C","3"],
+    #     ["ug.D","4"]
+    #   ],
+    #   :space_adj_descript => [
+    #     ["ug.a","5"],
+    #     ["ug.b","6"],
+    #     ["ug.c","7"],
+    #     ["ug.d","8"]
+    #   ]
+    # },
+    # "Beach" => {
+    #   :space_nouns_descript => [
+    #     ["beach.A","1"],
+    #     ["beach.B","2"],
+    #     ["beach.C","3"],
+    #     ["beach.D","4"]
+    #   ],
+    #   :space_adj_descript => [
+    #     ["beach.a","5"],
+    #     ["beach.b","6"],
+    #     ["beach.c","7"],
+    #     ["beach.d","8"]
+    #   ]
+    # },
     "Underwater" => {
       :space_nouns_descript => [
         ["reef","the colorful splashes of life fill you with a feeling of lightness"],
@@ -122,20 +122,20 @@ DATA = {
         ["silent","it's quiet here"],
       ]
     },
-    "Cave" => {
-      :space_nouns_descript => [
-        ["cave.A","1"],
-        ["cave.B","2"],
-        ["cave.C","3"],
-        ["cave.D","4"]
-      ],
-      :space_adj_descript => [
-        ["cave.a","5"],
-        ["cave.b","6"],
-        ["cave.c","7"],
-        ["cave.d","8"]
-      ]
-    },
+    # "Cave" => {
+    #   :space_nouns_descript => [
+    #     ["cave.A","1"],
+    #     ["cave.B","2"],
+    #     ["cave.C","3"],
+    #     ["cave.D","4"]
+    #   ],
+    #   :space_adj_descript => [
+    #     ["cave.a","5"],
+    #     ["cave.b","6"],
+    #     ["cave.c","7"],
+    #     ["cave.d","8"]
+    #   ]
+    # },
     "Forest" => {
       :space_nouns_descript => [
         ["glade","six trees mark the edges of the glade, all equidistant from the center and sporting differnet bones hanging off them"],
@@ -194,104 +194,104 @@ DATA = {
         ["enclosed","the air doesn't move much here"],
       ]
     },
-    "Ruins" => {
-      :space_nouns_descript => [
-        ["ruins.A","1"],
-        ["ruins.B","2"],
-        ["ruins.C","3"],
-        ["ruins.D","4"]
-      ],
-      :space_adj_descript => [
-        ["ruins.a","5"],
-        ["ruins.b","6"],
-        ["ruins.c","7"],
-        ["ruins.d","8"]
-      ]
-    },
-    "Plain" => {
-      :space_nouns_descript => [
-        ["plain.A","1"],
-        ["plain.B","2"],
-        ["plain.C","3"],
-        ["plain.D","4"]
-      ],
-      :space_adj_descript => [
-        ["plain.a","5"],
-        ["plain.b","6"],
-        ["plain.c","7"],
-        ["plain.d","8"]
-      ]
-    },
-    "Marsh" => {
-      :space_nouns_descript => [
-        ["marsh.A","1"],
-        ["marsh.B","2"],
-        ["marsh.C","3"],
-        ["marsh.D","4"]
-      ],
-      :space_adj_descript => [
-        ["marsh.a","5"],
-        ["marsh.b","6"],
-        ["marsh.c","7"],
-        ["marsh.d","8"]
-      ]
-    },
-    "Desert" => {
-      :space_nouns_descript => [
-        ["desert.A","1"],
-        ["desert.B","2"],
-        ["desert.C","3"],
-        ["desert.D","4"]
-      ],
-      :space_adj_descript => [
-        ["desert.a","5"],
-        ["desert.b","6"],
-        ["desert.c","7"],
-        ["desert.d","8"]
-      ]
-    },
-    "Taiga" => {
-      :space_nouns_descript => [
-        ["taiga.A","1"],
-        ["taiga.B","2"],
-        ["taiga.C","3"],
-        ["taiga.D","4"]
-      ],
-      :space_adj_descript => [
-        ["taiga.a","5"],
-        ["taiga.b","6"],
-        ["taiga.c","7"],
-        ["taiga.d","8"]
-      ]
-    },
-    "Tundra" => {
-      :space_nouns_descript => [
-        ["tundra.A","1"],
-        ["tundra.B","2"],
-        ["tundra.C","3"],
-        ["tundra.D","4"]
-      ],
-      :space_adj_descript => [
-        ["tundra.a","5"],
-        ["tundra.b","6"],
-        ["tundra.c","7"],
-        ["tundra.d","8"]
-      ]
-    },
-    "Mountain" => {
-      :space_nouns_descript => [
-        ["mountain.A","1"],
-        ["mountain.B","2"],
-        ["mountain.C","3"],
-        ["mountain.D","4"]
-      ],
-      :space_adj_descript => [
-        ["mountain.a","5"],
-        ["mountain.b","6"],
-        ["mountain.c","7"],
-        ["mountain.d","8"]
-      ]
-    }
+    # "Ruins" => {
+    #   :space_nouns_descript => [
+    #     ["ruins.A","1"],
+    #     ["ruins.B","2"],
+    #     ["ruins.C","3"],
+    #     ["ruins.D","4"]
+    #   ],
+    #   :space_adj_descript => [
+    #     ["ruins.a","5"],
+    #     ["ruins.b","6"],
+    #     ["ruins.c","7"],
+    #     ["ruins.d","8"]
+    #   ]
+    # },
+    # "Plain" => {
+    #   :space_nouns_descript => [
+    #     ["plain.A","1"],
+    #     ["plain.B","2"],
+    #     ["plain.C","3"],
+    #     ["plain.D","4"]
+    #   ],
+    #   :space_adj_descript => [
+    #     ["plain.a","5"],
+    #     ["plain.b","6"],
+    #     ["plain.c","7"],
+    #     ["plain.d","8"]
+    #   ]
+    # },
+    # "Marsh" => {
+    #   :space_nouns_descript => [
+    #     ["marsh.A","1"],
+    #     ["marsh.B","2"],
+    #     ["marsh.C","3"],
+    #     ["marsh.D","4"]
+    #   ],
+    #   :space_adj_descript => [
+    #     ["marsh.a","5"],
+    #     ["marsh.b","6"],
+    #     ["marsh.c","7"],
+    #     ["marsh.d","8"]
+    #   ]
+    # },
+    # "Desert" => {
+    #   :space_nouns_descript => [
+    #     ["desert.A","1"],
+    #     ["desert.B","2"],
+    #     ["desert.C","3"],
+    #     ["desert.D","4"]
+    #   ],
+    #   :space_adj_descript => [
+    #     ["desert.a","5"],
+    #     ["desert.b","6"],
+    #     ["desert.c","7"],
+    #     ["desert.d","8"]
+    #   ]
+    # },
+    # "Taiga" => {
+    #   :space_nouns_descript => [
+    #     ["taiga.A","1"],
+    #     ["taiga.B","2"],
+    #     ["taiga.C","3"],
+    #     ["taiga.D","4"]
+    #   ],
+    #   :space_adj_descript => [
+    #     ["taiga.a","5"],
+    #     ["taiga.b","6"],
+    #     ["taiga.c","7"],
+    #     ["taiga.d","8"]
+    #   ]
+    # },
+    # "Tundra" => {
+    #   :space_nouns_descript => [
+    #     ["tundra.A","1"],
+    #     ["tundra.B","2"],
+    #     ["tundra.C","3"],
+    #     ["tundra.D","4"]
+    #   ],
+    #   :space_adj_descript => [
+    #     ["tundra.a","5"],
+    #     ["tundra.b","6"],
+    #     ["tundra.c","7"],
+    #     ["tundra.d","8"]
+    #   ]
+    # },
+    # "Mountain" => {
+    #   :space_nouns_descript => [
+    #     ["mountain.A","1"],
+    #     ["mountain.B","2"],
+    #     ["mountain.C","3"],
+    #     ["mountain.D","4"]
+    #   ],
+    #   :space_adj_descript => [
+    #     ["mountain.a","5"],
+    #     ["mountain.b","6"],
+    #     ["mountain.c","7"],
+    #     ["mountain.d","8"]
+    #   ]
+    # }
   },
 
   :item_nouns_descript => [
@@ -321,6 +321,8 @@ DATA = {
     ["gauntlet","it's hot"],
     ["device","it has buttons and an empty compartment in the back"],
     ["ring","it bears a gem of crystal fire, clouded from use"],
+    ["2d6","the pair of ancient implements unveil unwelcome truths"],
+    ["weighted die","it's a cheater's tool"],
 
   ],
 
@@ -350,6 +352,7 @@ DATA = {
     ["discarded","it's been crumpled and thrown away"],
     ["ornate","studded with precious stones"],
     ["ritual","the decoration seems to indicate that it was made with a ceremonial purpose in mind"],
+    ["nemesis","it seems to mock you"],
 
   ]
 }
