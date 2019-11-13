@@ -181,7 +181,7 @@ DATA = {
         ["windy","all you can hear are deafening waves of an ocean of leaves crashing against the shore of each other"],
         ["peaceful","you feel calm here"],
         ["peaceful","you try not to disturb anything here"],
-        ["quiet","the only sounds here are your footsteps",
+        ["quiet","the only sounds here are your footsteps"],
         ["still","it almost feels like time itself stands still"],
         ["teeming","the wind moves such that the vines and leaves come to life, whipping and thrashing the air"],
         #10
