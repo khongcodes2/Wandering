@@ -2,12 +2,11 @@
 
 <h1><%= @journey_name %> ends</h1>
 
-<p><%= @traveler %>:</p>
+<p><%= @traveler %> left behind:</p>
 
-left behind:<br>
 <% @items.each do |i| %>
-<p>name: <%= i.name %><br>
-location: <%= @space.name %></p>
+<p><li>name: <%= i.name %><br>
+location: <%= @space.name %></li></p>
 <% end %><br>
 
 <% @journey.traveler.drop_all %>

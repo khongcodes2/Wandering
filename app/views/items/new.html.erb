@@ -5,7 +5,12 @@
 
 <% unless @item.errors.messages.include?(:base) %>
   <%= form_for @item do |i| %>
-    <%= render partial:'layouts/items_spaces_form', locals:{o:i}  %>
+
+    <div class='form'>
+      <%= render partial:'layouts/items_spaces_form', locals:{o:i}  %>
+    </div>
+
     <%= i.submit %>
+    
   <% end %>
 <% end %>

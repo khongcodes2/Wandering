@@ -88,6 +88,8 @@ class JourneysController < ApplicationController
         if @journey.items.include?(item)
             @journey.traveler.drop_item(item)
         end
+        flash[:notice] = "Dropped #{item.name}"
+        redirect_to where_do_i_go_integer(session[:wrapup]) and return if session[:wrapup].present?
         redirect_to region_space_path(@journey.region, session[:was_just_on])
     end
 

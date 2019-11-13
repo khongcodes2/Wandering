@@ -8,13 +8,13 @@
 <h4>Items at this space...</h4>
 <ul> <% @space.items.each do |i| %>
   <li><%= link_to i.name, item_path(i) %> 
-  <% if current_journey %>
+  <% if current_journey && !session[:wrapup].present? %>
     <%= form_tag({controller:'journeys', action:'pickup_item'}) do %>
       <%= hidden_field_tag "items", i.id %>
       <%= submit_tag "Pick Up Item" %>
     <% end %>
   <% end %>
-  </li>
+  </li><br>
 <% end %></ul>
 
 

@@ -8,7 +8,7 @@
 <p>COMPLETED</p>
 <% end %>
 
-<p>Region: <%= @journey.region.name %></p>
+<p>Region: <%= link_to @journey.region.name, @journey.region %></p>
 
 <p>Spaces Traveled:
 <ul><% @journey.spaces.each do |s| %>

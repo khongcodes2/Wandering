@@ -4,14 +4,17 @@
 <p><%= @item.descript||"nil" %></p>
 <p><%= item_space? %></p>
 
-<% if current_journey %>
+<% if current_journey && !session[:wrapup].present? %>
   <%= form_tag({controller:'journeys', action:'pickup_item'}) do %>
     <%= hidden_field_tag "items", @item.id %>
     <%= submit_tag "Pick Up Item" %>
   <% end %>
 
-  <%= form_tag({controller:'journeys', action:'drop_item'}) do %>
-    <%= hidden_field_tag "items", @item.id %>
-    <%= submit_tag "Drop Item" %>
+  <% if @journey.items.include?(@item) %>
+    <%= form_tag({controller:'journeys', action:'drop_item'}) do %>
+      <%= hidden_field_tag "items", @item.id %>
+      <%= submit_tag "Drop Item" %>
+    <% end %>
   <% end %>
+
 <% end %>

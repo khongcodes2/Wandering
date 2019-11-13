@@ -11,18 +11,26 @@
 
 <p>
 Choose one item to bring with you into the Ether - the rest must remain here.
-<%= form_tag({controller:'journeys', action:'wrapup_cast'}) do %>
-  <% @items.each do |i| %>
-    <p>
-      <%= radio_button_tag :item, i.id %><br>
-      
-      <label for="item_<%= i.id %>">
-        <%= i.name %><br>
-        <small><%= i.descript %></small>
-      </label>
 
-    </p>
-  <% end %><br>
+<%= form_tag({controller:'journeys', action:'wrapup_cast'}) do %>
+  <div class='form'>
+  
+    <% @items.each do |i| %>
+      <div class='wrapup_cast_item_select'>
+        <%= radio_button_tag :item, i.id %>
+
+        <div class='wrapup_cast_item'>
+          <label for="item_<%= i.id %>">
+            <%= i.name %><br>
+            <small><%= i.descript %></small>
+          </label>
+        </div>
+
+      </div><br>
+
+    <% end %><br style="clear: both">
+  </div>
+
   <%= submit_tag "End Journey" %>
 <% end %>
 </p>

@@ -3,7 +3,9 @@
 
 <% if user_self_permission(@user) %>
   <%= render partial:"form", locals:{user:@user} %>
-  <%= button_to "Delete User", @user, method: :delete, data:{confirm:"Really?"} %>
+  <div class='vertical-margin-div'>
+    <%= button_to "Delete User", @user, method: :delete, data:{confirm:"Really?"} %>
+  </div>
 <% else %>
   <p>Sorry - You don't have permission to make changes.</p>
 <% end %>

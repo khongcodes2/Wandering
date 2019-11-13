@@ -1,11 +1,13 @@
 <%= render partial:'layouts/error_display', locals:{obj:user} %>
 
 <%= form_for user do |f| %>
-    <%= f.label :username %><br>
-    <%= f.text_field :username %><br>
+    <div class='form'>
+      <%= f.label :username %><br>
+      <%= f.text_field :username %><br>
+      
+      <%= f.label :password %><br>
+      <%= f.password_field :password %><br>
+    </div>
     
-    <%= f.label :password %><br>
-    <%= f.password_field :password %><br>
-
     <%= f.submit %>
 <% end %>

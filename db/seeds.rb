@@ -306,6 +306,7 @@ DATA = {
     ["picture frame","it holds a drawing of a cat"],
     ["gauntlet","it's hot"],
     ["device","it has buttons and an empty compartment in the back"],
+    ["ring","it bears a gem of crystal fire, clouded from use"],
 
   ],
 
@@ -324,7 +325,7 @@ DATA = {
     ["bronze","it rings slightly in your hands"],
     ["elaborate","it's been overzealously decorated"],
     ["well-made","it's been artfully crafted"],
-    ["woeful","you feel sad holding this"],
+    ["woeful","you feel sad holding it"],
     ["haunted","you think you hear crying"],
     ["balanced","holding it feels good"],
     ["cursed","you feel dread wash over you in waves when you hold this"],
@@ -359,7 +360,7 @@ def generate_attributes(part1, part2)
 
   get[:noun] = part1[0]
   get[:adjective] = part2[0]
-  get[:descript] = d20<=10 ? part1[1]+conjunction+part2[1] : part2[1]+conjunction+part1[1]
+  get[:descript] = d20<=10 ? part1[1].capitalize+conjunction+part2[1]+"." : part2[1].capitalize+conjunction+part1[1]+"."
   get
 end
 

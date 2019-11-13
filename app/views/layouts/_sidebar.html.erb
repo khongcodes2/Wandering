@@ -1,24 +1,27 @@
-<div>
+<div class='sidebar_container'>
   <% journey = current_journey %>
   <% space = Space.find(session[:was_just_on]) %>
-  <%= link_to journey.traveler.name, traveler_path(journey.traveler) %><br>
   
-  at <%= link_to space.name, region_space_path(journey.region,space) %><br>
+  
+  <h4><%= link_to journey.name, journey_path(journey) %></h4>
+  
+  <p><%= link_to journey.traveler.name, traveler_path(journey.traveler) %><br>
+  traveling through <%= link_to journey.region.name, region_path(journey.region) %><br>
+  at <%= link_to space.name, region_space_path(journey.region,space) %></p>
  
-  <!-- not rendering a partial here because this will likely go into divs? -->
-  Items:<br>
-  <ul><% journey.items.each do |i| %>
-    <li>
+  Items:
+  <% journey.items.each do |i| %>
+    <div class='sidebar_item'>
       <%= link_to i.name, item_path(i) %><br>
       <small><%= i.descript %></small><br>
-      <%= form_tag({controller:'journeys', action:'drop_item'}) do %>
+      <%= form_tag({controller:'journeys', action:'drop_item'}, class:'sidebar_drop_item_form') do %>
         <%= hidden_field_tag "items", i.id %>
         <%= submit_tag "Drop Item" %>
       <% end %>
-    </li>
+    </div>
   <% end %></ul>
 
-  <%= form_tag({controller:'journeys', action:'wrapup'}) do %>
+  <%= form_tag({controller:'journeys', action:'wrapup'}, class:'sidebar_end_journey_form') do %>
     <%= hidden_field_tag "wrapup", session[:wrapup] %>
     <%= submit_tag "End Journey" %>
   <% end %>

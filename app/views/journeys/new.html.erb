@@ -1,5 +1,4 @@
 <% title "Initiate Journey" %>
-<%= current_user.username if session[:user_id] %>
 
 <% if !session[:journey_id].present? %>
   <%= render partial:"form_new", locals:{var:@var_hash} %>

@@ -1,11 +1,13 @@
 <%= render partial:'layouts/error_display', locals:{obj:traveler} %>
 
 <%= form_for traveler do |f| %>
+  <div class='form'>
     <%= f.label :name %><br>
     <%= f.text_field :name %><br>
     
     <%= f.label :descript %><br>
     <%= f.text_field :descript %><br>
+  </div>
 
     <!--
     Decided against make New Journey on New Traveler page - just felt wrong

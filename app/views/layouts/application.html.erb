@@ -7,14 +7,32 @@
     
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+    <%=  %>
   </head>
 
   <body>
-    <% if current_journey %>
-      <%= render "layouts/sidebar" %>
-    <% end %>
+    <div id='view_wrapper'>
+      <%= render "layouts/navbar" %>
+      
+      
+      <% if current_journey %>
 
-    <%= yield %>
+        <div id='sidebar'>
+          <%= render "layouts/sidebar" %>
+        </div>
+
+        <div id='main'>
+          <%= yield %>
+        </div>
+
+      <% else %>
+
+        <div id='main_no_sidebar'>  
+          <%= yield %>
+        </div>
+
+      <% end %>
+
+    </div>
   </body>
 </html>
