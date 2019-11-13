@@ -38,6 +38,17 @@ This file heavily uses a cookie - please enable cookies on this site.
 
 This web application was built on Ruby-2.6.1 with Rails 6.0.1.
 
+## Future updates
+ 
+ - A new object class and record type to log events, called Memories
+      - Spaces have Memories (footsteps)
+      - Journeys have Memories (travel log)
+      - Items have Memories (picked up by...dropped by...)
+      - Travelers have Memories (event log) through Journeys
+ - Implement use of a profanity filter gem to moderate user input
+ - Random events
+ 
+
 ## Contributing
 
   Bug reports and pull requests are welcome on GitHub at https://github.com/khongcodes2/Wandering

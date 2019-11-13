@@ -354,6 +354,8 @@ DATA = {
     ["ornate","studded with precious stones"],
     ["ritual","the decoration seems to indicate that it was made with a ceremonial purpose in mind"],
     ["nemesis","it seems to mock you"],
+    ["beholder's","you feel something turn to look at you"],
+
 
   ]
 }
