@@ -6,8 +6,7 @@ class Traveler < ActiveRecord::Base
 
   scope :no_user, -> {where(user:nil)}
   
-  validates :name, presence: true
-  validates :descript, presence: true
+  validates :name, :descript, presence: true
 
   def username
     user.present? ? user.username : "none"

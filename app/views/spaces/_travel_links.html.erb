@@ -34,6 +34,8 @@
 
 <!-- was just on <%= session[:was_just_on] %> -->
 
+<!--                      set session[:was_just_on] AFTER view is rendered                    -->
+<!-- so that session remembers this space as its last-traveled space as it enteres next space -->
 <% session[:was_just_on] = params[:id] %>
 
 <!-- Clock: <%= journey.clock %> -->

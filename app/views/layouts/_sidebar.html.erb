@@ -1,6 +1,6 @@
 <div class='sidebar_container'>
   <% journey = current_journey %>
-  <% space = Space.find(session[:was_just_on]) %>
+  <% space = space_was_just_on %>
   
   
   <h4><%= link_to journey.name, journey_path(journey) %></h4>

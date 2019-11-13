@@ -3,8 +3,9 @@ class User < ActiveRecord::Base
     # These will serve as traveler logs
     has_many :travelers
     has_many :journeys, through: :travelers
-    # consider commenting out following two
-    has_many :spaces, through: :journeys
+    
+    # consider commenting out following two if memories can be implemented
+    # has_many :spaces, through: :journeys
     has_many :items, through: :journeys
 
     validates :username, presence: true, uniqueness: true

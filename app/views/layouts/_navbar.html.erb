@@ -1,35 +1,30 @@
 <div id='nav'>
+
   <%= link_to "Wandering", root_path, class:'nav_link' %>
 
-  <% if !session[:journey_id].present? %>
 
+  <% if !session[:journey_id].present? %>
     <%= link_to "Begin Journey", new_journey_path, class:'nav_link' %>
 
   <% elsif !session[:wrapup].present? %>
-
     <%= link_to "Continue Journey", region_space_path(current_journey.region, session[:was_just_on]), class:'nav_link' %>
 
   <% else %>
-
     <%= link_to "Continue Journey", where_do_i_go_integer(session[:wrapup]), class:'nav_link' %>
-
   <% end %>
 
+
   <% if current_user %>
-  
     <%= form_tag({controller:'sessions', action:'destroy'}, class:'inline nav_link session_link') do %>
         <%= submit_tag "Log Out" %>
     <% end %>
     <%= link_to @user.username, user_path(@user), class:'nav_link session_link' %>
 
   <% else %>
-
-
-    <%= link_to "Log In (Twitter)", '/auth/twitter', class:'nav_link session_link' %>
-
     <%= link_to "Log In", login_path, class:'nav_link session_link' %>
-
-    
-    
   <% end %>
+
+  <%= link_to "About", about_path, class:'nav_link session_link' %>
+
+
 </div>

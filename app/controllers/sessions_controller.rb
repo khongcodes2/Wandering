@@ -32,6 +32,9 @@ class SessionsController < ApplicationController
         redirect_to :root
     end
 
+    def about
+    end
+
     private
 
     def login_params

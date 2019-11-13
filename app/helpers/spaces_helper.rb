@@ -3,6 +3,10 @@ module SpacesHelper
   def generate_space_links(int)
     current_journey.region.spaces.where.not(id:session[:fully_linked_spaces]).order('RANDOM()').limit(int).pluck(:id)
   end
+
+  def space_was_just_on
+    space = Space.find(session[:was_just_on])
+  end
   
 
   # session[:map] looks something like this
