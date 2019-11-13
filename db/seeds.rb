@@ -18,7 +18,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# 13 regions listed
+# GOAL: 13 regions listed
+#  - Lab
+#  - Underground City
+#  - Beach
+#  - Underwater
+#  - Cave
+#  - Forest
+#  - Ruins
+#  - Plain
+#  - Marsh
+#  - Desert
+#  - Taiga
+#  - Tundra
+#  - Mountain
+
 # 40 of each ["",""] in space
 # 60 of each ["",""] in items
 

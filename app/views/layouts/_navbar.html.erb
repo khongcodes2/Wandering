@@ -24,7 +24,12 @@
 
   <% else %>
 
+
+    <%= link_to "Log In (Twitter)", '/auth/twitter', class:'nav_link session_link' %>
+
     <%= link_to "Log In", login_path, class:'nav_link session_link' %>
+
+    
     
   <% end %>
 </div>
