@@ -19,9 +19,9 @@ class SpacesController < ApplicationController
         redirect_to enter_wrapup_path and return
       end
 
-      # visited this space before?
-      # DON'T PUSH to space[:map]
+      # if visited this space before? DON'T PUSH to session[:map]
       if @journey.spaces.include?(@space)
+        # remove :continue token
         session.delete :continue if session[:continue]
 
         if expanded_map.any?{|a|a[0]==session[:was_just_on].to_s} && session[:was_just_on] != params[:id]

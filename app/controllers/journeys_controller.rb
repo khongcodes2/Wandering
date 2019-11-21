@@ -3,8 +3,7 @@ class JourneysController < ApplicationController
     include JourneysHelper
 
     before_action :current_journey, only:[:drop_item, :pickup_item, :wrapup, :wrapup_cast, :wrapup_casting, :end_journey]
-    before_action :select_item, only:[:drop_item, :pickup_item]
-    after_action :redirect_was_just_on, only:[:continue, :pickup_item]
+    before_action :select_item_and_continue, only:[:drop_item, :pickup_item]
 
     def new
         # User can only create new journey if not already on journey
@@ -77,7 +76,9 @@ class JourneysController < ApplicationController
     end
 
     def continue
+        # issue :continue token to prevent journey.tick_clock
         session[:continue] = true
+        redirect_was_just_on
     end
 
     def show
@@ -91,9 +92,9 @@ class JourneysController < ApplicationController
 
     def drop_item
         # if item is valid
-        if @journey.items.include?(item)
-            @journey.traveler.drop_item(item)
-            flash[:notice] = "Dropped #{item.name}"
+        if @journey.items.include?(@item)
+            @journey.traveler.drop_item(@item)
+            flash[:notice] = "Dropped #{@item.name}"
         end
         redirect_to where_do_i_go_integer(session[:wrapup]) and return if session[:wrapup].present?
         redirect_to region_space_path(@journey.region, session[:was_just_on])
@@ -101,14 +102,15 @@ class JourneysController < ApplicationController
 
     def pickup_item
         # if on same space as item
-        if session[:was_just_on] == item.space.id.to_s
+        if session[:was_just_on] == @item.space.id.to_s
             if @journey.items.count>=4
                 flash[:notice] = "You can't carry more than 4 items!"
             else
-                @journey.traveler.pickup(item)
-                flash[:notice] = "Picked up #{item.name}"
+                @journey.traveler.pickup(@item)
+                flash[:notice] = "Picked up #{@item.name}"
             end
         end
+        redirect_was_just_on
     end
 
     ########################################################
@@ -117,7 +119,7 @@ class JourneysController < ApplicationController
 
     def enter_wrapup
         wrapup = params.permit(:wrapup)[:wrapup]||session[:wrapup]
-        if wrapup == "1" || wrapup.empty? 
+        if wrapup == "1" || wrapup.empty?
             session[:wrapup] = 1
             redirect_to wrapup_path and return
         elsif wrapup =="2"
@@ -147,14 +149,14 @@ class JourneysController < ApplicationController
         else
             # if user selected item
             if params.permit(:item)[:item].present?
-                item = Item.find(params.permit(:item)[:item])
+                select_item
                 @journey = Journey.find(session[:journey_id])
-                @journey.items.delete(item)
+                @journey.items.delete(@item)
                 
                 # unspace the item
-                item.space = nil
+                @item.space = nil
                 # save it to session
-                session[:cast] = item.name
+                session[:cast] = @item.name
             else
                 # if no item selected
                 session[:cast] = "nothing"
@@ -194,8 +196,12 @@ class JourneysController < ApplicationController
     end
 
     def select_item
-        item = Item.find(params.permit(:items)[:items].to_i)
+        @item = Item.find(params.permit(:items)[:items].to_i)
+    end
+
+    def select_item_and_continue
         session[:continue] = true
+        select_item
     end
 
     def redirect_was_just_on
