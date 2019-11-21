@@ -72,7 +72,7 @@ class JourneysController < ApplicationController
     end
 
     def index
-        @journeys = Journey.all
+        @journeys = Journey.last_10_completed
     end
 
     def continue
@@ -149,14 +149,14 @@ class JourneysController < ApplicationController
         else
             # if user selected item
             if params.permit(:item)[:item].present?
-                select_item
+                item = Item.find(params.permit(:item)[:item].to_i)
                 @journey = Journey.find(session[:journey_id])
-                @journey.items.delete(@item)
+                @journey.items.delete(item)
                 
                 # unspace the item
-                @item.space = nil
+                item.space = nil
                 # save it to session
-                session[:cast] = @item.name
+                session[:cast] = item.name
             else
                 # if no item selected
                 session[:cast] = "nothing"

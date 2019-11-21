@@ -1,6 +1,14 @@
-<% title "Journeys" %>
+<% title "Book of Journeys" %>
 
-<h1>Journeys</h1>
+<h1>Book of Journeys - Table of Contents</h1>
 <h4>The 10 most recently completed journeys</h4>
 
-<%= render partial:'layouts/list', locals:{objs:@journeys.where(completed:true).last(10)} %>
+<ul><% @journeys.each do |j| %>
+  <li> <%= link_to j.name, j %> </li>
+<% end %></ul>
+
+<p><%= index_journeys_if_more_than_10 %></p>
+<br>
+<p><%= link_to "Dramatis Personæ: Travelers", travelers_path %></p>
+<p><%= link_to "Chapters: Regions", regions_path %></p>
+<p><%= link_to "Index: Items", items_path %></p>

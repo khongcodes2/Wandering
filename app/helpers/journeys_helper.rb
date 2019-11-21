@@ -20,4 +20,18 @@ module JourneysHelper
       link_to resource.name, item_path(resource)
     end
   end
+
+  def show_journey_traveler_name(journey)
+    if journey.traveler
+      link_to journey.traveler.name, journey.traveler
+    else
+      "An empty portrait rests here."
+    end
+  end
+
+  def index_journeys_if_more_than_10
+    if Journey.all.count > 10
+      "The text past this point is faded beyond readability."
+    end
+  end
 end
