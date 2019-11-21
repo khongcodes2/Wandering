@@ -159,7 +159,7 @@ DATA = {
         ["grove","young trees are able to grow here"],
         ["orchard","small yellow fruit, dappled in vermillion ripen here"],
         ["stream","the water is cool and refreshing"],
-        ["bridge","it's a very large white marble structure that crosses such a small brook"],
+        ["bridge","a very large white marble structure that crosses such a small brook"],
         #20
         ["shelter","you feel safe in the abandoned makeshift shelter of piled branches"],
         ["shelter","there is a hollow-ness left behind in this abandoned place"],
@@ -172,14 +172,16 @@ DATA = {
         ["graveyard","it's dense; there's hardly any room to walk between the gravestones"],
         ["gates","the spindly metal is falling apart"],
         #30
+        ["mycellicum","an immense structure looms, a lexicon to architectural language of fungus"],
+        
       ],
       :space_adj_descript => [
         ["shaded","the undergrowth is heavier here"],
-        ["shaded","you spy a snail inching forward on a tree branch"],
+        ["shady","you spy a snail inching forward on a tree branch"],
         ["breezy","the wind makes you feel light"],
         ["breezy","you hear faint laughter from somewhere"],
         ["windy","all you can hear are deafening waves of an ocean of leaves crashing against the shore of each other"],
-        ["peaceful","you feel calm here"],
+        ["calm","you feel calm here"],
         ["peaceful","you try not to disturb anything here"],
         ["quiet","the only sounds here are your footsteps"],
         ["still","it almost feels like time itself stands still"],
@@ -187,7 +189,7 @@ DATA = {
         #10
         ["teeming","the air buzzes around you with insects and birds performing the play of their lives"],
         ["lively","the air is abuzz with a thounsand birdsongs"],
-        ["thick","life grows on top of life, crowding itself"],
+        ["fractal","life grows on top of life, crowding itself"],
         ["thick","pollen hangs in the air, dense enough to see"],
         ["thick","spores hang in the air"],
         ["enclosed","this space feels protected"],
@@ -340,7 +342,12 @@ DATA = {
     ["old","it has a great big crack down the middle"],
     #10
     ["bronze","it rings slightly in your hands"],
-    ["elaborate","it's been overzealously decorated"],
+    ["baroque","it's been overzealously decorated with oak leaf motifs"],
+    ["neural-engraved","every inch of its surface holds carved script that rolls fluidly into every other inch"],
+    ["elaborate","it "],
+    ["over-complicated","it somehow looks like it has more parts than it actually needs"],
+    ["scavenged","a battery here, a dish there; it's been slapped together with a bunch of disparate parts that barely hold together"],
+    ["articulated","every inch of its surface holds carved script that rolls fluidly into every other inch"],
     ["well-made","it's been artfully crafted"],
     ["woeful","you feel sad holding it"],
     ["haunted","you think you hear crying"],

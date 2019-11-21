@@ -12,17 +12,15 @@ class SessionsController < ApplicationController
     def create
         @user = User.find_by(username:login_params[:username])||User.new
         return head(:forbidden) unless @user.authenticate(login_params[:password])
-        session[:user_id] = @user.id
-        redirect_to :root
+        logged_in_and_root
     end
 
     def omniauth_create
-        @user = User.find_or_create_by(id:auth[:uid]) do |u|
+        @user = User.find_or_create_by(uid:auth[:uid]) do |u|
             u.username = auth[:info][:name]
             u.password = auth[:info][:name]
         end
-        session[:user_id] = @user.id
-        redirect_to :root
+        logged_in_and_root
     end
 
     def destroy
@@ -43,6 +41,11 @@ class SessionsController < ApplicationController
 
     def auth
         request.env['omniauth.auth']
+    end
+
+    def logged_in_and_root
+        session[:user_id] = @user.id
+        redirect_to :root
     end
 
 end

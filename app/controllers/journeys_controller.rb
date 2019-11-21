@@ -3,6 +3,8 @@ class JourneysController < ApplicationController
     include JourneysHelper
 
     before_action :current_journey, only:[:drop_item, :pickup_item, :wrapup, :wrapup_cast, :wrapup_casting, :end_journey]
+    before_action :select_item, only:[:drop_item, :pickup_item]
+    after_action :redirect_was_just_on, only:[:continue, :pickup_item]
 
     def new
         # User can only create new journey if not already on journey
@@ -76,7 +78,6 @@ class JourneysController < ApplicationController
 
     def continue
         session[:continue] = true
-        redirect_to region_space_path(current_journey.region, session[:was_just_on])
     end
 
     def show
@@ -89,8 +90,6 @@ class JourneysController < ApplicationController
     ########################################################
 
     def drop_item
-        item = Item.find(params.permit(:items)[:items].to_i)
-        session[:continue] = true
         # if item is valid
         if @journey.items.include?(item)
             @journey.traveler.drop_item(item)
@@ -101,8 +100,6 @@ class JourneysController < ApplicationController
     end
 
     def pickup_item
-        item = Item.find(params.permit(:items)[:items].to_i)
-        session[:continue] = true
         # if on same space as item
         if session[:was_just_on] == item.space.id.to_s
             if @journey.items.count>=4
@@ -111,9 +108,7 @@ class JourneysController < ApplicationController
                 @journey.traveler.pickup(item)
                 flash[:notice] = "Picked up #{item.name}"
             end
-            
         end
-        redirect_to region_space_path(@journey.region, session[:was_just_on])
     end
 
     ########################################################
@@ -196,6 +191,15 @@ class JourneysController < ApplicationController
                 :descript
             ]
         )
+    end
+
+    def select_item
+        item = Item.find(params.permit(:items)[:items].to_i)
+        session[:continue] = true
+    end
+
+    def redirect_was_just_on
+        redirect_to region_space_path(current_journey.region, session[:was_just_on])
     end
 
 end
