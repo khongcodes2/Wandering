@@ -1,6 +1,8 @@
 class JourneysController < ApplicationController
     include SessionsHelper
     include JourneysHelper
+    include SpacesHelper
+    include ItemsHelper
 
     before_action :current_journey, only:[:drop_item, :pickup_item, :wrapup, :wrapup_cast, :wrapup_casting, :end_journey]
     before_action :select_item_and_continue, only:[:drop_item, :pickup_item]
@@ -91,9 +93,9 @@ class JourneysController < ApplicationController
     ########################################################
 
     def drop_item
-        # if item is valid
+        # if journey HAS this item (therefore able to drop it)
         if @journey.items.include?(@item)
-            @journey.traveler.drop_item(@item)
+            drop_item_here(@item)
             flash[:notice] = "Dropped #{@item.name}"
         end
         redirect_to where_do_i_go_integer(session[:wrapup]) and return if session[:wrapup].present?
@@ -176,7 +178,6 @@ class JourneysController < ApplicationController
             @cast = session[:cast]
             @journey.update(completed:true)
             @space = Space.find(session[:was_just_on])
-            clear_journey
         end
     end
 

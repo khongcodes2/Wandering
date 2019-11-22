@@ -21,15 +21,4 @@ class Traveler < ActiveRecord::Base
     current_journey.items.push(item)
   end
 
-  def drop_item(item)
-    current_journey.items.delete(item)
-    current_journey.current_space.items.push(item)
-  end
-  
-  def drop_all
-    current_journey.items.each do |i|
-      drop_item(i)
-    end
-  end
-
 end
