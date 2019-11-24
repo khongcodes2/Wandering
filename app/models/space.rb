@@ -5,7 +5,7 @@ class Space < ActiveRecord::Base
     has_many :users, through: :journeys
     has_many :items
 
-    has_many :memories, optional: true
+    has_many :memories
 
     validates :noun, :adjective, :descript, presence: true
 

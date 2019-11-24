@@ -1,7 +1,7 @@
 class Memory < ActiveRecord::Base
   belongs_to :item, optional: true
-  belongs_to :space, optional: true
-  belongs_to :journey, optional: true
+  belongs_to :space
+  belongs_to :journey
 
 
 
@@ -10,9 +10,9 @@ class Memory < ActiveRecord::Base
     when "item"
       "Picked up by #{self.journey.traveler_name} at #{self.space.name}."
     when "space"
-      self.space.region.message
-    when "journey" || "traveler"
-      if self.type == "item"
+      self.space.region.memory_message
+    else
+      if self.mem_type == "item"
         "#{self.journey.traveler_name} picked up #{self.item.name} at #{self.space.name}."
       else
         "#{self.journey.traveler_name} traveled through #{self.space.name}."

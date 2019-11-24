@@ -5,7 +5,7 @@ class Item < ActiveRecord::Base
     has_many :users, through: :travelers
     belongs_to :space, optional: true
     
-    has_many :memories, optional: true
+    has_many :memories
 
     validates :noun, :adjective, presence: true
 

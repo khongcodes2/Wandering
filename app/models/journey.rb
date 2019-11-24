@@ -7,7 +7,7 @@ class Journey < ActiveRecord::Base
     has_many :item_journeys
     has_many :items, through: :item_journeys
     
-    has_many :memories, optional: true
+    has_many :memories
 
     scope :last_10_completed,   -> {where(completed:true).last(10)}
 
