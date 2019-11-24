@@ -120,8 +120,11 @@ class JourneysController < ApplicationController
     ########################################################
 
     def enter_wrapup
-        wrapup = params.permit(:wrapup)[:wrapup]||session[:wrapup]
+        # raise params.inspect
+        # convenience-assign and read session[:wrapup] (or session[:wrapup] from sidebar End Journey button)
+        wrapup = params.permit(:wrapup)[:wrapup]||session[:wrapup].to_s
         if wrapup == "1" || wrapup.empty?
+            current_journey.update(clock:10)
             session[:wrapup] = 1
             redirect_to wrapup_path and return
         elsif wrapup =="2"
@@ -132,53 +135,54 @@ class JourneysController < ApplicationController
     end
 
     def wrapup
+        # expect session[:wrapup] to be 1; else redirect
         redirect_to where_do_i_go_integer(session[:wrapup]) if session[:wrapup]!=1
     end
 
     def wrapup_cast
+        # expect session[:wrapup] to be 2; else redirect
+        redirect_to where_do_i_go_integer(session[:wrapup]) and return if session[:wrapup]!=2
+
         @items = @journey.items
         if session[:wrapup_resource_type] == "space"
             @resource = @journey.spaces.last
         elsif session[:wrapup_resource_type] == "item"
             @resource = @journey.items.last
         end
-        redirect_to where_do_i_go_integer(session[:wrapup]) if session[:wrapup]!=2
     end
 
     def wrapup_casting
-        if session[:wrapup]!=2
-            redirect_to where_do_i_go_integer(session[:wrapup]) and return
+        # expect session[:wrapup] to be 2; else redirect
+        redirect_to where_do_i_go_integer(session[:wrapup]) and return if session[:wrapup]!=2
+        
+        # if user selected item, unspace and unjourney the item and save to cast;
+        # else save "nothing" to cast
+        if params.permit(:item)[:item].present?
+            item = Item.find(params.permit(:item)[:item].to_i)
+            @journey = Journey.find(session[:journey_id])
+            @journey.items.delete(item)
+            
+            # unspace the item
+            item.space = nil
+            # save it to session
+            session[:cast] = item.name
         else
-            # if user selected item
-            if params.permit(:item)[:item].present?
-                item = Item.find(params.permit(:item)[:item].to_i)
-                @journey = Journey.find(session[:journey_id])
-                @journey.items.delete(item)
-                
-                # unspace the item
-                item.space = nil
-                # save it to session
-                session[:cast] = item.name
-            else
-                # if no item selected
-                session[:cast] = "nothing"
-            end
-            session[:wrapup] = 3
-            redirect_to end_journey_path and return
+            session[:cast] = "nothing"
         end
+        session[:wrapup] = 3
+        redirect_to end_journey_path
     end
 
     def end_journey
-        if session[:wrapup]!=3
-            redirect_to where_do_i_go_integer(session[:wrapup]) and return
-        else 
-            @journey_name = @journey.name
-            @traveler = @journey.traveler.name
-            @items = @journey.items
-            @cast = session[:cast]
-            @journey.update(completed:true)
-            @space = Space.find(session[:was_just_on])
-        end
+        # expect session[:wrapup] to be 3; else redirect
+        redirect_to where_do_i_go_integer(session[:wrapup]) and return if session[:wrapup]!=3
+        
+        @journey_name = @journey.name
+        @traveler = @journey.traveler.name
+        @items = @journey.items
+        @cast = session[:cast]
+        @journey.update(completed:true)
+        @space = Space.find(session[:was_just_on])
     end
 
     private
