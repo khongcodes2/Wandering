@@ -105,7 +105,7 @@ DATA = {
         ["seabed","you touchdown in a fairy ring of starfish"],
         ["seabed","garden eels pop back into the floor as you reach it"],
         #20
-        ["shipwreck","it was abandoned long ago"],
+        ["shipwreck","it's been abandoned for a long time"],
       ],
       :space_adj_descript => [
         ["clear","light pours in from above and dances around you"],
@@ -418,7 +418,7 @@ def make_items
   end
 
   #space-less items
-  100.times do
+  70.times do
     part1 = DATA[:item_nouns_descript].sample
     part2 = DATA[:item_adj_descript].sample
     
