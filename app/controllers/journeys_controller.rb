@@ -48,15 +48,13 @@ class JourneysController < ApplicationController
         @journey.items.push(Item.find(journey_params[:items])) unless journey_params[:items].nil?
         
         if @journey.traveler.save && @journey.save
-            # start journey
+            # start journey, update parents (traveler and user)
             @journey.start
-            # updates parents - traveler and user
             @journey.traveler.user = current_user
             @journey.traveler.save
             
-            # put it in session to indicate to browser we want journey UI
+            # put it in session to indicate to browser we want journey UI, initialize array of fully-linked spaces to be pushed to
             session[:journey_id] = @journey.id
-            # initialize array of no-random spaces to be pushed to
             session[:fully_linked_spaces]=[]
             redirect_to region_space_path(@journey.region, @journey.region.spaces.sample) and return
         else
