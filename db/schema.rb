@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_21_194019) do
+ActiveRecord::Schema.define(version: 2019_11_24_171926) do
 
   create_table "item_journeys", force: :cascade do |t|
     t.integer "item_id"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 2019_11_21_194019) do
     t.integer "traveler_id"
     t.integer "region_id"
     t.integer "clock"
+    t.integer "likes", default: 0
+  end
+
+  create_table "memories", force: :cascade do |t|
+    t.string "type"
+    t.string "text"
+    t.integer "item_id"
+    t.integer "space_id"
+    t.integer "journey_id"
   end
 
   create_table "regions", force: :cascade do |t|
