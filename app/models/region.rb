@@ -4,16 +4,16 @@ class Region < ActiveRecord::Base
     has_many :spaces
     has_many :journeys
 
-    def memory_message
+    def traveled_space_memory_text(traveler)
         case self.name
         when "Lab"
         when "Underground City"
         when "Beach"
         when "Underwater"
-            "You feel a presence was here."
+            text = "You feel a presence was here: "
         when "Cave"
         when "Forest"
-            "You see footsteps in the undergrowth."
+            text = "You see footsteps in the undergrowth: "
         when "Ruins"
         when "Plain"
         when "Marsh"
@@ -22,5 +22,6 @@ class Region < ActiveRecord::Base
         when "Tundra"
         when "Mountain"
         end
+        text + "#{traveler} passed through here."
     end
 end

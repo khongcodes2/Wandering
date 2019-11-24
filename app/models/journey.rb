@@ -17,10 +17,6 @@ class Journey < ActiveRecord::Base
     def new_traveler(hash)
         self.traveler = Traveler.new(name:hash[:name],descript:hash[:descript])
     end
-
-    def traveler_name
-        self.traveler.name
-    end
        
     def start
         self.clock = 0
