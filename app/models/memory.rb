@@ -6,3 +6,4 @@ class Memory < ActiveRecord::Base
   def traveler_name
     self.journey.traveler.name
   end
+end

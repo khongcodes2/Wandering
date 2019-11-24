@@ -17,7 +17,7 @@ module ItemsHelper
   # if not on space (item view); was_just_on space
   def current_space_for_item_drop
       if params[:region_id]
-        space = params[:id]
+        space = Space.find(params[:id])
     else
         space = space_was_just_on
     end

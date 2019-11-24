@@ -92,6 +92,8 @@ class JourneysController < ApplicationController
     def drop_item
         # if journey HAS this item (therefore able to drop it)
         if @journey.items.include?(@item)
+            memory = Memory.new(mem_type:'item_drop', journey_id:@journey.id, item_id:@item.id, space_id:current_space_for_item_drop.id)
+            memory.save
             drop_item_here(@item)
             flash[:notice] = "Dropped #{@item.name}"
         end
@@ -111,6 +113,8 @@ class JourneysController < ApplicationController
             if @journey.items.count>=4
                 flash[:notice] = "You can't carry more than 4 items!"
             else
+                memory = Memory.new(mem_type:'item_pickup', journey_id:@journey.id, item_id:@item.id, space_id:@item.space.id)
+                memory.save
                 @journey.traveler.pickup(@item)
                 flash[:notice] = "Picked up #{@item.name}"
             end

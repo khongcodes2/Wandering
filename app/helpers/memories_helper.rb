@@ -1,4 +1,5 @@
 module MemoriesHelper
+  
   def item_memory_text(memory)
     traveler = memory.traveler_name
     space = memory.space.name
