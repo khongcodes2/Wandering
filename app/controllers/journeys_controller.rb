@@ -39,12 +39,12 @@ class JourneysController < ApplicationController
         end
         
         # assign region: random OR first in drop-down
-        @journey.region = journey_params[:random_region_box]=="1" ? Region.all.sample : Region.find(journey_params[:region_id])
-        # assign journey name; "traveler.name's journey" if blank
-        @journey.name = journey_params[:name].present? ? journey_params[:name] : "#{@journey.traveler.name}'s journey"
+        # assign journey name: "traveler.name's journey" if blank
         # assign user (nil if none)
-        @journey.user = current_user
         # assign item to journey if an item is selected
+        @journey.region = journey_params[:random_region_box]=="1" ? Region.all.sample : Region.find(journey_params[:region_id])
+        @journey.name = journey_params[:name].present? ? journey_params[:name] : "#{@journey.traveler.name}'s journey"
+        @journey.user = current_user
         @journey.items.push(Item.find(journey_params[:items])) unless journey_params[:items].nil?
         
         if @journey.traveler.save && @journey.save
@@ -68,7 +68,6 @@ class JourneysController < ApplicationController
             }
             render :new
         end
-
     end
 
     def index
@@ -96,8 +95,14 @@ class JourneysController < ApplicationController
             drop_item_here(@item)
             flash[:notice] = "Dropped #{@item.name}"
         end
-        redirect_to where_do_i_go_integer(session[:wrapup]) and return if session[:wrapup].present?
-        redirect_to region_space_path(@journey.region, session[:was_just_on])
+
+        # if journey is in wrapup go to wrapup
+        # else redirect was_just_on
+        if session[:wrapup].present?
+            redirect_to where_do_i_go_integer(session[:wrapup])
+        else
+            redirect_was_just_on
+        end
     end
 
     def pickup_item
@@ -160,9 +165,7 @@ class JourneysController < ApplicationController
             @journey = Journey.find(session[:journey_id])
             @journey.items.delete(item)
             
-            # unspace the item
             item.space = nil
-            # save it to session
             session[:cast] = item.name
         else
             session[:cast] = "nothing"
