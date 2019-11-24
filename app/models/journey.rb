@@ -3,11 +3,11 @@ class Journey < ActiveRecord::Base
     belongs_to :traveler
     belongs_to :region
     has_many :space_journeys
-    # no longer has_many through regions - all of the region's spaces became the journey's
     has_many :spaces, through: :space_journeys
     has_many :item_journeys
     has_many :items, through: :item_journeys
-    # has_many :memories
+    
+    has_many :memories, optional: true
 
     scope :last_10_completed,   -> {where(completed:true).last(10)}
 

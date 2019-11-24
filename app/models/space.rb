@@ -4,7 +4,9 @@ class Space < ActiveRecord::Base
     has_many :journeys, through: :space_journeys
     has_many :users, through: :journeys
     has_many :items
-    # has_many :memories
+
+    has_many :memories, optional: true
+
     validates :noun, :adjective, :descript, presence: true
 
 
