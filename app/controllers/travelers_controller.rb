@@ -1,6 +1,7 @@
 class TravelersController < ApplicationController
   before_action :set_traveler, only: [:show, :edit, :update, :destroy]
   include SessionsHelper
+  include ItemsHelper
 
   def index
     @travelers = Traveler.all
@@ -36,8 +37,7 @@ class TravelersController < ApplicationController
   end
 
   def destroy
-    #scatter items to the random regions/spaces
-    @traveler.drop_all
+    drop_all if current_journey
     clear_journey
     @traveler.destroy
     redirect_to root_path

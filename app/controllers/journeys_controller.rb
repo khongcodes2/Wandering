@@ -107,7 +107,7 @@ class JourneysController < ApplicationController
 
     def pickup_item
         # if on same space as item
-        if session[:was_just_on] == @item.space.id.to_s
+        if space_was_just_on == @item.space
             if @journey.items.count>=4
                 flash[:notice] = "You can't carry more than 4 items!"
             else

@@ -1,9 +1,14 @@
 module SpacesHelper
-
+  # USED: Spaces#show
+  # to get random links for each space that don't already have their 3 link slots filled
   def generate_space_links(int)
     current_journey.region.spaces.where.not(id:session[:fully_linked_spaces]).order('RANDOM()').limit(int).pluck(:id)
   end
 
+  # USED: like constantly
+  # important for navigating from space to space - retain memory of last entered space
+  # to assign previous space as a link to a newly-enetered space
+  # and to be able to return to previous space from viewing an item or region details
   def space_was_just_on
     space = Space.find(session[:was_just_on])
   end

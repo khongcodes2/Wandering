@@ -1,4 +1,6 @@
 module JourneysHelper
+  # USED: in Journeys wrapup actions
+  # to redirect to correct path
   def where_do_i_go_integer(int)
     case int
     when 1
@@ -12,6 +14,7 @@ module JourneysHelper
     end
   end
   
+  # USED: journeys/wrapup_cast view
   # just helps JourneysController know what class to check for last resource created
   def wrapup_cast_created(resource)
     if resource.class.name=="Space"
@@ -21,6 +24,8 @@ module JourneysHelper
     end
   end
 
+  # USED: journeys/show view
+  # link to traveler or handle if traveler has been deleted
   def show_journey_traveler_name(journey)
     if journey.traveler
       link_to journey.traveler.name, journey.traveler
@@ -29,9 +34,11 @@ module JourneysHelper
     end
   end
 
+  # USED: journeys/show view
+  # flavor text if more than 10 journeys exist
   def index_journeys_if_more_than_10
     if Journey.all.count > 10
-      "The text past this point is faded beyond readability."
+      "The text past this point fades beyond readability."
     end
   end
 end

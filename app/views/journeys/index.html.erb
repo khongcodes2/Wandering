@@ -7,8 +7,10 @@
   <li> <%= link_to j.name, j %> </li>
 <% end %></ul>
 
-<p><%= index_journeys_if_more_than_10 %></p>
-<br>
+<div class='vertical-margin-div'>
+<p><span class='index flavor'><%= index_journeys_if_more_than_10 %></span></p>
+</div>
+
 <p><%= link_to "Dramatis Personæ: Travelers", travelers_path %></p>
 <p><%= link_to "Chapters: Regions", regions_path %></p>
 <p><%= link_to "Index: Items", items_path %></p>

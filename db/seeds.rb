@@ -344,7 +344,7 @@ DATA = {
     ["bronze","it rings slightly in your hands"],
     ["baroque","it's been overzealously decorated with oak leaf motifs"],
     ["neural-engraved","every inch of its surface holds carved script that rolls fluidly into every other inch"],
-    ["elaborate","it "],
+    ["elaborate","it was made with a painstakingly fine eye for detail"],
     ["over-complicated","it somehow looks like it has more parts than it actually needs"],
     ["scavenged","a battery here, a dish there; it's been slapped together with a bunch of disparate parts that barely hold together"],
     ["scripted","every inch of its surface holds carved script that rolls fluidly into every other inch"],
