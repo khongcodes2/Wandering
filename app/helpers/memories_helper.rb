@@ -6,11 +6,11 @@ module MemoriesHelper
 
     case memory.mem_type
     when "item_discovery"
-      "Discovered by #{traveler} at #{space}."
+      "Discovered by #{traveler} at the #{space}."
     when "item_pickup"
       "Picked up by #{traveler}."
     when "item_drop"
-      "Dropped by #{traveler} at #{space}."
+      "Dropped by #{traveler} at the #{space}."
     end
   end
 
@@ -40,13 +40,13 @@ module MemoriesHelper
 
     case memory.mem_type
     when "begin"
-      "#{traveler} began the journey in #{region} at #{space}."
+      "#{traveler} began the journey in #{region} at the #{space}."
     when "traveler_enter"
       "#{traveler} traveled to #{space}."
     when "item_pickup"
-      "#{traveler} picked up #{item} at #{space}."
+      "#{traveler} picked up #{item} at the #{space}."
     when "item_drop"
-      "#{traveler} dropped #{item} at #{space}."
+      "#{traveler} dropped #{item} at the #{space}."
     when "end"
       "#{traveler} went back to the Ether, with #{item}."
     end

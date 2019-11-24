@@ -28,6 +28,10 @@ class ItemsController < ApplicationController
     elsif @item.save
       journey = Journey.find(session[:journey_id])
       journey.items.push(@item)
+
+      memory = Memory.new(mem_type:'item_discovery', journey_id:session[:journey_id].to_i, item_id:@item.id, space_id:session[:was_just_on].to_i)
+      memory.save
+
       session[:wrapup_resource_type] = "item"
       session[:wrapup] = 2
       redirect_to wrapup_cast_path
