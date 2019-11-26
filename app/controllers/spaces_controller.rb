@@ -140,7 +140,13 @@ class SpacesController < ApplicationController
       journey = Journey.find(session[:journey_id])
       journey.spaces.push(@space)
 
-      # create memory
+      # create last traveler_leave memory
+      memory1 = Memory.new(mem_type:'traveler_leave')
+      memory1.journey = current_journey
+      memory1.space = space_was_just_on
+      memory1.save
+
+      # create space_discovery memory with new space
       memory = Memory.new(mem_type:'space_discovery')
       memory.journey = journey
       memory.space = @space

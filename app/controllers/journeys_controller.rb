@@ -92,8 +92,7 @@ class JourneysController < ApplicationController
     def drop_item
         # if journey HAS this item (therefore able to drop it)
         if @journey.items.include?(@item)
-            memory = Memory.new(mem_type:'item_drop', journey_id:@journey.id, item_id:@item.id, space_id:current_space_for_item_drop.id)
-            memory.save
+            # memory creation handled in Items helper so drop_all can also access it
             drop_item_here(@item)
             flash[:notice] = "Dropped #{@item.name}"
         end
@@ -181,13 +180,22 @@ class JourneysController < ApplicationController
     def end_journey
         # expect session[:wrapup] to be 3; else redirect
         redirect_to where_do_i_go_integer(session[:wrapup]) and return if session[:wrapup]!=3
-        
+
         @journey_name = @journey.name
         @traveler = @journey.traveler.name
         @items = @journey.items
         @cast = session[:cast]
         @journey.update(completed:true)
         @space = Space.find(session[:was_just_on])
+
+        # create end memory
+        memory = Memory.new(mem_type:'end')
+        memory.journey = @journey
+        memory.space = @space
+        if session[:cast] != "nothing"
+            memory.item = Item.last
+        end
+        memory.save
     end
 
     private

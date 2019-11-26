@@ -27,7 +27,7 @@ module MemoriesHelper
       if current_journey == memory.journey
         "You entered here from the Ether."
       else
-        "#{traveler} entered here from the Ether."
+        "The trace of a rift - #{traveler} entered here from the Ether."
       end
 
     when "space_discovery"
@@ -58,7 +58,7 @@ module MemoriesHelper
     end
   end
 
-  def journey_memory(memory)
+  def journey_memory_text(memory)
     traveler = memory.traveler_name
     region = memory.journey.region.name
     space = memory.space.name if memory.space.present?
@@ -78,8 +78,18 @@ module MemoriesHelper
     when "item_drop"
       "#{traveler} dropped #{item} at the #{space}."
 
+    when "space_discovery"
+      "#{traveler} discovered #{space}."
+
+    when "item_discovery"
+      "#{traveler} discovered #{item}."
+
     when "end"
-      "#{traveler} went back to the Ether, with #{item}."
+      if memory.item.present?
+        "#{traveler} went back to the Ether from #{space}, with #{item}."
+      else
+        "#{traveler} went back to the Ether from #{space}."
+      end
     end
   end
 

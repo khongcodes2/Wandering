@@ -17,3 +17,9 @@
     <small><%= s.descript %></small></li>
 <% end %></ul>
 </p>
+
+<% @journey.memories.each do |m| %>
+  <div class='item memory'>
+    <%= journey_memory_text(m) %>
+  </div>
+<% end %>

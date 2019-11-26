@@ -13,6 +13,7 @@ module SpacesHelper
     space = Space.find(session[:was_just_on])
   end
 
+  # USED: in Spaces controller, in memory creation
   # Try to use this only in Spaces actions/helpers as params[:id] is vaid for other resources
   def current_space
     if params[:region_id]
