@@ -132,6 +132,12 @@ class SpacesController < ApplicationController
     elsif @space.save
       journey = Journey.find(session[:journey_id])
       journey.spaces.push(@space)
+
+      memory = Memory.new(mem_type:'space_discovery')
+      memory.journey = journey
+      memory.space = @space
+      memory.save
+
       session[:was_just_on] = @space.id
       session[:wrapup_resource_type] = "space"
       session[:wrapup] = 2
