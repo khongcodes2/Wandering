@@ -23,6 +23,13 @@ module MemoriesHelper
 
     case memory.mem_type
     
+    when "begin"
+      if current_journey == memory.journey
+        "You entered here from the Ether."
+      else
+        "#{traveler} entered here from the Ether."
+      end
+
     when "space_discovery"
       "Discovered by #{traveler}."
 

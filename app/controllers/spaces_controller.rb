@@ -12,7 +12,7 @@ class SpacesController < ApplicationController
   end
   
   def show
-    @space = Space.find(params[:id])
+    @space = current_space
     if current_journey
       if current_journey.clock == 10 && !session[:continue]
         session[:wrapup] = 1
@@ -38,15 +38,21 @@ class SpacesController < ApplicationController
         
       else
         # add this space to journey's spaces
+        # this space is about to have all its linked defined - push to session[:fully_linked]
         @journey.spaces.push(@space)
-        # add this space to no-random list
-        # session[:fully_linked_spaces].push(@space.id)
+        # session[:fully_linked_spaces] << @space.id
 
-        #if start of journey
+        # if start of journey
         if @journey.clock==0
           # initialize map
           @to = generate_space_links(2)
           session[:map] = "(#{params[:id]}.a#{@to[0].to_i}.a#{@to[1].to_i})"
+
+          # create memory
+          memory = Memory.new(mem_type:'begin')
+          memory.journey = @journey
+          memory.space = current_space
+          memory.save
 
         else
 
@@ -91,8 +97,9 @@ class SpacesController < ApplicationController
         end
 
       end
-
-      if ((params[:region_id] && session[:was_just_on]) && session[:was_just_on] != params[:id]) || (session[:wrapup].to_i==1)
+      
+      # create memory for previous space if on journey and just entered this space from previous space
+      if ((params[:region_id] && session[:was_just_on].present?) && session[:was_just_on] != params[:id]) && (!session[:wrapup].present?)
         memory = Memory.new(mem_type:'traveler_leave')
         memory.space = space_was_just_on
         memory.journey = current_journey
@@ -133,6 +140,7 @@ class SpacesController < ApplicationController
       journey = Journey.find(session[:journey_id])
       journey.spaces.push(@space)
 
+      # create memory
       memory = Memory.new(mem_type:'space_discovery')
       memory.journey = journey
       memory.space = @space
