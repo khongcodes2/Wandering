@@ -40,7 +40,7 @@ class SpacesController < ApplicationController
         # add this space to journey's spaces
         @journey.spaces.push(@space)
         # add this space to no-random list
-        session[:fully_linked_spaces].push(@space.id)
+        # session[:fully_linked_spaces].push(@space.id)
 
         #if start of journey
         if @journey.clock==0
@@ -91,8 +91,15 @@ class SpacesController < ApplicationController
         end
 
       end
+
+      if ((params[:region_id] && session[:was_just_on]) && session[:was_just_on] != params[:id]) || (session[:wrapup].to_i==1)
+        memory = Memory.new(mem_type:'traveler_leave')
+        memory.space = space_was_just_on
+        memory.journey = current_journey
+        memory.save
+      end
       
-      # values for views
+      # values for views links
       @to_space1 = Space.find(@to[0])
       @to_space2 = Space.find(@to[1]) if @to[1].present?
       @from_space = Space.find(@from) if @from.present?
@@ -140,3 +147,4 @@ class SpacesController < ApplicationController
     params.require(:space).permit(:noun,:adjective,:descript,:region_id)
   end
 end
+

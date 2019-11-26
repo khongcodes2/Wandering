@@ -17,8 +17,6 @@
   </li><br>
 <% end %></ul>
 
-
-
 <% if current_journey %>
   <%= render partial:"travel_links", locals:{
     three_paths:@three_paths,
@@ -26,4 +24,10 @@
     to_space2:@to_space2,
     from_space:@from_space,
     journey:@journey} %>
+<% end %>
+
+<% @space.memories.each do |m| %>
+  <div class='item memory'>
+    <%= space_memory_text(m) %>
+  </div>
 <% end %>

@@ -10,7 +10,7 @@ class Region < ActiveRecord::Base
         when "Underground City"
         when "Beach"
         when "Underwater"
-            text = "You feel a presence was here: "
+            text = "A presence lingers, a scent in the water: "
         when "Cave"
         when "Forest"
             text = "You see footsteps in the undergrowth: "
