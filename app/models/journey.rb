@@ -9,7 +9,7 @@ class Journey < ActiveRecord::Base
     
     has_many :memories
 
-    scope :last_10_completed,   -> {where(completed:true).last(10)}
+    scope :last_10_completed,   -> {where(completed:true).last(10).reverse}
 
     #just to allow checkboxes to be used in new_journey form
     attr_accessor :random_region_box, :random_traveler_box, :new_traveler_box
