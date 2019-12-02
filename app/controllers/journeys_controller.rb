@@ -6,6 +6,7 @@ class JourneysController < ApplicationController
 
     before_action :current_journey, only:[:drop_item, :pickup_item, :wrapup, :wrapup_cast, :wrapup_casting, :end_journey]
     before_action :select_item_and_continue, only:[:drop_item, :pickup_item]
+    after_action :end_journey_actions, only: :end_journey
 
     def new
         # User can only create new journey if not already on journey
@@ -224,6 +225,11 @@ class JourneysController < ApplicationController
 
     def redirect_was_just_on
         redirect_to region_space_path(current_journey.region, session[:was_just_on])
+    end
+
+    def end_journey_actions
+        drop_all
+        clear_journey
     end
 
 end

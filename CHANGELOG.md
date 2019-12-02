@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added some desert seeds, commented out
 - added minor changes to text to create more immersrive experience, improvements to readability in design
 - partitioned the css file
+- eliminated space_journeys, replaced with memories
 
 
 ## [1.1.1] - 2019-11-24
