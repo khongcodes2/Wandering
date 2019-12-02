@@ -2,12 +2,10 @@ class Journey < ActiveRecord::Base
     belongs_to :user, optional: true
     belongs_to :traveler
     belongs_to :region
-    has_many :space_journeys
-    has_many :spaces, through: :space_journeys
+    has_many :memories
+    has_many :spaces, through: :memories
     has_many :item_journeys
     has_many :items, through: :item_journeys
-    
-    has_many :memories
 
     scope :last_10_completed,   -> {where(completed:true).last(10).reverse}
 

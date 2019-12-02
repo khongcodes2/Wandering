@@ -15,7 +15,7 @@ class SpacesController < ApplicationController
     @space = current_space
     if current_journey
       if current_journey.clock == 10 && !session[:continue]
-        session[:wrapup] = 1
+        session[:wrapup] = 1 if !session[:wrapup].present?
         redirect_to enter_wrapup_path and return
       end
 

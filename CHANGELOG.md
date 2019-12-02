@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - begin mem_type functioning
 - end mem_type functioning - memories functioning and visible in show pages
 - journey#index shows most recent journeys on top
+- added some desert seeds, commented out
+- added minor changes to text to create more immersrive experience, improvements to readability in design
+- partitioned the css file
 
 
 ## [1.1.1] - 2019-11-24

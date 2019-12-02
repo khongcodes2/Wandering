@@ -8,6 +8,8 @@ class TravelersController < ApplicationController
   end
 
   def show
+    item_ids = (@traveler.memories - @traveler.memories.where(item_id:nil)).pluck(:item_id).uniq
+    @items = Item.find(item_ids)
   end
 
   def new

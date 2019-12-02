@@ -12,7 +12,7 @@
 <p>Region: <%= link_to @journey.region.name, @journey.region %></p>
 
 <p>Spaces Traveled:
-<ul><% @journey.spaces.each do |s| %>
+<ul><% @journey.spaces.uniq.each do |s| %>
     <li><%= link_to s.name, region_space_path(s.region, s) %><br>
     <small><%= s.descript %></small></li>
 <% end %></ul>
