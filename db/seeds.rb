@@ -241,16 +241,25 @@ DATA = {
     # },
     # "Desert" => {
     #   :space_nouns_descript => [
-    #     ["desert.A","1"],
-    #     ["desert.B","2"],
-    #     ["desert.C","3"],
-    #     ["desert.D","4"]
+    #     ["legs of a colossus","the rough-hewn shins of some forgotten stone king stretch to the sky"],
+    #     ["tomb","2"],
+    #     ["dune","3"],
+    #     ["dune","3"],
+    #     ["waste","3"],
+    #     ["stretch","3"],
+    #     ["sinkhole","3"],
+    #     ["sandlion den","you almost don't notice the neat, smooth downward spiral into a frozen whirlpool in the sand - best stay well away from its edges"],
+    #     ["mirage","4"],
+    #     ["oasis","4"],
+    #     ["abandoned skiff","4"],
+    #     ["weather rod","4"],
     #   ],
     #   :space_adj_descript => [
-    #     ["desert.a","5"],
-    #     ["desert.b","6"],
-    #     ["desert.c","7"],
-    #     ["desert.d","8"]
+    #     ["desolate","5"],
+    #     ["rosy","everything is made a vibrant pink by the morning sun filtering through gritclouds"],
+    #     ["dusty","7"],
+    #     ["stormcurbed","the skies roil and bubble, and storm threatens to break (though it never does, here)"],
+    #     ["windsheared","it's remarkable that anything here withstands the local winds' ceaseless cut"],
     #   ]
     # },
     # "Taiga" => {
@@ -388,7 +397,8 @@ def generate_attributes(part1, part2)
 
   get[:noun] = part1[0]
   get[:adjective] = part2[0]
-  get[:descript] = d20<=10 ? part1[1].capitalize+conjunction+part2[1]+"." : part2[1].capitalize+conjunction+part1[1]+"."
+  # get[:descript] = d20<=10 ? part1[1].capitalize+conjunction+part2[1]+"." : part2[1].capitalize+conjunction+part1[1]+"."
+  get[:descript] = part2[1].capitalize+conjunction+part1[1]+"."
   get
 end
 

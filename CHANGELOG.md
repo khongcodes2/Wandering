@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2019-11-24
+### Commit messages
+- started implementing memories model
+- started creating controller for text display
+- implemented changing text based on read location and mem_type
+- wrote memory text helpers
+- item_pickup and item_drop mem_types functioning
+- item_discover mem_type functioning
+- traveler_leave mem_type functioning and began experimenting with spectral as webfont
+- space_discovery mem_type functioning
+- begin mem_type functioning
+- end mem_type functioning - memories functioning and visible in show pages
+- journey#index shows most recent journeys on top
+
+
 ## [1.1.1] - 2019-11-24
 ### Commit messages
 - minor changes to seeds amount
