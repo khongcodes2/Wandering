@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require basic_layout
+ *= require forms
  *= require_self
  */
 

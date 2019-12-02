@@ -10,15 +10,6 @@ a:hover {
   text-decoration: underline;
 }
 
-div.form {
-  background-color: rgb(237, 241, 243);
-  width:fit-content;
-  height:fit-content;
-  margin-bottom: 10px;
-  padding:12px;
-  border-radius: 10px;
-}
-
 .flash_notice {
   font-style: italic;
   font-size: 0.95em;
@@ -83,22 +74,10 @@ div #main_no_sidebar {
   padding: 0 3%;
 }
 
-input[type = 'radio'] {
-  margin: 4px 8px 4px 0;
+div.vertical-margin-div {
+  margin: 30px 0 30px;
 }
 
-input[type = 'text'] {
-  margin-bottom: 8px;
-  width: 160px;
-}
-
-input[type = 'text']:last-of-type {
-  margin-bottom: 0;
-}
-
-select {
-  margin-top: 4px;
-}
 
 
 /********************************/
@@ -141,77 +120,4 @@ div.sidebar_item {
 
 .sidebar_end_journey_form {
   margin-top:8%;
-}
-
-
-/********************************/
-/****          Home          ****/
-/********************************/
-
-div.vertical-margin-div {
-  margin: 30px 0 30px;
-}
-
-
-/********************************/
-/****       New Journey      ****/
-/********************************/
-
-.new_journey_form_section {
-  background-color: rgb(237, 241, 243);
-  width:800px;
-  margin:14px 0 14px;
-  padding:18px;
-  border-radius:10px;
-}
-
-.new_journey_form_section:last-of-type {
-  padding-bottom:36px;
-}
-
-div.new_journey_form_section p:first-child {
-  margin-top: 0;
-}
-
-div.new_journey_form_section p:last-child {
-  margin-bottom: 0;
-}
-
-p.new_journey_item {
-  margin-bottom: 0.6em;
-}
-
-div.new_journey_item_option_container {
-  margin-top: 0.3em;
-  margin-bottom: 1em;
-  height: fit-content;
-  clear: both;
-}
-
-div.new_journey_item_radio {
-  float:left;
-}
-
-div.new_journey_item_descript {
-  float: right;
-  width: 780px;
-  padding-top: 0.1em;
-  margin-bottom: 0.08em
-}
-
-
-/*******************************/
-/****      Wrapup_cast      ****/
-/*******************************/
-
-div.wrapup_cast_item_select {
-  float:left;
-  margin-bottom:10px;
-}
-
-div.wrapup_cast_item {
-  /* background-color:white; */
-  float:right;
-  width:300px;
-  padding:0px 10px 10px 6px;
 }

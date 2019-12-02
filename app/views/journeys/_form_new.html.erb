@@ -48,14 +48,14 @@
   </div>
 
   <div class='new_journey_form_section'>
-    <p>
+    <p style='margin-bottom:0.5em'>
       <!-- dropdown selection from existing regions -->
       <!-- or checkbox to select region randomly    -->
       <%= f.label :region_id, "What region are you traveling through?" %><br>
       <%= f.collection_select :region_id, var[:regions], :id, :name %><br>
     </p>
 
-    <p>
+    <p style='margin-top:0.5em;'>
       <%= f.label :random_region_box, "(Or - select a random region for me)" %>
       <%= f.check_box :random_region_box %>
     </p>
@@ -68,7 +68,7 @@
       <% var[:starting_three].each do |i| %>
         <div class='new_journey_item_option_container'>
           <div class='new_journey_item_radio'><%= f.radio_button :items, i.id %></div>
-          <div class='new_journey_item_descript'><%= i.name.capitalize %>. <%= i.descript %></div>
+          <div class='new_journey_item_descript'><%= i.name %>. <%= i.descript %></div>
         </div>
       <% end %>
   </div>
