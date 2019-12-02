@@ -93,7 +93,7 @@ class SpacesController < ApplicationController
         if @journey.clock == 9
           flash.now.notice = "You can feel your journey will end soon..."
         elsif @journey.clock == 10
-          flash.now.notice = "You know now that your journey will end with your next step."
+          flash.now.notice = "You feel the tug of the Ether - you know now that your journey will end with your next step."
         end
 
       end

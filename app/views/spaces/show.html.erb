@@ -3,7 +3,7 @@
 <p><%= @space.descript || "descript" %></p>
 <p>In the <%= link_to @space.region.name, region_path(@space.region) %> Region</p>
 <!-- Delete later -->
-<p><%= flash[:notice] if flash[:notice].present? %></p>
+<p><span class='flash_notice'><%= flash[:notice] if flash[:notice].present? %></span></p>
 
 <h4>Items at this space...</h4>
 <ul> <% @space.items.each do |i| %>

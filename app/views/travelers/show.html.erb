@@ -6,7 +6,7 @@
 <p>User: <% if @traveler.user %>
             <%= link_to @traveler.username, @traveler.user %>
           <% else %>
-              none
+              <span class='flavor'>The text here is faded.</span>
           <% end %></p>
 
 <p>Remembered items:
@@ -23,7 +23,7 @@
 </p>
 
 <p>Remembered regions:
-  <%= render partial:"layouts/list", locals:{objs:@traveler.journeys.map{|a|a.region}} %>
+  <%= render partial:"layouts/list", locals:{objs:@traveler.journeys.map{|a|a.region}.uniq} %>
 </p>
 
 <% if traveler_user_permission(@traveler) %>
