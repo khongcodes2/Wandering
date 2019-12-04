@@ -381,6 +381,7 @@ def main
   make_regions
   make_spaces
   make_items
+  make_admin
 end
 
 def make_regions
@@ -435,6 +436,11 @@ def make_items
     item = Item.new(generate_attributes(part1,part2))
     item.save
   end
+end
+
+def make_admin
+  admin = User.new(username:'admin', password:'admin', admin:true)
+  admin.save
 end
 
 main

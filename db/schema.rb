@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_171926) do
+ActiveRecord::Schema.define(version: 2019_12_04_045723) do
 
   create_table "item_journeys", force: :cascade do |t|
     t.integer "item_id"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_11_24_171926) do
     t.string "username"
     t.string "password_digest"
     t.string "uid"
+    t.boolean "admin", default: false
   end
 
 end
