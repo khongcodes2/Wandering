@@ -17,6 +17,11 @@
   </li><br>
 <% end %></ul>
 
+<%# <!-- %>
+<p>wjo: <%= session[:was_just_on] %></p>
+<p>clock: <%= current_journey.clock %></p>
+<%# --> %>
+
 <% if current_journey %>
   <%= render partial:"travel_links", locals:{
     three_paths:@three_paths,

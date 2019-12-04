@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.0] - 2019-11-24
+## [1.2.0] - 2019-12-02
 ### Commit messages
 - started implementing memories model
 - started creating controller for text display
@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added minor changes to text to create more immersrive experience, improvements to readability in design
 - partitioned the css file
 - eliminated space_journeys, replaced with memories
+- moved end_journey actions off view template and into after_action filter
 
 
 ## [1.1.1] - 2019-11-24

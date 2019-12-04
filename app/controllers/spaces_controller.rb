@@ -18,7 +18,7 @@ class SpacesController < ApplicationController
         session[:wrapup] = 1 if !session[:wrapup].present?
         redirect_to enter_wrapup_path and return
       end
-
+      # raise params.inspect
       # if visited this space before? DON'T PUSH to session[:map]
       if @journey.spaces.include?(@space)
         # remove :continue token
@@ -49,6 +49,7 @@ class SpacesController < ApplicationController
           session[:map] = "(#{params[:id]}.a#{@to[0].to_i}.a#{@to[1].to_i})"
 
           # create memory
+          # because Journey has Spaces through Memories, this should automatically add to journey's spaces
           memory = Memory.new(mem_type:'begin')
           memory.journey = @journey
           memory.space = current_space
@@ -87,7 +88,7 @@ class SpacesController < ApplicationController
         end
          
         # only tick if not backtracking
-        @journey.tick_clock if !session[:continue] || session[:was_just_on]!= params[:id]
+        @journey.tick_clock if !session[:continue] || session[:was_just_on] != params[:id]
         session.delete :continue if session[:continue]
 
         if @journey.clock == 9

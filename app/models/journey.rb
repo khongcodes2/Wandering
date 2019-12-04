@@ -3,7 +3,8 @@ class Journey < ActiveRecord::Base
     belongs_to :traveler
     belongs_to :region
     has_many :memories
-    has_many :spaces, through: :memories
+    has_many :space_journeys
+    has_many :spaces, through: :space_journeys
     has_many :item_journeys
     has_many :items, through: :item_journeys
 
