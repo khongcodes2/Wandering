@@ -3,7 +3,7 @@
 
 <p><%= @user.username %></p>
 
-<%= render partial:'layouts/flag', locals:{obj:@users} %>
+<%= render partial:'layouts/flag', locals:{obj:@user} %>
 
 <% if user_self_permission(@user) %>
   <div class="vertical-margin-div">

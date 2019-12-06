@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  include Moderated
+
   def index
     @items = Item.all
   end
@@ -18,6 +20,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+
     if @item.descript.empty?
       @item.descript = @item.adjective+" "+@item.noun
     end
@@ -26,6 +29,8 @@ class ItemsController < ApplicationController
     if session[:wrapup]!=1
       redirect_to new_item_path
     elsif @item.save
+      flag_if(@item)
+
       journey = Journey.find(session[:journey_id])
       journey.items.push(@item)
 

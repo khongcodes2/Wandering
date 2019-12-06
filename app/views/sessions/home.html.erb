@@ -17,3 +17,7 @@
 
 <%= link_to "Begin Journey", new_journey_path %>
 <p><%= link_to "Book of Journeys", journeys_path %></p>
+
+<% if current_user && current_user.admin %>
+    <%= link_to "Admin Control Panel", control_panel_path %>
+<% end %>

@@ -42,7 +42,10 @@ Rails.application.routes.draw do
   post '/wrapup_cast', to: 'journeys#wrapup_casting', as: :wrapup_casting
   get '/end_journey', to: 'journeys#end_journey', as: :end_journey
 
-  # game flow - end journey
+  # omniauth
   get '/auth/twitter/callback' => 'sessions#omniauth_create'
+
+  # admin control panel
+  get '/admin', to: 'admin#control_panel', as: :control_panel
 
 end
