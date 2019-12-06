@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     end
 
     def edit
+        render '/layouts/permissions_error' and return unless user_self_permission(@user)
     end
     
     def update

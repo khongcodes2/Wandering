@@ -6,6 +6,8 @@ class Traveler < ActiveRecord::Base
   has_many :memories, through: :journeys
 
   scope :no_user, -> {where(user:nil)}
+
+  scope :flagged, -> {where(flag:true)}
   
   validates :name, :descript, presence: true
 

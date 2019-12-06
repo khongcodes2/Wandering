@@ -12,6 +12,8 @@ class Item < ActiveRecord::Base
     scope :unspaced,        -> {where(space:nil)}
     scope :starting_three,  -> {unspaced.order('RANDOM()').limit(3)}
 
+    scope :flagged,         -> {where(flag:true)}
+
     def name
         if adjective.present? && noun.present?
             adjective+" "+noun

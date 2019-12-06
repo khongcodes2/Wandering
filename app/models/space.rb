@@ -9,6 +9,7 @@ class Space < ActiveRecord::Base
 
     validates :noun, :adjective, :descript, presence: true
 
+    scope :flagged,             -> {where(flag:true)}
 
     def name
         if adjective.present? && noun.present?

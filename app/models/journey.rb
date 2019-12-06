@@ -10,6 +10,8 @@ class Journey < ActiveRecord::Base
 
     scope :last_10_completed,   -> {where(completed:true).last(10).reverse}
 
+    scope :flagged,             -> {where(flag:true)}
+
     #just to allow checkboxes to be used in new_journey form
     attr_accessor :random_region_box, :random_traveler_box, :new_traveler_box
 

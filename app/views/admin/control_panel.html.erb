@@ -1,14 +1,13 @@
 <% title "Admin Control Panel"%>
 <h1>Admin Control Panel</h1>
 
-<%= render partial:'section', locals:{type:'Users'} %>
-<%# objs:@users %>
+<%= render partial:'section', locals:{type:'Users', list:@users} %>
 
-<%= render partial:'section', locals:{type:'Travelers'} %>
+<%= render partial:'section', locals:{type:'Travelers', list:@travelers} %>
 
-<%= render partial:'section', locals:{type:'Journeys'} %>
+<%= render partial:'section', locals:{type:'Journeys', list:@journeys} %>
 
-<%= render partial:'section', locals:{type:'Items'} %>
+<%= render partial:'section', locals:{type:'Items', list:@items} %>
 
-<%= render partial:'section', locals:{type:'Spaces'} %>
+<%= render partial:'section', locals:{type:'Spaces', list:@spaces} %>
 
