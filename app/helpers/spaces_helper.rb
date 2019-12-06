@@ -18,6 +18,9 @@ module SpacesHelper
   def current_space
     if params[:region_id]
       space = Space.find(params[:id])
+    # may need to remove this else condition
+    else
+      space = Space.find(params[:id])
     end
   end
   

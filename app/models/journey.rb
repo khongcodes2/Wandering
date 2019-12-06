@@ -21,7 +21,6 @@ class Journey < ActiveRecord::Base
        
     def start
         self.clock = 0
-        # initialize array of no-random spaces to be added to with push
         save
     end
 

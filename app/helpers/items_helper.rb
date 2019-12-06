@@ -43,4 +43,15 @@ module ItemsHelper
     end
   end
 
+  def delete_journey_drop_items(journey)
+    space = journey.memories.where.not(space_id:nil).last.space
+    journey.items.each do |i|
+      memory = Memory.new(mem_type:'item_drop', journey_id:journey.id, item_id:i.id, space_id:space.id)
+      memory.save
+
+      journey.items.delete(i)
+      space.items.push(i)
+    end
+  end
+
 end

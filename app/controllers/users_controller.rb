@@ -47,6 +47,7 @@ class UsersController < ApplicationController
 
     def destroy
         @user.destroy
+        redirect_to control_panel_path and return if currently_admin
         redirect_to users_path
     end
 

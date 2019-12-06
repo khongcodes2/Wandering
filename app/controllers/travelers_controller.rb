@@ -55,6 +55,7 @@ class TravelersController < ApplicationController
     drop_all if current_journey
     clear_journey
     @traveler.destroy
+    redirect_to control_panel_path and return if currently_admin
     redirect_to root_path
   end
 

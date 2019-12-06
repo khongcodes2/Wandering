@@ -1,6 +1,5 @@
 <% title @journey.name %>
 
-<!-- this represents history of current journey -->
 <p>Traveler: <%= show_journey_traveler_name(@journey) %></p>
 
 <p><%= @journey.name %></p>
@@ -19,6 +18,10 @@
 </p>
 
 <%= render partial:'layouts/flag', locals:{obj:@journey} %>
+
+<% if currently_admin %>
+  <%= link_to "Edit journey", edit_journey_path(@journey) %>
+<% end %>
 
 <% @journey.memories.each do |m| %>
   <div class='item memory'>

@@ -21,6 +21,10 @@
 
 <%= render partial:'layouts/flag', locals:{obj:@item} %>
 
+<% if currently_admin %>
+  <%= link_to "Edit item", edit_item_path(@item) %>
+<% end %>
+
 <% @item.memories.each do |m| %>
   <div class='item-mem memory'>
     <%= item_memory_text(m) %>

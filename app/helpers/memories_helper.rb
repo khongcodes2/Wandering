@@ -43,8 +43,10 @@ module MemoriesHelper
         else
           "You passed through here."
         end
-      else
+      elsif memory.journey.present?
         memory.journey.region.traveled_space_memory_text(traveler)
+      else
+        "A traveler passed through here."
       end
       
     when "item_discovery"

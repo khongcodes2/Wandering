@@ -382,6 +382,7 @@ def main
   make_spaces
   make_items
   make_admin
+  test_flags
 end
 
 def make_regions
@@ -441,6 +442,43 @@ end
 def make_admin
   admin = User.new(username:'admin', password:'admin', admin:true)
   admin.save
+end
+
+def test_flags
+  [1,2,3,4,5].each do |e|
+    user = User.new(username:"shit#{e}", password:'p', flag:true)
+    user.save
+    2.times do
+      traveler = user.travelers.build(name:"nameshitSHIT#{e}", descript:"shitSHItshitdescript#{e}", flag:true)
+      traveler.save
+      journey = traveler.journeys.build(name:"shitJourneySHIT#{e}", region_id:1, user_id:user.id, flag:true)
+      journey.save
+
+      space1 = Space.order('RANDOM()').last
+      mem1 = Memory.new(mem_type:'begin', journey_id:journey.id, space_id:space1.id)
+      mem1.save
+
+      mem2 = Memory.new(mem_type:'traveler_leave', journey_id:journey.id, space_id:space1.id)
+      mem2.save
+
+      space2 = Space.order('RANDOM()').last
+      item1 = Item.order('RANDOM()').last
+      mem3 = Memory.new(mem_type:'item_pickup', journey_id:journey.id, item_id:item1.id, space_id:space2.id)
+      mem3.save
+      mem4 = Memory.new(mem_type:'item_drop', journey_id:journey.id, item_id:item1.id, space_id:space2.id)
+      mem4.save
+
+      new_item = journey.items.build(noun:"shitnoun#{e}", adjective:"shItadj#{e}", descript:"shitshiTtyshitdescript#{e}", flag:true)
+      new_item.save
+      mem5 = Memory.new(mem_type:"item_discovery", item_id:new_item.id, journey_id:journey.id, space_id:space2.id)
+      mem5.save
+
+      new_space = journey.spaces.build(noun:"SHiTnoun#{e}", adjective:"shitshitshitshitadj#{e}", descript:"shitshitshitSHITdescript#{e}", region_id:1, flag:true)
+      new_space.save
+      mem6 = Memory.new(mem_type:"space_discovery", space_id:new_space.id, journey_id:journey.id)
+      mem6.save
+    end
+  end
 end
 
 main

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   # journeys
   get '/journeys/continue', to: 'journeys#continue', as: :continue
-  resources :journeys, only: [:index, :show, :new]
+  resources :journeys, except: [:create]
   post '/journeys/new', to: 'journeys#create'
   
 

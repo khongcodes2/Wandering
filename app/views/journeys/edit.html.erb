@@ -1,0 +1,10 @@
+<% title "Edit Journey" %>
+<h2>Edit Journey</h2>
+
+<%= form_for @journey do |f| %>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br>
+  <%= f.submit %>
+<% end %>
+
+<%= button_to "Delete Journey", @journey, method: :delete, data:{confirm:"Really?"} %>

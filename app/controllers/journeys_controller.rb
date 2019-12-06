@@ -5,6 +5,7 @@ class JourneysController < ApplicationController
     include ItemsHelper
     include Moderated
 
+    before_action :set_journey, only:[:show, :edit, :update, :destroy]
     before_action :current_journey, only:[:drop_item, :pickup_item, :wrapup, :wrapup_cast, :wrapup_casting, :end_journey]
     before_action :select_item_and_continue, only:[:drop_item, :pickup_item]
     after_action :end_journey_actions, only: :end_journey
@@ -86,7 +87,24 @@ class JourneysController < ApplicationController
     end
 
     def show
-        @journey = Journey.find(params[:id])
+    end
+
+    def edit
+        render '/layouts/permissions_error' and return unless currently_admin
+    end
+
+    def update
+        # raise params.inspect
+        @journey.assign_attributes(journey_params)
+        @journey.assign_attributes(flag:false)
+        flag_if(@journey) if @journey.save
+        redirect_to control_panel_path
+    end
+
+    def destroy
+        delete_journey_drop_items(@journey) if @journey.clock != 10
+        @journey.destroy
+        redirect_to control_panel_path
     end
 
 
@@ -220,6 +238,10 @@ class JourneysController < ApplicationController
 
     def select_item
         @item = Item.find(params.permit(:items)[:items].to_i)
+    end
+
+    def set_journey
+        @journey = Journey.find(params[:id])
     end
 
     def select_item_and_continue
