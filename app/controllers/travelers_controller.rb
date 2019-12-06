@@ -34,9 +34,15 @@ class TravelersController < ApplicationController
   
   def update
     @traveler.assign_attributes(traveler_params)
+
     @traveler.assign_attributes(flag:false) if currently_admin
+
     if @traveler.save
       flag_if(@traveler)
+      
+      # IF TRAVELER NAME CHANGE, also change journey names named after traveler
+      @traveler.journeys.each {|j| j.update(name:"#{@traveler.name}'s journey") if j.name.match?(/\A.*'s journey/)}
+
       redirect_to control_panel_path and return if currently_admin
       redirect_to traveler_path(@traveler) and return
     else
