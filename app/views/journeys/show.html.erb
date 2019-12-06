@@ -18,6 +18,8 @@
 <% end %></ul>
 </p>
 
+<%= render partial:'layouts/flag', locals:{obj:@journey} %>
+
 <% @journey.memories.each do |m| %>
   <div class='item memory'>
     <%= journey_memory_text(m) %>

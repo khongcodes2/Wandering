@@ -19,8 +19,10 @@
 
 <% end %>
 
+<%= render partial:'layouts/item_flag', locals:{obj:@item} %>
+
 <% @item.memories.each do |m| %>
-  <div class='item memory'>
+  <div class='item-mem memory'>
     <%= item_memory_text(m) %>
   </div>
 <% end %>

@@ -78,6 +78,10 @@ div.vertical-margin-div {
   margin: 30px 0 30px;
 }
 
+div.flag-message {
+  font-size: 0.8em;
+  color: rgb(87, 87, 87);
+}
 
 
 /********************************/

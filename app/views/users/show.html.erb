@@ -3,6 +3,8 @@
 
 <p><%= @user.username %></p>
 
+<%= render partial:'layouts/flag', locals:{obj:@users} %>
+
 <% if user_self_permission(@user) %>
   <div class="vertical-margin-div">
     <p><%= link_to "Edit #{@user.username}", edit_user_path(@user) %></p>

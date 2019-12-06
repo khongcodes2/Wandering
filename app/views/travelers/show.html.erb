@@ -9,6 +9,8 @@
               <span class='flavor'>The text here is faded.</span>
           <% end %></p>
 
+<%= render partial:'layouts/flag', locals:{obj:@traveler} %>
+
 <p>Remembered items:
   <ul><% @items.each do |i| %>
     <li>

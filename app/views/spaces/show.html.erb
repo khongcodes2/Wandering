@@ -31,8 +31,10 @@
     journey:@journey} %>
 <% end %>
 
+<%= render partial:'layouts/flag', locals:{obj:@space} %>
+
 <% @space.memories.each do |m| %>
-  <div class='item memory'>
+  <div class='space-mem memory'>
     <%= space_memory_text(m) %>
   </div>
 <% end %>
