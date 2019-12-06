@@ -1,0 +1,13 @@
+<% title "Edit Item - #{@item.name}" %>
+<h1>Edit Item - <%= @item.name %></h1>
+
+<%= form_for @item do |i| %>
+    <div class='form'>
+      <%= i.hidden_field :region_id %>
+      <%= render partial:'layouts/items_spaces_form', locals:{o:i} %>
+    </div>  
+
+    <%= i.submit %><br>
+  <% end %>
+
+<%= button_to "Delete Item", @item, method: :delete, data:{confirm:"Really?"} %>

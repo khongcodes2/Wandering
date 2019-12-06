@@ -1,0 +1,17 @@
+<% if type=='users' %>
+  <p>User id: <%= i.id %></p>
+  <p>Username: <%= i.username %></p>
+<% else %>
+  <p>Id: <%= i.id %></p>
+
+  <% if i.created_by_user.present? %>
+    <p>Created by: <%= link_to i.created_by_user.username, user_path(i.created_by_user) %></p>
+  <% elsif type=='travelers' %>
+    <p>Created by: no user</p>
+  <% else %>
+    <p>Created by: Traveler <%= link_to i.created_by_traveler.name, traveler_path(i.created_by_traveler) %></p>
+  <% end %>
+
+<% end %>
+
+<p><%= link_to 'link', i %></p>

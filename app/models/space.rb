@@ -21,8 +21,12 @@ class Space < ActiveRecord::Base
         end
     end
 
-    def created_by
+    def created_by_user
         self.memories.first.journey.user
+    end
+
+    def created_by_traveler
+        self.memories.first.journey.traveler
     end
     
 end

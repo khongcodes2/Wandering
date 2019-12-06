@@ -21,7 +21,7 @@ class SpacesController < ApplicationController
         session[:wrapup] = 1 if !session[:wrapup].present?
         redirect_to enter_wrapup_path and return
       end
-      # raise params.inspect
+
       # if visited this space before? DON'T PUSH to session[:map]
       if @journey.spaces.include?(@space)
         # remove :continue token
@@ -174,7 +174,7 @@ class SpacesController < ApplicationController
   def update
     # ONLY ADMIN ACCESS
     @space.assign_attributes(space_params)
-    @space.assign_attributes(flag:false) if currently_admin
+    @space.assign_attributes(flag:false)
 
     flag_if(@space) if @space.save
     redirect_to control_panel_path

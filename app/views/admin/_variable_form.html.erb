@@ -1,0 +1,22 @@
+<% if type == 'users' %>
+  <%= f.label :username %>
+  <%= f.text_field :username %><br>
+
+<% elsif type == 'travelers' %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :descript %>
+  <%= f.text_field :descript %><br>
+
+<% elsif type == 'journeys' %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+
+<% elsif type == 'items' || type == 'spaces' %>
+  <%= f.label :noun %>
+  <%= f.text_field :noun %><br>
+  <%= f.label :adjective %>
+  <%= f.text_field :adjective %><br>
+  <%= f.label :descript, "Description" %>
+  <%= f.text_field :descript %><br>
+<% end %>

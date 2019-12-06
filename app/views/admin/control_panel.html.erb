@@ -1,98 +1,12 @@
 <% title "Admin Control Panel"%>
 <h1>Admin Control Panel</h1>
 
-<div class='flagged-collection user'>
-  <h3>Flagged Users</h3>
-  <% @users.each do |u| %>
-    <div class='flagged-obj user'>
+<%= render partial:'flagged_section', locals:{type:'users', collection:@users} %>
 
-      <div class='flagged-obj-info user'>
-        <p>User id: <%= u.id %></p>
-        <p>Username: <%= u.username %></p>
-        <p><%= link_to 'link', user_path(u) %></p>
-      </div>
+<%= render partial:'flagged_section', locals:{type:'travelers', collection:@travelers} %>
 
-      <div class='flagged-update-obj user'>
-        <%= form_for u do |f| %>
-          <%= f.label :username %>
-          <%= f.text_field :username %><br>
-          <%= f.submit %>
-        <% end %>
-      </div>
+<%= render partial:'flagged_section', locals:{type:'journeys', collection:@journeys} %>
 
-      <div class='flagged-delete-obj user'>
-        <%= button_to "Delete Traveler", t, method: :delete, data:{confirm:"Really?"} %>
-      </div>
+<%= render partial:'flagged_section', locals:{type:'items', collection:@items} %>
 
-    </div>
-  <% end %>
-</div>
-
-<div class='flagged-collection traveler'>
-  <h3>Flagged Travelers</h3>
-  <% @travelers.each do |t| %>
-    <div class='flagged-obj traveler'>
-    
-      <div class='flagged-obj-info traveler'>
-        <p>Id: <%= t.id %></p>
-        <p>Created by: <%= link_to t.user.username, user_path(t.user) %></p>
-        <p><%= link_to 'link', traveler_path(t) %></p>
-      </div>
-
-      <div class='flagged-update-obj traveler'>
-        <%= form_for t do |f| %>
-          <div class='flag update-traveler-fields'>
-            <%= f.label :name %>
-            <%= f.text_field :name %><br>
-            <%= f.label :descript, "Description" %>
-            <%= f.text_field :descript %><br>
-          </div>
-          <%= f.submit %>
-        <% end %>
-      </div>
-
-      <div class='flagged-delete-obj traveler'>
-        <%= button_to "Delete Traveler", t, method: :delete, data:{confirm:"Really?"} %>
-      </div>
-
-    </div>
-  <% end %>
-</div>
-
-<%= render partial:'section', locals:{type:'Journeys', list:@journeys} %>
-
-<%= render partial:'section', locals:{type:'Items', list:@items} %>
-
-<div class='flagged-collection spaces'>
-  <h3>Flagged Spaces</h3>
-  <% @spaces.each do |s| %>
-    <div class='flagged-obj space'>
-    
-      <div class='flagged-obj-info space'>
-        <p>Id: <%= s.id %></p>
-        <p>Created by: <%= link_to s.created_by.username, user_path(s.created_by) %></p>
-        <p><%= link_to 'link', space_path(s) %></p>
-      </div>
-
-      <div class='flagged-update-obj space'>
-        <%= form_for s do |f| %>
-          <div class='flag update-space-fields'>
-            <%= f.label :noun %>
-            <%= f.text_field :noun %><br>
-            <%= f.label :adjective %>
-            <%= f.text_field :adjective %><br>
-            <%= f.label :descript, "Description" %>
-            <%= f.text_field :descript %><br>
-          </div>
-          <%= f.submit %>
-        <% end %>
-      </div>
-
-      <div class='flagged-delete-obj space'>
-        <%= button_to "Delete Space", s, method: :delete, data:{confirm:"Really?"} %>
-      </div>
-
-    </div>
-  <% end %>
-</div>
-
+<%= render partial:'flagged_section', locals:{type:'spaces', collection:@spaces} %>

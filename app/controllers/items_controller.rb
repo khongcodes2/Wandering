@@ -1,5 +1,8 @@
 class ItemsController < ApplicationController
+  include SessionsHelper
   include Moderated
+
+  before_action :set_item, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all
@@ -41,10 +44,34 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+    # ONLY ADMIN ACCESS
+    render '/layouts/permissions_error' and return unless currently_admin
+  end
+
+  def update
+    # ONLY ADMIN ACCESS
+    @item.assign_attributes(item_params)
+    @item.assign_attributes(flag:false)
+
+    flag_if(@item) if @item.save
+    redirect_to control_panel_path
+  end
+
+  def destroy
+    # ONLY ADMIN ACCESS
+    @item.destroy
+    redirect_to control_panel_path
+  end
+
   private
 
   def item_params
     params.require(:item).permit(:noun,:adjective,:descript)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
 end

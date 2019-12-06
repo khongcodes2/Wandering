@@ -1,0 +1,26 @@
+<div class="flagged-collection <%= type %>">
+  <h3>Flagged <%= type.capitalize %></h3>
+
+  <% collection.each do |i| %>
+    <div class="flagged-obj <%= type %>">
+    
+      <div class="flagged-obj-info <%= type %>">      
+        <%= render partial:'obj_info', locals:{type:type, i:i} %>
+      </div>
+
+      <div class='flagged-update-obj <%= type %>'>
+        <%= form_for i do |f| %>
+          <div class='flag update-<%= type %>-fields'>
+            <%= render partial:'variable_form', locals:{type:type, f:f} %>
+          </div>
+          <%= f.submit %>
+        <% end %>
+      </div>
+
+      <div class='flagged-delete-obj <%= type %>'>
+        <%= button_to "Delete #{i.class}", i, method: :delete, data:{confirm:"Really?"} %>
+      </div>
+
+    </div>
+  <% end %>
+</div>

@@ -24,4 +24,8 @@ class Traveler < ActiveRecord::Base
     current_journey.items.push(item)
   end
 
+  def created_by_user
+    self.user
+  end
+
 end

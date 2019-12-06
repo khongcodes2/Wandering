@@ -63,4 +63,12 @@ class Journey < ActiveRecord::Base
         spaces.last
     end
 
+    def created_by_user
+        self.user
+    end
+
+    def created_by_traveler
+        self.traveler
+    end
+
 end
