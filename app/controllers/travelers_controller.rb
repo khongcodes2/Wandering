@@ -29,6 +29,7 @@ class TravelersController < ApplicationController
   end
 
   def edit
+    render '/layouts/permissions_error' and return unless (traveler_user_permission(@traveler)||currently_admin)
   end
   
   def update

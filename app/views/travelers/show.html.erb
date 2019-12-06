@@ -28,6 +28,6 @@
   <%= render partial:"layouts/list", locals:{objs:@traveler.journeys.map{|a|a.region}.uniq} %>
 </p>
 
-<% if traveler_user_permission(@traveler) %>
+<% if traveler_user_permission(@traveler) || currently_admin %>
   <%= link_to "Edit #{@traveler.name}", edit_traveler_path(@traveler) %>
 <% end %>
