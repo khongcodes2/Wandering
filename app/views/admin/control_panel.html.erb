@@ -71,6 +71,7 @@
       <div class='flagged-obj-info space'>
         <p>Id: <%= s.id %></p>
         <p>Created by: <%= link_to s.created_by.username, user_path(s.created_by) %></p>
+        <p><%= link_to 'link', space_path(s) %></p>
       </div>
 
       <div class='flagged-update-obj space'>

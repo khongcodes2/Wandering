@@ -2,3 +2,5 @@
 <h1>Edit Traveler <%= @traveler.name %></h1>
 
 <%= render partial:"form", locals:{traveler:@traveler,new_path:false} %>
+
+<%= button_to "Delete Traveler", @traveler, method: :delete, data:{confirm:"Really?"} %>

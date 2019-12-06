@@ -1,0 +1,13 @@
+<% title "Edit Space - #{@space.name}" %>
+<h1>Edit Space - <%= @space.name %></h1>
+
+<%= form_for @space do |s| %>
+    <div class='form'>
+      <%= s.hidden_field :region_id %>
+      <%= render partial:'layouts/items_spaces_form', locals:{o:s} %>
+    </div>  
+
+    <%= s.submit %><br>
+  <% end %>
+
+<%= button_to "Delete Space", @space, method: :delete, data:{confirm:"Really?"} %>

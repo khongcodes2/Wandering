@@ -26,13 +26,12 @@ Rails.application.routes.draw do
     resources :spaces, only: [:index, :show, :new]
   end
   get '/spaces/:id', to: 'spaces#show', as: :space
-  post '/spaces', to: 'spaces#create'
   get '/spaces', to: 'spaces#total_index'
-  patch '/spaces/:id', to: 'spaces#update'
-  
+  resources :spaces, only: [:create, :edit, :update, :destroy]
+
 
   # items
-  resources :items, only: [:index, :show, :new, :create]
+  resources :items
 
   #game flow
   post '/drop_item', to: 'journeys#drop_item', as: :drop_item

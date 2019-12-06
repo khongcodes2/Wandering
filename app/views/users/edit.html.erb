@@ -2,3 +2,7 @@
 <h1>Editing <%= @user.username %></h1>
 
 <%= render partial:"form", locals:{user:@user} %>
+
+<div class='vertical-margin-div'>
+  <%= button_to "Delete User", @user, method: :delete, data:{confirm:"Really?"} %>
+</div>

@@ -33,6 +33,10 @@
 
 <%= render partial:'layouts/flag', locals:{obj:@space} %>
 
+<% if currently_admin %>
+  <%= link_to "Edit space", edit_space_path(@space) %>
+<% end %>
+
 <% @space.memories.each do |m| %>
   <div class='space-mem memory'>
     <%= space_memory_text(m) %>

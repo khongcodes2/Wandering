@@ -3,7 +3,7 @@ class SpacesController < ApplicationController
   include SpacesHelper
   include Moderated
 
-  before_action :set_space, only: [:update, :destroy]
+  before_action :set_space, only: [:edit, :update, :destroy]
 
   def index
     @region = Region.find(params[:region_id])
@@ -167,6 +167,10 @@ class SpacesController < ApplicationController
     end
   end
 
+  def edit
+    render '/layouts/permissions_error' and return unless currently_admin
+  end
+
   def update
     # ONLY ADMIN ACCESS
     @space.assign_attributes(space_params)
@@ -177,7 +181,9 @@ class SpacesController < ApplicationController
   end
 
   def destroy
+    # ONLY ADMIN ACCESS
     @space.destroy
+    redirect_to control_panel_path
   end
 
   private
