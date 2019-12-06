@@ -20,7 +20,7 @@ module SessionsHelper
 
     # USED: in controllers to check permissions and clear flags
     def currently_admin
-        current_user.admin
+        current_user.admin if current_user
     end
     
     # USED: almost everywhere
