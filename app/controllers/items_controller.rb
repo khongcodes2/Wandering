@@ -13,17 +13,13 @@ class ItemsController < ApplicationController
     @item = Item.new
 
     # lock new-item process to journey-end process
-    if session[:wrapup]!=1
-      @item.errors.add(:base, "You don't have permission to edit this resource right now.")
-    end
+    @item.errors.add(:base, "You don't have permission to create this resource right now.") unless session[:wrapup]==1
   end
 
   def create
     @item = Item.new(item_params)
 
-    if @item.descript.empty?
-      @item.descript = @item.adjective+" "+@item.noun
-    end
+    @item.descript = @item.adjective+" "+@item.noun if @item.descript.empty?
 
     # lock new-item process to journey-end process
     if session[:wrapup]!=1

@@ -17,6 +17,11 @@ module SessionsHelper
             nil
         end
     end
+
+    # USED: in controllers to check permissions and clear flags
+    def currently_admin
+        session[:user_id].present? && User.find(session[:user_id]).admin
+    end
     
     # USED: almost everywhere
     # displays sidebar, affects if items can be picked up or dropped
@@ -39,7 +44,12 @@ module SessionsHelper
     # USED: Users#show, Users#edit
     # checks if user has permission to edit user
     def user_self_permission(user)
-        current_user == user
+        if session[:user_id].present? 
+            this_user = User.find(session[:user_id])
+        else
+            nil
+        end
+        this_user == user
     end
 
     # USED: Sessions#logout, Traveler#destroy, end journey

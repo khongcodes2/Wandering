@@ -28,14 +28,17 @@ class UsersController < ApplicationController
     end
 
     def edit
-        render '/layouts/permissions_error' and return unless user_self_permission(@user)
+        render '/layouts/permissions_error' and return unless (user_self_permission(@user)||currently_admin)
     end
     
     def update
         @user.assign_attributes(user_params)
+
+        @user.assign_attributes(flag:false) if currently_admin
+
         if @user.save
             flag_if(@user)
-            redirect_to user_path(@user)
+            redirect_to user_path(@user) and return
         else
             render :edit
         end

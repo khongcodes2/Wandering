@@ -1,7 +1,23 @@
 <% title "Admin Control Panel"%>
 <h1>Admin Control Panel</h1>
 
-<%= render partial:'section', locals:{type:'Users', list:@users} %>
+<%#= render partial:'section', locals:{type:'Users', list:@users} %>
+<h3>Flagged Users</h3>
+<% @users.each do |u| %>
+  <div class='admin-view user-container'>
+    <div class='user-info'>
+      <p>User id: <%= u.id %></p>
+      <p>Username: <%= u.username %></p>
+      <p><%= link_to 'link', user_path(u) %></p>
+    </div>
+
+    <div class='admin-view update-user'>
+      <%= form_for u do |f| %>
+        <%= f.label :username %> <%= f.text_field :username %> <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
 <%= render partial:'section', locals:{type:'Travelers', list:@travelers} %>
 

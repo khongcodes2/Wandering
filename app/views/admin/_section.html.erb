@@ -1,5 +1,7 @@
 <h3>Flagged <%= type %></h3>
 
 <ul> <% list.each do |o| %>
-  <li><%= link_to "flag", o %></li>
+  <li><%= link_to "flag", o %><br>
+  <%= link_to "edit", :root %> <%= button_to "delete", o, method: :delete, data:{confirm:"Really?"} %>
+  </li>
 <% end %></ul>

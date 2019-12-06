@@ -11,6 +11,10 @@
     <p><%= link_to "Create New Traveler", new_traveler_path %></p>
     <p><%= link_to "Begin New Journey", new_journey_path %></p>
   </div>
+<% elsif currently_admin %>
+  <div class="vertical-margin-div">
+    <p><%= link_to "Edit #{@user.username}", edit_user_path(@user)%></p>
+  </div>
 <% end %>
 
 <h4>Travelers</h4>
