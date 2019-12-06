@@ -1,8 +1,9 @@
 class TravelersController < ApplicationController
-  before_action :set_traveler, only: [:show, :edit, :update, :destroy]
   include SessionsHelper
   include ItemsHelper
   include Moderated
+
+  before_action :set_traveler, only: [:show, :edit, :update, :destroy]
 
   def index
     @travelers = Traveler.all

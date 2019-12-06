@@ -20,5 +20,9 @@ class Space < ActiveRecord::Base
             adjective
         end
     end
+
+    def created_by
+        self.memories.first.journey.user
+    end
     
 end

@@ -2,7 +2,7 @@ module MemoriesHelper
   
   def item_memory_text(memory)
     traveler = memory.traveler_name
-    space = memory.space.name
+    space = memory.space.present? ? memory.space.name : "lost space"
 
     case memory.mem_type
 
@@ -19,7 +19,7 @@ module MemoriesHelper
 
   def space_memory_text(memory)
     traveler = memory.traveler_name
-    item = memory.item.name if memory.item.present?
+    item = memory.item.present? ? memory.item.name : "lost item"
 
     case memory.mem_type
     
@@ -61,8 +61,8 @@ module MemoriesHelper
   def journey_memory_text(memory)
     traveler = memory.traveler_name
     region = memory.journey.region.name
-    space = memory.space.name if memory.space.present?
-    item = memory.item.name if memory.item.present?
+    space = memory.space.present? ? memory.space.name : "lost space"
+    item = memory.item.present? ? memory.item.name : "lost item"
 
     case memory.mem_type
       

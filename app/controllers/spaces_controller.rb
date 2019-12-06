@@ -3,6 +3,8 @@ class SpacesController < ApplicationController
   include SpacesHelper
   include Moderated
 
+  before_action :set_space, only: [:update, :destroy]
+
   def index
     @region = Region.find(params[:region_id])
     @spaces = @region.spaces
@@ -165,7 +167,24 @@ class SpacesController < ApplicationController
     end
   end
 
+  def update
+    # ONLY ADMIN ACCESS
+    @space.assign_attributes(space_params)
+    @space.assign_attributes(flag:false) if currently_admin
+
+    flag_if(@space) if @space.save
+    redirect_to control_panel_path
+  end
+
+  def destroy
+    @space.destroy
+  end
+
   private
+
+  def set_space
+    @space = Space.find(params[:id])
+  end
 
   def space_params
     params.require(:space).permit(:noun,:adjective,:descript,:region_id)

@@ -4,6 +4,10 @@ class Memory < ActiveRecord::Base
   belongs_to :journey
 
   def traveler_name
-    self.journey.traveler.name
+    if self.journey.present? && self.journey.traveler.present?
+      self.journey.traveler.name
+    else
+      "lost traveler"
+    end
   end
 end

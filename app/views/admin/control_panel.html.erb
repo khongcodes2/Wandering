@@ -14,7 +14,9 @@
 
       <div class='flagged-update-obj user'>
         <%= form_for u do |f| %>
-          <%= f.label :username %> <%= f.text_field :username %> <%= f.submit %>
+          <%= f.label :username %>
+          <%= f.text_field :username %><br>
+          <%= f.submit %>
         <% end %>
       </div>
 
@@ -32,9 +34,8 @@
     <div class='flagged-obj traveler'>
     
       <div class='flagged-obj-info traveler'>
-        <p>Traveler id: <%= t.id %></p>
-        <p>Name: <%= t.name %></p>
-        <p>Descript: <%= t.descript %></p>
+        <p>Id: <%= t.id %></p>
+        <p>Created by: <%= link_to t.user.username, user_path(t.user) %></p>
         <p><%= link_to 'link', traveler_path(t) %></p>
       </div>
 
@@ -62,5 +63,35 @@
 
 <%= render partial:'section', locals:{type:'Items', list:@items} %>
 
-<%= render partial:'section', locals:{type:'Spaces', list:@spaces} %>
+<div class='flagged-collection spaces'>
+  <h3>Flagged Spaces</h3>
+  <% @spaces.each do |s| %>
+    <div class='flagged-obj space'>
+    
+      <div class='flagged-obj-info space'>
+        <p>Id: <%= s.id %></p>
+        <p>Created by: <%= link_to s.created_by.username, user_path(s.created_by) %></p>
+      </div>
+
+      <div class='flagged-update-obj space'>
+        <%= form_for s do |f| %>
+          <div class='flag update-space-fields'>
+            <%= f.label :noun %>
+            <%= f.text_field :noun %><br>
+            <%= f.label :adjective %>
+            <%= f.text_field :adjective %><br>
+            <%= f.label :descript, "Description" %>
+            <%= f.text_field :descript %><br>
+          </div>
+          <%= f.submit %>
+        <% end %>
+      </div>
+
+      <div class='flagged-delete-obj space'>
+        <%= button_to "Delete Space", s, method: :delete, data:{confirm:"Really?"} %>
+      </div>
+
+    </div>
+  <% end %>
+</div>
 

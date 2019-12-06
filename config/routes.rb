@@ -25,9 +25,11 @@ Rails.application.routes.draw do
   resources :regions, only: [:show, :index] do
     resources :spaces, only: [:index, :show, :new]
   end
-  get '/space/:id', to: 'spaces#show', as: :space
+  get '/spaces/:id', to: 'spaces#show', as: :space
   post '/spaces', to: 'spaces#create'
   get '/spaces', to: 'spaces#total_index'
+  patch '/spaces/:id', to: 'spaces#update'
+  
 
   # items
   resources :items, only: [:index, :show, :new, :create]

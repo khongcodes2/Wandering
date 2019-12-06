@@ -27,4 +27,5 @@ module Moderated
       obj.update(flag:true, descript:censor_vowel(obj.descript)) if test_contains_curse(obj.descript)
     end
   end
+
 end
