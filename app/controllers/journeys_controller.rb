@@ -3,6 +3,7 @@ class JourneysController < ApplicationController
     include JourneysHelper
     include SpacesHelper
     include ItemsHelper
+    include Moderated
 
     before_action :current_journey, only:[:drop_item, :pickup_item, :wrapup, :wrapup_cast, :wrapup_casting, :end_journey]
     before_action :select_item_and_continue, only:[:drop_item, :pickup_item]
@@ -49,6 +50,9 @@ class JourneysController < ApplicationController
         @journey.items.push(Item.find(journey_params[:items])) unless journey_params[:items].nil?
         
         if @journey.traveler.save && @journey.save
+            flag_if(@journey.traveler)
+            flag_if(@journey)
+
             # start journey, update parents (traveler and user)
             @journey.start
             @journey.traveler.user = current_user

@@ -2,6 +2,7 @@ class TravelersController < ApplicationController
   before_action :set_traveler, only: [:show, :edit, :update, :destroy]
   include SessionsHelper
   include ItemsHelper
+  include Moderated
 
   def index
     @travelers = Traveler.all
@@ -20,6 +21,7 @@ class TravelersController < ApplicationController
     @traveler = Traveler.new(traveler_params)
     @traveler.user = current_user
     if @traveler.save
+      flag_if(@traveler)
       redirect_to traveler_path(@traveler)
     else
       render :new
