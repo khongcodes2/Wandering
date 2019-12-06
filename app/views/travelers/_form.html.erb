@@ -8,18 +8,5 @@
     <%= f.label :descript, "Description" %><br>
     <%= f.text_field :descript %><br>
   </div>
-
-    <!--
-    Decided against make New Journey on New Traveler page - just felt wrong
-    
-    <% if new_path %>
-      <h3>Begin New Journey?</h3>
-      <%= f.fields_for :journeys, traveler.journeys.build do |j| %>
-        <%= j.label :name %><br>
-        <%= j.text_field :name %><br>
-      <% end %>
-    <% end %>
-    -->
-
     <%= f.submit %>
 <% end %>

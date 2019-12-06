@@ -38,6 +38,7 @@ class UsersController < ApplicationController
 
         if @user.save
             flag_if(@user)
+            redirect_to control_panel_path and return if currently_admin
             redirect_to user_path(@user) and return
         else
             render :edit

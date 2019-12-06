@@ -11,3 +11,7 @@
     
     <%= f.submit %>
 <% end %>
+
+<div class='vertical-margin-div'>
+  <%= button_to "Delete User", @user, method: :delete, data:{confirm:"Really?"} %>
+</div>

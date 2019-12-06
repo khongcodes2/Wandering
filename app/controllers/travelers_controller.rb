@@ -33,8 +33,11 @@ class TravelersController < ApplicationController
   
   def update
     @traveler.assign_attributes(traveler_params)
+    @traveler.assign_attributes(flag:false) if currently_admin
     if @traveler.save
-      redirect_to traveler_path(@traveler)
+      flag_if(@traveler)
+      redirect_to control_panel_path and return if currently_admin
+      redirect_to traveler_path(@traveler) and return
     else
       render :edit
     end

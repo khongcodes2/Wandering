@@ -1,25 +1,62 @@
 <% title "Admin Control Panel"%>
 <h1>Admin Control Panel</h1>
 
-<%#= render partial:'section', locals:{type:'Users', list:@users} %>
-<h3>Flagged Users</h3>
-<% @users.each do |u| %>
-  <div class='admin-view user-container'>
-    <div class='user-info'>
-      <p>User id: <%= u.id %></p>
-      <p>Username: <%= u.username %></p>
-      <p><%= link_to 'link', user_path(u) %></p>
-    </div>
+<div class='flagged-collection user'>
+  <h3>Flagged Users</h3>
+  <% @users.each do |u| %>
+    <div class='flagged-obj user'>
 
-    <div class='admin-view update-user'>
-      <%= form_for u do |f| %>
-        <%= f.label :username %> <%= f.text_field :username %> <%= f.submit %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
+      <div class='flagged-obj-info user'>
+        <p>User id: <%= u.id %></p>
+        <p>Username: <%= u.username %></p>
+        <p><%= link_to 'link', user_path(u) %></p>
+      </div>
 
-<%= render partial:'section', locals:{type:'Travelers', list:@travelers} %>
+      <div class='flagged-update-obj user'>
+        <%= form_for u do |f| %>
+          <%= f.label :username %> <%= f.text_field :username %> <%= f.submit %>
+        <% end %>
+      </div>
+
+      <div class='flagged-delete-obj user'>
+        <%= button_to "Delete Traveler", t, method: :delete, data:{confirm:"Really?"} %>
+      </div>
+
+    </div>
+  <% end %>
+</div>
+
+<div class='flagged-collection traveler'>
+  <h3>Flagged Travelers</h3>
+  <% @travelers.each do |t| %>
+    <div class='flagged-obj traveler'>
+    
+      <div class='flagged-obj-info traveler'>
+        <p>Traveler id: <%= t.id %></p>
+        <p>Name: <%= t.name %></p>
+        <p>Descript: <%= t.descript %></p>
+        <p><%= link_to 'link', traveler_path(t) %></p>
+      </div>
+
+      <div class='flagged-update-obj traveler'>
+        <%= form_for t do |f| %>
+          <div class='flag update-traveler-fields'>
+            <%= f.label :name %>
+            <%= f.text_field :name %><br>
+            <%= f.label :descript, "Description" %>
+            <%= f.text_field :descript %><br>
+          </div>
+          <%= f.submit %>
+        <% end %>
+      </div>
+
+      <div class='flagged-delete-obj traveler'>
+        <%= button_to "Delete Traveler", t, method: :delete, data:{confirm:"Really?"} %>
+      </div>
+
+    </div>
+  <% end %>
+</div>
 
 <%= render partial:'section', locals:{type:'Journeys', list:@journeys} %>
 
