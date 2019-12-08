@@ -378,11 +378,21 @@ DATA = {
 }
 
 def main
-  make_regions
+  delete_all
+  make_regions if Region.all.empty?
   make_spaces
   make_items
   make_admin
   test_flags
+end
+
+def delete_all
+  Item.destroy_all
+  Space.destroy_all
+  ItemJourney.destroy_all
+  SpaceJourney.destroy_all
+  # Region.destroy_all
+  # Journey.destroy_all
 end
 
 def make_regions

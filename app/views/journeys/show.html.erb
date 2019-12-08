@@ -11,10 +11,15 @@
 <p>Region: <%= link_to @journey.region.name, @journey.region %></p>
 
 <p>Spaces Traveled:
-<ul><% @journey.spaces.uniq.each do |s| %>
-    <li><%= link_to s.name, region_space_path(s.region, s) %><br>
-    <small><%= s.descript %></small></li>
-<% end %></ul>
+<% if !@journey.spaces.empty? %>
+  <ul><% @journey.spaces.uniq.each do |s| %>
+      <li><%= link_to s.name, region_space_path(s.region, s) %><br>
+      <small><%= s.descript %></small></li>
+  <% end %></ul>
+<% else %>
+  <span class='flavor'>The text here is faded.</span>
+<% end %>
+
 </p>
 
 <%= render partial:'layouts/flag', locals:{obj:@journey} %>

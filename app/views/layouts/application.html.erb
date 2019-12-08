@@ -15,7 +15,7 @@
       <%= render "layouts/navbar" %>
       
       
-      <% if current_journey %>
+      <% if current_journey && !current_journey.completed %>
 
         <div id='sidebar'>
           <%= render "layouts/sidebar" %>
