@@ -1,19 +1,26 @@
-<% if type=='users' %>
+<% if type == 'users' %>
   <p>User id: <%= i.id %></p>
   <p>Username: <%= i.username %></p>
 <% else %>
   <p>Id: <%= i.id %></p>
 
-<p>Created by: 
-  <% if i.memories.first.journey.nil? %>
-    <span class='flavor'>The text here is faded.</span>
-  <% elsif i.created_by_user.present? %>
+<p>Created by: <% if type == 'travelers' %> 
+  <% if i.user.present? %>
     <%= link_to i.created_by_user.username, user_path(i.created_by_user) %>
-  <% elsif type!='travelers' && i.created_by_traveler.present? %>
+  <% else %>
+    <span class='flavor'>The text here is faded.</span>
+  <% end %>
+
+<% else %>
+  <% if i.created_by_user.present? %>
+    <%= link_to i.created_by_user.username, user_path(i.created_by_user) %>
+  <% elsif i.created_by_traveler.present? %>
     Traveler <%= link_to i.created_by_traveler.name, traveler_path(i.created_by_traveler) %>
   <% else %>
     <span class='flavor'>The text here is faded.</span>
   <% end %>
+<% end %>
+  
 </p>
 
 <% end %>

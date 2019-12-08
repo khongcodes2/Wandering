@@ -6,6 +6,7 @@
     
       <div class="flagged-obj-info <%= type %>">      
         <%= render partial:'obj_info', locals:{type:type, i:i} %>
+        <p><%= link_to 'link', i %></p>
       </div>
 
       <div class='flagged-update-obj <%= type %>'>

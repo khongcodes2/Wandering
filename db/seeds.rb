@@ -461,7 +461,7 @@ def test_flags
     2.times do
       traveler = user.travelers.build(name:"nameshitSHIT#{e}", descript:"shitSHItshitdescript#{e}", flag:true)
       traveler.save
-      journey = traveler.journeys.build(name:"shitJourneySHIT#{e}", region_id:1, user_id:user.id, flag:true)
+      journey = traveler.journeys.build(name:"shitJourneySHIT#{e}", region_id:Region.order('RANDOM()').last.id, user_id:user.id, flag:true)
       journey.save
 
       space1 = Space.order('RANDOM()').last
