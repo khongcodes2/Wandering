@@ -4,7 +4,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.0] - 2019-12-02
+## "Moderator" [1.3.0] - 2019-12-09
+### Commit messages
+- add admin column to users, create admin in seeds
+- added flag to all tables
+- implement show flag message
+- created moderated module and admin attribute to users
+- added moderated module to journeys, spaces, travelers, users
+- added permissions error page, added scope 'flagged' to resources
+- admin can edit users
+- started implementing admin modification
+- bugfix admin modify travelers
+- change journey names named after traveler on traveler name change
+- begin implemenitng update spaces, provide cases in memory_text for if resourcs deleted
+- can delete spaces as admin
+- automatically redirect to admin panel if login as admin, change navbar admin link
+- made modular flagged sections for admin control panel
+- admin functions work
+- created partial delete for seeds, to allow for users to persist when reseeding occurs
+- organized obj_info in flagged section
+- pre-push notes cleanup
+- updated Changelog
+
+## "Memories" [1.2.0] - 2019-12-03
 ### Commit messages
 - started implementing memories model
 - started creating controller for text display
@@ -22,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - partitioned the css file
 - eliminated space_journeys, replaced with memories
 - moved end_journey actions off view template and into after_action filter
+- reverted to using space_memories, to keep collection semi-independent from memories due to different points in time the memories should be instantiated
 
 
 ## [1.1.1] - 2019-11-24
