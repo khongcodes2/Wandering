@@ -2,11 +2,11 @@
 
 ## About
 
-Wandering is a short, little game that relies on its persistent database to allow users (players) to create travelers to explore and wander through procedurally generated spaces and paths. Along the way, the traveler can pick up and drop items as their curiosity demands. 
+Wandering is a short little game that relies on its persistent database to allow users (players) to create travelers to explore and wander through procedurally linked spaces and paths. Along the way, the traveler can pick up and drop items as their curiosity demands.
 
 At the end of the journey, players are invited to add to the story of this world by describing either a new space or item they discover.
 
-Changes in item locations caused by travelers' actions are persisted in the spaces saved to the databases. New items and spaces are also persisted in the database. The connections between spaces are not persisted - each time a traveler journeys through a region, they will find that spaces are linked in new ways, and spaces reached in a previous journey may not be reachable - though new ones will be.
+Changes in item locations caused by travelers' actions are persisted as associations in the database. New items and spaces are also persisted to the database. The connections between spaces are not persistent - each time a traveler journeys through a region, they will find that spaces are linked in new ways, and spaces reached in a previous journey may not be reachable - though new ones will be.
 
 The clock ticks down as travelers move from space to space. The more spaces the traveler passes through, the more time has passed since the journey has begun, and the more likely it is for the traveler to have to return to the Ether, where all travelers come from, and where they must all return.
 

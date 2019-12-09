@@ -360,17 +360,18 @@ DATA = {
     ["articulated","it's made with flexible joints"],
     ["well-made","it's been artfully crafted"],
     ["woeful","you feel sad holding it"],
+    #20
     ["haunted","you think you hear crying"],
     ["balanced","holding it feels good"],
     ["cursed","you feel dread wash over you in waves when you hold this"],
     ["delicate","it would break easily if you used it carelessly"],
     ["digital","it seems to contain information for an old-world machine"],
     ["dowsing","when you hold it, you feel it pulling you in a direction"],
-    #20
     ["discarded","it's been crumpled and thrown away"],
     ["ornate","studded with precious stones"],
     ["ritual","the decoration seems to indicate that it was made with a ceremonial purpose in mind"],
     ["nemesis","it seems to mock you"],
+    #30
     ["beholder's","you feel something turn to look at you"],
 
 
