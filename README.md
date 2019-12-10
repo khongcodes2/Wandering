@@ -34,24 +34,25 @@ $ rails db:seed
 
 The seed file contains hashes and arrays of strings describing items and spaces. When you run seed, you are generating these items and spaces! Please make sure to do this or else the database will not be populated and you will not be able to travel through spaces, and the project will not run as intended.
 
-This file heavily uses a cookie - please enable cookies on this site.
+This project relies heavily on a cookie - please enable cookies on this site.
 
 This web application was built on Ruby-2.6.1 with Rails 6.0.1.
 
 ## Future updates
  
- - A new object class and record type to log events, called Memories
-      - Spaces have Memories (footsteps)
-      - Journeys have Memories (travel log)
-      - Items have Memories (picked up by...dropped by...)
-      - Travelers have Memories (event log) through Journeys
- - Implement use of a profanity filter gem to moderate user input
- - Random events
+ - Additional spaces and items
+ - Random events and encounters
  
 
 ## Contributing
 
-  Bug reports and pull requests are welcome on GitHub at https://github.com/khongcodes2/Wandering
+  Bug reports and pull requests are welcome on GitHub at https://github.com/khongcodes2/Wandering.
+
+  Special thanks to Chris Fritz - his work on the LanguageFilter Ruby gem was very helpful for my efforts to design and implement a simple flagging and moderation system.
+
+  Find more about LanguageFilter - https://github.com/chrisvfritz/language_filter
+  
+  Chris on GitHub - https://github.com/chrisvfritz
 
 ## Authors
 
