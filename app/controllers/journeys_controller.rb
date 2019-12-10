@@ -98,7 +98,9 @@ class JourneysController < ApplicationController
         # raise params.inspect
         @journey.assign_attributes(journey_params)
         @journey.assign_attributes(flag:false)
-        Moderator.new.flag_if(@journey) if @journey.save
+        if @journey.save
+            Moderator.new.flag_if(@journey) unless currently_admin
+        end
         redirect_to control_panel_path
     end
 

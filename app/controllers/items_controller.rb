@@ -54,7 +54,10 @@ class ItemsController < ApplicationController
     @item.assign_attributes(item_params)
     @item.assign_attributes(flag:false)
 
-    Moderator.new.flag_if(@item) if @item.save
+    if @item.save
+      Moderator.new.flag_if(@item) unless currently_admin
+    end
+    
     redirect_to control_panel_path
   end
 

@@ -39,7 +39,7 @@ class TravelersController < ApplicationController
     @traveler.assign_attributes(flag:false) if currently_admin
 
     if @traveler.save
-      Moderator.new.flag_if(@traveler)
+      Moderator.new.flag_if(@traveler) unless currently_admin
       
       # IF TRAVELER NAME CHANGE, also change journey names named after traveler
       @traveler.journeys.each {|j| j.update(name:"#{@traveler.name}'s journey") if j.name.match?(/\A.*'s journey/)}

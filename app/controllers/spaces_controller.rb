@@ -176,7 +176,9 @@ class SpacesController < ApplicationController
     @space.assign_attributes(space_params)
     @space.assign_attributes(flag:false)
 
-    Moderator.new.flag_if(@space) if @space.save
+    if @space.save
+      Moderator.new.flag_if(@space) unless currently_admin
+    end
     redirect_to control_panel_path
   end
 
