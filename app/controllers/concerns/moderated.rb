@@ -14,12 +14,14 @@ module Moderated
       self.bad_words_list.each do |b|
         matched_words.push(b) if string.match?(Regexp.new(b, true))
       end
+      matched_words.uniq!
+      matched_words.any?
     end
   
     def censor_vowel(string)
       new_string = string
       matched_words.each do |m|
-        string.scan(m).each do |o| 
+        string.scan(Regexp.new(m, true)).each do |o| 
           new_string = new_string.gsub(o, o.gsub(/[aeiou]/i, '*'))
         end
       end
