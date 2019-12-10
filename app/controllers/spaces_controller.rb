@@ -141,7 +141,7 @@ class SpacesController < ApplicationController
     if session[:wrapup]!=1
       redirect_to "/regions/#{space_params[:region_id]}/spaces/new"
     elsif @space.save
-      flag_if(@space)
+      Moderator.new.flag_if(@space)
 
       journey = Journey.find(session[:journey_id])
       journey.spaces.push(@space)
@@ -176,7 +176,7 @@ class SpacesController < ApplicationController
     @space.assign_attributes(space_params)
     @space.assign_attributes(flag:false)
 
-    flag_if(@space) if @space.save
+    Moderator.new.flag_if(@space) if @space.save
     redirect_to control_panel_path
   end
 

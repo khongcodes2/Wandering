@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
     if session[:wrapup]!=1
       redirect_to new_item_path
     elsif @item.save
-      flag_if(@item)
+      Moderator.new.flag_if(@item)
 
       journey = Journey.find(session[:journey_id])
       journey.items.push(@item)
@@ -54,7 +54,7 @@ class ItemsController < ApplicationController
     @item.assign_attributes(item_params)
     @item.assign_attributes(flag:false)
 
-    flag_if(@item) if @item.save
+    Moderator.new.flag_if(@item) if @item.save
     redirect_to control_panel_path
   end
 

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-            flag_if(@user)
+            Moderator.new.flag_if(@user)
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
         @user.assign_attributes(flag:false) if currently_admin
 
         if @user.save
-            flag_if(@user)
+            Moderator.new.flag_if(@user)
             redirect_to control_panel_path and return if currently_admin
             redirect_to user_path(@user) and return
         else

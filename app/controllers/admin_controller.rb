@@ -1,5 +1,4 @@
 class AdminController < ApplicationController
-  helper AdminHelper
   
   def control_panel
     render 'layouts/permissions_error' and return unless session[:user_id].present? && User.find(session[:user_id]).admin

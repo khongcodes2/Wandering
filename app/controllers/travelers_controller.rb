@@ -22,7 +22,7 @@ class TravelersController < ApplicationController
     @traveler = Traveler.new(traveler_params)
     @traveler.user = current_user
     if @traveler.save
-      flag_if(@traveler)
+      Moderator.new.flag_if(@traveler)
       redirect_to traveler_path(@traveler)
     else
       render :new
@@ -39,7 +39,7 @@ class TravelersController < ApplicationController
     @traveler.assign_attributes(flag:false) if currently_admin
 
     if @traveler.save
-      flag_if(@traveler)
+      Moderator.new.flag_if(@traveler)
       
       # IF TRAVELER NAME CHANGE, also change journey names named after traveler
       @traveler.journeys.each {|j| j.update(name:"#{@traveler.name}'s journey") if j.name.match?(/\A.*'s journey/)}

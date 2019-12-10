@@ -51,8 +51,9 @@ class JourneysController < ApplicationController
         @journey.items.push(Item.find(journey_params[:items])) unless journey_params[:items].nil?
         
         if @journey.traveler.save && @journey.save
-            flag_if(@journey.traveler)
-            flag_if(@journey)
+            mod = Moderator.new
+            mod.flag_if(@journey.traveler)
+            mod.flag_if(@journey)
 
             # start journey, update parents (traveler and user)
             @journey.start
@@ -97,7 +98,7 @@ class JourneysController < ApplicationController
         # raise params.inspect
         @journey.assign_attributes(journey_params)
         @journey.assign_attributes(flag:false)
-        flag_if(@journey) if @journey.save
+        Moderator.new.flag_if(@journey) if @journey.save
         redirect_to control_panel_path
     end
 
