@@ -12,6 +12,7 @@
  *
  *= require basic_layout
  *= require forms
+ *= require admin_control_panel
  *= require_self
  */
 

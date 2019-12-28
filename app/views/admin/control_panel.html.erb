@@ -1,12 +1,21 @@
 <% title "Admin Control Panel"%>
 <h1>Admin Control Panel</h1>
 
-<%= render partial:'flagged_section', locals:{type:'users', collection:@users} %>
 
-<%= render partial:'flagged_section', locals:{type:'travelers', collection:@travelers} %>
+<div class='panel-container'>
+  <div class='flagged-column c1'>
+    <%= render partial:'flagged_section', locals:{type:'users', collection:@users} %>
 
-<%= render partial:'flagged_section', locals:{type:'journeys', collection:@journeys} %>
+    <%= render partial:'flagged_section', locals:{type:'travelers', collection:@travelers} %>
 
-<%= render partial:'flagged_section', locals:{type:'items', collection:@items} %>
+    <%= render partial:'flagged_section', locals:{type:'journeys', collection:@journeys} %>
+  </div>
 
-<%= render partial:'flagged_section', locals:{type:'spaces', collection:@spaces} %>
+  <div class='flagged-column c2'>
+    <%= render partial:'flagged_section', locals:{type:'items', collection:@items} %>
+  </div>
+
+  <div class='flagged-column c3'>
+    <%= render partial:'flagged_section', locals:{type:'spaces', collection:@spaces} %>
+  </div>
+</div>

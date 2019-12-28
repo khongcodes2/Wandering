@@ -1,22 +1,36 @@
 <% if type == 'users' %>
-  <%= f.label :username %>
-  <%= f.text_field :username %><br>
+  <p>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </p>
 
 <% elsif type == 'travelers' %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
-  <%= f.label :descript %>
-  <%= f.text_field :descript %><br>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :descript %>
+    <%= f.text_field :descript %>
+  </p>
 
 <% elsif type == 'journeys' %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
 
 <% elsif type == 'items' || type == 'spaces' %>
-  <%= f.label :noun %>
-  <%= f.text_field :noun %><br>
-  <%= f.label :adjective %>
-  <%= f.text_field :adjective %><br>
-  <%= f.label :descript, "Description" %>
-  <%= f.text_field :descript %><br>
+  <p>
+    <%= f.label :noun %>
+    <%= f.text_field :noun %>
+  </p>
+  <p>
+    <%= f.label :adjective %>
+    <%= f.text_field :adjective %>
+  </p>
+  <p>
+    <%= f.label :descript, "Description" %>
+    <%= f.text_field :descript %>
+  </p>
 <% end %>

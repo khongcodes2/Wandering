@@ -1,3 +1,5 @@
+<p><%= link_to i.name||i.username, i %></p>
+
 <% if type == 'users' %>
   <p>User id: <%= i.id %></p>
   <p>Username: <%= i.username %></p>
@@ -24,5 +26,3 @@
 </p>
 
 <% end %>
-
-<p><%= link_to 'link', i %></p>

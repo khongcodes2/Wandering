@@ -1,0 +1,55 @@
+div.panel-container {
+  display: flex;
+  width: 90vw;
+  height: 100%;
+}
+
+div.flagged-column {
+  height: 100%;
+  width: 100%;
+  margin: 0 1em;
+}
+
+div.flagged-column:first-of-type {
+  margin-left: 0;
+}
+
+div.flagged-column:last-of-type{
+  margin-right: 0;
+}
+
+div.flagged-obj {
+  margin-bottom: 4em;
+  /* background-color: grey; */
+}
+
+div.flagged-obj-info {
+  margin-bottom: 1.2em;
+}
+
+div.flagged-obj-info p {
+  margin: 0.2em 0;
+  font-size: 0.9em;
+}
+
+div.flagged-update-obj p {
+  margin: 0.4em 0;
+}
+
+div.flagged-update-obj p:last-of-type {
+  margin-bottom: 1em;
+}
+
+div.flagged-update-obj label {
+  clear: both;
+}
+
+div.flagged-update-obj input[type="text"] {
+  float: right;
+  margin-right: 30%;
+  width: 45%;
+}
+
+div.flagged-delete-obj {
+  margin-top: 0.4em;
+}
