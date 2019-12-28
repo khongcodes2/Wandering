@@ -37,8 +37,10 @@
   <%= link_to "Edit space", edit_space_path(@space) %>
 <% end %>
 
-<% @space.memories.each do |m| %>
-  <div class='space-mem memory'>
-    <%= space_memory_text(m) %>
-  </div>
-<% end %>
+<div class='mem_container resource'>
+  <% @space.memories.order(id: :desc).each do |m| %>
+    <div class='space-mem memory'>
+      <%= space_memory_text(m) %>
+    </div>
+  <% end %>
+</div>

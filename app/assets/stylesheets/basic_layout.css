@@ -126,3 +126,63 @@ div.sidebar_item {
 .sidebar_end_journey_form {
   margin-top:8%;
 }
+
+
+/*********************************/
+/****        Memories        ****/
+/*******************************/
+
+div.mem_container.resource {
+  font-size: 0.9em;
+  color: rgba(0, 0, 0, 0);
+  margin-top: 3em;
+}
+
+div.mem_container {
+  font-size: 0.9em;
+  color: rgb(110, 110, 110);
+  margin-top: 3em;
+}
+
+.mem_container.resource div.memory:first-child {
+  margin-top: 0em;
+  color: rgba(0, 0, 0, 1);
+}
+
+div.memory {
+  margin: 0.25em 0;
+}
+
+.mem_container.resource div.memory:nth-child(2) {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.mem_container.resource div.memory:nth-child(3) {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.mem_container.resource div.memory:nth-child(4) {
+  color: rgba(0, 0, 0, 0.7);
+}
+.mem_container.resource div.memory:nth-child(5) {
+  color: rgba(0, 0, 0, 0.6);
+}
+.mem_container.resource div.memory:nth-child(6) {
+  color: rgba(0, 0, 0, 0.5);
+}
+.mem_container.resource div.memory:nth-child(7) {
+  color: rgba(0, 0, 0, 0.4);
+}
+.mem_container.resource div.memory:nth-child(8) {
+  color: rgba(0, 0, 0, 0.3);
+}
+.mem_container.resource div.memory:nth-child(9) {
+  color: rgba(0, 0, 0, 0.2);
+}
+.mem_container.resource div.memory:nth-child(10) {
+  color: rgba(0, 0, 0, 0.1);
+}
+
+div#end-journey-info {
+  margin: 3em 0;
+}

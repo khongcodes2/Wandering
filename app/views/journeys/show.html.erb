@@ -28,8 +28,10 @@
   <%= link_to "Edit journey", edit_journey_path(@journey) %>
 <% end %>
 
-<% @journey.memories.each do |m| %>
-  <div class='item memory'>
-    <%= journey_memory_text(m) %>
-  </div>
-<% end %>
+<div class="mem_container">
+  <% @journey.memories.each do |m| %>
+    <div class='item memory'>
+      <%= journey_memory_text(m) %>
+    </div>
+  <% end %>
+</div>
