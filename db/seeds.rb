@@ -173,6 +173,7 @@ DATA = {
         ["gates","the spindly metal is falling apart"],
         #30
         ["mycellicum","an immense structure looms, a lexicon to architectural language of fungus"],
+        ["mycellicum","an immense structure looms, a lexicon to architectural language of fungus"],
         
       ],
       :space_adj_descript => [
@@ -239,29 +240,38 @@ DATA = {
     #     ["marsh.d","8"]
     #   ]
     # },
-    # "Desert" => {
-    #   :space_nouns_descript => [
-    #     ["legs of a colossus","the rough-hewn shins of some forgotten stone king stretch to the sky"],
-    #     ["tomb","2"],
-    #     ["dune","3"],
-    #     ["dune","3"],
-    #     ["waste","3"],
-    #     ["stretch","3"],
-    #     ["sinkhole","3"],
-    #     ["sandlion den","you almost don't notice the neat, smooth downward spiral into a frozen whirlpool in the sand - best stay well away from its edges"],
-    #     ["mirage","4"],
-    #     ["oasis","4"],
-    #     ["abandoned skiff","4"],
-    #     ["weather rod","4"],
-    #   ],
-    #   :space_adj_descript => [
-    #     ["desolate","5"],
-    #     ["rosy","everything is made a vibrant pink by the morning sun filtering through gritclouds"],
-    #     ["dusty","7"],
-    #     ["stormcurbed","the skies roil and bubble, and storm threatens to break (though it never does, here)"],
-    #     ["windsheared","it's remarkable that anything here withstands the local winds' ceaseless cut"],
-    #   ]
-    # },
+    "Desert" => {
+      :space_nouns_descript => [
+        ["legs of a colossus","the rough-hewn shins of some forgotten stone king stretch to the sky"],
+        ["tomb","the entrance to some deep dark chamber, still mostly covered in sand"],
+        ["dune","a tsunami of sand caught in time, demanding a laborious climb"],
+        ["dune","a mountainous molehill offering an easy downhill slide"],
+        ["valley","a roving pathway forms where the base of one ten-story ridge of sand meets another, of concrete"],
+        ["waste","the only thing around is sand, and it stretches to the horizon"],
+        ["stretch","you follow a lightly marked road"],
+        ["sinkhole","you take care to clutch your belongings and pretend the sinkhole isn't there as you edge around it (the way you were taught)"],
+        ["sandlion den","you almost don't notice the neat, smooth downward spiral into a frozen whirlpool in the sand - best stay well away from its edges"],
+        ["mirage","the sand and wind whip up ghosts. You hear the name your family used to call you - but hwne you turn around, no one's there"],
+        # 10
+        ["mirage","the sand and wind whip up persuasive whispers. You hear the whistle of a trolley of Antique times in the distance"],
+        ["mirage","the sand and wind whip up fever dreams before your eyes. You walk into a square in your hometown - but it's gone as soon as you blink"],
+        ["oasis","ferns and fronds bend around a pool of magenta water - it's not safe to stay for long"],
+        ["abandoned skiff","the craft lies carelessly discarded on its side; sail still intact and thrumming the air; sand starting to pile into its open deck hatch"],
+        ["weather rod","a decrepit station that used to be used for sending commands to the atmoforming satellites - they follow no orders now"],
+        ["bunker","a concrete shelter stripped of its sensor array"],
+      ],
+      :space_adj_descript => [
+        ["desolate","there's an overwhelming emptiness"],
+        ["oppressive","the grit in the air is smothering"],
+        ["rosy","everything is tinted a vibrant pink by the morning sun filtering through gritclouds"],
+        ["dusty","dust falls upward into the sky from the tracks you make in the sand"],
+        ["stormcurbed","the skies roil and bubble, and storm threatens to break (though it never does, here)"],
+        ["windsheared","it's remarkable that anything here withstands the local winds' ceaseless cut"],
+        ["quiet","the winds are calm right now"],
+        ["calm","the lavender sky is quiet right now"],
+        ["quiet","the sky rumbles discontenedly for half a minute before calming"],
+      ]
+    },
     # "Taiga" => {
     #   :space_nouns_descript => [
     #     ["taiga.A","1"],
