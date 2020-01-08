@@ -8,6 +8,8 @@ At the end of the journey, players are invited to add to the story of this world
 
 Changes in item locations caused by travelers' actions are persisted as associations in the database. New items and spaces are also persisted to the database. The connections between spaces are not persistent - each time a traveler journeys through a region, they will find that spaces are linked in new ways, and spaces reached in a previous journey may not be reachable - though new ones will be.
 
+Items and spaces have a limited capacity to hold memories of the travelers that have touched them. Users can read any journey's event logs.
+
 The clock ticks down as travelers move from space to space. The more spaces the traveler passes through, the more time has passed since the journey has begun, and the more likely it is for the traveler to have to return to the Ether, where all travelers come from, and where they must all return.
 
 #### Media touchstones:
@@ -38,7 +40,7 @@ This project relies heavily on a cookie - please enable cookies on this site.
 
 This web application was built on Ruby-2.6.1 with Rails 6.0.1.
 
-## Future updates
+## Potential future updates and features
  
  - Additional spaces and items
  - Random events and encounters

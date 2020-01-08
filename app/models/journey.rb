@@ -28,7 +28,7 @@ class Journey < ActiveRecord::Base
         case self.clock
         when 0..2
             self.clock += 1
-        when 3..6
+        when 3..7
             case self.clock
             when 3
                 continue_chance = 7
