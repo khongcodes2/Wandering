@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2020-01-08
+- Merged "Moderator" and "Memories" into Master
+- some cleanup work
+### Commit messages
+- allowed moderator to read from external list and refactored it as a class
+- testing that all resources update and flag as expected
+- fixed duplicate links
+- updated README, credit to chris fritz
+- let users know about cookie requirement on home page
+- updated bad_words
+- Bump rack from 2.0.7 to 2.0.8
+- Merge pull request #2 from khongcodes2/dependabot/bundler/rack-2.0.8
+- adjusted layout, memories
+- adjusted layout, admin panel
+- added descriptions for seeds
+- double checked admin functions, light refactoring, added seeds
+- commented out test flags in seeds file
+- Merge branch 'moderator'; finished implementation of moderator and memories features
+- Merge branch 'master' of https://github.com/khongcodes2/Wandering
+- updated puma in Gemfile
+- update yarn
+- transfer notes into dev_notes
+- updated Changelog
+
 ## "Moderator" [1.3.0] - 2019-12-09
 ### Commit messages
 - add admin column to users, create admin in seeds
