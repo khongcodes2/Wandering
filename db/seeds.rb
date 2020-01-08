@@ -418,7 +418,7 @@ def main
   make_spaces
   make_items
   make_admin
-  test_flags
+  # test_flags
 end
 
 def delete_all
