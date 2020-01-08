@@ -4,12 +4,15 @@ class Item < ActiveRecord::Base
     has_many :travelers, through: :journeys
     has_many :users, through: :travelers
     belongs_to :space, optional: true
-    # has_many :memories
+    
+    has_many :memories
 
     validates :noun, :adjective, presence: true
 
     scope :unspaced,        -> {where(space:nil)}
     scope :starting_three,  -> {unspaced.order('RANDOM()').limit(3)}
+
+    scope :flagged,         -> {where(flag:true)}
 
     def name
         if adjective.present? && noun.present?
@@ -19,5 +22,13 @@ class Item < ActiveRecord::Base
         else
             adjective
         end
+    end
+
+    def created_by_user
+        self.memories.first.journey.user
+    end
+
+    def created_by_traveler
+        self.memories.first.journey.traveler
     end
 end

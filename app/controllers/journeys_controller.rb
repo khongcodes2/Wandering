@@ -3,9 +3,12 @@ class JourneysController < ApplicationController
     include JourneysHelper
     include SpacesHelper
     include ItemsHelper
+    include Moderated
 
+    before_action :set_journey, only:[:show, :edit, :update, :destroy]
     before_action :current_journey, only:[:drop_item, :pickup_item, :wrapup, :wrapup_cast, :wrapup_casting, :end_journey]
     before_action :select_item_and_continue, only:[:drop_item, :pickup_item]
+    after_action :end_journey_actions, only: :end_journey
 
     def new
         # User can only create new journey if not already on journey
@@ -48,6 +51,10 @@ class JourneysController < ApplicationController
         @journey.items.push(Item.find(journey_params[:items])) unless journey_params[:items].nil?
         
         if @journey.traveler.save && @journey.save
+            mod = Moderator.new
+            mod.flag_if(@journey.traveler)
+            mod.flag_if(@journey)
+
             # start journey, update parents (traveler and user)
             @journey.start
             @journey.traveler.user = current_user
@@ -81,7 +88,26 @@ class JourneysController < ApplicationController
     end
 
     def show
-        @journey = Journey.find(params[:id])
+    end
+
+    def edit
+        render '/layouts/permissions_error' and return unless currently_admin
+    end
+
+    def update
+        # raise params.inspect
+        @journey.assign_attributes(journey_params)
+        @journey.assign_attributes(flag:false)
+        if @journey.save
+            Moderator.new.flag_if(@journey) unless currently_admin
+        end
+        redirect_to control_panel_path
+    end
+
+    def destroy
+        delete_journey_drop_items(@journey) if @journey.clock != 10
+        @journey.destroy
+        redirect_to control_panel_path
     end
 
 
@@ -92,6 +118,7 @@ class JourneysController < ApplicationController
     def drop_item
         # if journey HAS this item (therefore able to drop it)
         if @journey.items.include?(@item)
+            # memory creation handled in Items helper so drop_all can also access it
             drop_item_here(@item)
             flash[:notice] = "Dropped #{@item.name}"
         end
@@ -111,6 +138,8 @@ class JourneysController < ApplicationController
             if @journey.items.count>=4
                 flash[:notice] = "You can't carry more than 4 items!"
             else
+                memory = Memory.new(mem_type:'item_pickup', journey_id:@journey.id, item_id:@item.id, space_id:@item.space.id)
+                memory.save
                 @journey.traveler.pickup(@item)
                 flash[:notice] = "Picked up #{@item.name}"
             end
@@ -177,13 +206,22 @@ class JourneysController < ApplicationController
     def end_journey
         # expect session[:wrapup] to be 3; else redirect
         redirect_to where_do_i_go_integer(session[:wrapup]) and return if session[:wrapup]!=3
-        
+
         @journey_name = @journey.name
         @traveler = @journey.traveler.name
         @items = @journey.items
         @cast = session[:cast]
         @journey.update(completed:true)
         @space = Space.find(session[:was_just_on])
+
+        # create end memory
+        memory = Memory.new(mem_type:'end')
+        memory.journey = @journey
+        memory.space = @space
+        if session[:cast] != "nothing"
+            memory.item = Item.last
+        end
+        memory.save
     end
 
     private
@@ -205,6 +243,10 @@ class JourneysController < ApplicationController
         @item = Item.find(params.permit(:items)[:items].to_i)
     end
 
+    def set_journey
+        @journey = Journey.find(params[:id])
+    end
+
     def select_item_and_continue
         session[:continue] = true
         select_item
@@ -212,6 +254,11 @@ class JourneysController < ApplicationController
 
     def redirect_was_just_on
         redirect_to region_space_path(current_journey.region, session[:was_just_on])
+    end
+
+    def end_journey_actions
+        drop_all
+        clear_journey
     end
 
 end

@@ -30,7 +30,7 @@ module JourneysHelper
     if journey.traveler
       link_to journey.traveler.name, journey.traveler
     else
-      "An empty portrait rests here."
+      content_tag(:span, "An empty portrait rests here.", class:"flavor")
     end
   end
 

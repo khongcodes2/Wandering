@@ -1,6 +1,9 @@
 class SpacesController < ApplicationController
   include SessionsHelper
   include SpacesHelper
+  include Moderated
+
+  before_action :set_space, only: [:edit, :update, :destroy]
 
   def index
     @region = Region.find(params[:region_id])
@@ -12,17 +15,16 @@ class SpacesController < ApplicationController
   end
   
   def show
-    @space = Space.find(params[:id])
+    @space = current_space
     if current_journey
       if current_journey.clock == 10 && !session[:continue]
-        session[:wrapup] = 1
+        session[:wrapup] = 1 if !session[:wrapup].present?
         redirect_to enter_wrapup_path and return
       end
 
       # if visited this space before? DON'T PUSH to session[:map]
       if @journey.spaces.include?(@space)
-        # remove :continue token
-        session.delete :continue if session[:continue]
+        remove_continue
 
         if expanded_map.any?{|a|a[0]==session[:was_just_on].to_s} && session[:was_just_on] != params[:id]
         # if so, make it the "from" link, and the other two the "to" links
@@ -38,15 +40,22 @@ class SpacesController < ApplicationController
         
       else
         # add this space to journey's spaces
+        # this space is about to have all its linked defined - push to session[:fully_linked]
         @journey.spaces.push(@space)
-        # add this space to no-random list
-        session[:fully_linked_spaces].push(@space.id)
+        # session[:fully_linked_spaces] << @space.id
 
-        #if start of journey
+        # if start of journey
         if @journey.clock==0
           # initialize map
           @to = generate_space_links(2)
           session[:map] = "(#{params[:id]}.a#{@to[0].to_i}.a#{@to[1].to_i})"
+
+          # create memory
+          # because Journey has Spaces through Memories, this should automatically add to journey's spaces
+          memory = Memory.new(mem_type:'begin')
+          memory.journey = @journey
+          memory.space = current_space
+          memory.save
 
         else
 
@@ -81,18 +90,26 @@ class SpacesController < ApplicationController
         end
          
         # only tick if not backtracking
-        @journey.tick_clock if !session[:continue] || session[:was_just_on]!= params[:id]
-        session.delete :continue if session[:continue]
+        @journey.tick_clock if !session[:continue] || session[:was_just_on] != params[:id]
+        remove_continue
 
         if @journey.clock == 9
           flash.now.notice = "You can feel your journey will end soon..."
         elsif @journey.clock == 10
-          flash.now.notice = "You know now that your journey will end with your next step."
+          flash.now.notice = "You feel the tug of the Ether - you know now that your journey will end with your next step."
         end
 
       end
       
-      # values for views
+      # create memory for previous space if on journey and just entered this space from previous space
+      if ((params[:region_id] && session[:was_just_on].present?) && session[:was_just_on] != params[:id]) && (!session[:wrapup].present?)
+        memory = Memory.new(mem_type:'traveler_leave')
+        memory.space = space_was_just_on
+        memory.journey = current_journey
+        memory.save
+      end
+      
+      # values for views links
       @to_space1 = Space.find(@to[0])
       @to_space2 = Space.find(@to[1]) if @to[1].present?
       @from_space = Space.find(@from) if @from.present?
@@ -123,8 +140,23 @@ class SpacesController < ApplicationController
     if session[:wrapup]!=1
       redirect_to "/regions/#{space_params[:region_id]}/spaces/new"
     elsif @space.save
+      Moderator.new.flag_if(@space)
+
       journey = Journey.find(session[:journey_id])
       journey.spaces.push(@space)
+
+      # create last traveler_leave memory
+      memory1 = Memory.new(mem_type:'traveler_leave')
+      memory1.journey = current_journey
+      memory1.space = space_was_just_on
+      memory1.save
+
+      # create space_discovery memory with new space
+      memory = Memory.new(mem_type:'space_discovery')
+      memory.journey = journey
+      memory.space = @space
+      memory.save
+
       session[:was_just_on] = @space.id
       session[:wrapup_resource_type] = "space"
       session[:wrapup] = 2
@@ -134,9 +166,39 @@ class SpacesController < ApplicationController
     end
   end
 
+  def edit
+    render '/layouts/permissions_error' and return unless currently_admin
+  end
+
+  def update
+    # ONLY ADMIN ACCESS
+    @space.assign_attributes(space_params)
+    @space.assign_attributes(flag:false)
+
+    if @space.save
+      Moderator.new.flag_if(@space) unless currently_admin
+    end
+    redirect_to control_panel_path
+  end
+
+  def destroy
+    # ONLY ADMIN ACCESS
+    @space.destroy
+    redirect_to control_panel_path
+  end
+
   private
+
+  def set_space
+    @space = Space.find(params[:id])
+  end
 
   def space_params
     params.require(:space).permit(:noun,:adjective,:descript,:region_id)
   end
+
+  def remove_continue
+    session.delete :continue if session[:continue]
+  end
 end
+

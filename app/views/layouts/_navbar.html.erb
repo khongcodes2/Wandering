@@ -18,7 +18,13 @@
     <%= form_tag({controller:'sessions', action:'destroy'}, class:'inline nav_link session_link') do %>
         <%= submit_tag "Log Out" %>
     <% end %>
-    <%= link_to @user.username, user_path(@user), class:'nav_link session_link' %>
+    
+    <% if currently_admin %>
+      <%= link_to "Admin Control Panel", control_panel_path, class:'nav_link session_link' %>
+    <% else %>
+      <%= link_to current_user.username, user_path(current_user), class:'nav_link session_link' %>
+    <% end %>
+    
 
   <% else %>
     <%= link_to "Log In", login_path, class:'nav_link session_link' %>

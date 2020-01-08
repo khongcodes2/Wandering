@@ -239,20 +239,49 @@ DATA = {
     #     ["marsh.d","8"]
     #   ]
     # },
-    # "Desert" => {
-    #   :space_nouns_descript => [
-    #     ["desert.A","1"],
-    #     ["desert.B","2"],
-    #     ["desert.C","3"],
-    #     ["desert.D","4"]
-    #   ],
-    #   :space_adj_descript => [
-    #     ["desert.a","5"],
-    #     ["desert.b","6"],
-    #     ["desert.c","7"],
-    #     ["desert.d","8"]
-    #   ]
-    # },
+    "Desert" => {
+      :space_nouns_descript => [
+        ["legs of a colossus","the rough-hewn shins of some forgotten stone king stretch to the sky"],
+        ["tomb","the entrance to some deep dark chamber, still mostly covered in sand"],
+        ["dune","a tsunami of sand caught in time, demanding a laborious climb"],
+        ["dune","a mountainous molehill offering an easy downhill slide"],
+        ["valley","a roving pathway forms where the base of one ten-story ridge of sand meets another, of concrete"],
+        ["waste","the only thing around is sand, and it stretches to the horizon"],
+        ["stretch","you follow a lightly marked road"],
+        ["sinkhole","you take care to clutch your belongings and pretend the sinkhole isn't there as you edge around it (the way you were taught)"],
+        ["sandlion den","you almost don't notice the neat, smooth downward spiral into a frozen whirlpool in the sand - best stay well away from its edges"],
+        ["mirage","the sand and wind whip up ghosts. You hear the name your family used to call you - but when you turn around, no one's there"],
+        # 10
+        ["mirage","the sand and wind whip up persuasive whispers. You hear the whistle of a trolley of Antique times in the distance"],
+        ["mirage","the sand and wind whip up fever dreams before your eyes. You walk into a square in your hometown - but it's gone as soon as you blink"],
+        ["oasis","ferns and fronds bend around a pool of magenta water - it's not safe to stay for long"],
+        ["abandoned skiff","the craft lies carelessly discarded on its side; sail still intact and thrumming the air; sand starting to pile into its open deck hatch"],
+        ["weather rod","a decrepit station that used to be used for sending commands to the atmoforming satellites - they follow no orders now"],
+        ["bunker","you see a concrete shelter stripped of its sensor array"],
+        ["empty shrine","you pause before an empty stone semi-circle of square columns in the ground. Some of them have toppled - whatever gods used to reside here have forgotten this place long ago"],
+        ["tower","an immense, cylindrical, stone tower stands before you with no visible means of entry"],
+        ["tower vicinity","just before the horizon, a tower has managed to remain upright through ages of the continuously-reconfiguring landscape"],
+        ["tower vicinity","a tower, not too distant, stretches into the expanse above"],
+        #20
+        ["ravine","you walk through a gorge with steep, craggy walls"],
+        ["canyon","you follow the wanderings of a long-dead stream through a stone labyrinth"],
+      ],
+      :space_adj_descript => [
+        ["desolate","there's an overwhelming emptiness"],
+        ["oppressive","the grit in the air is smothering"],
+        ["oppressive","with no cloud cover, you burn under the sun's scrutiny"],
+        ["rosy","everything is tinted a vibrant pink by the morning sun filtering through gritclouds"],
+        ["dusty","dust falls upward into the sky from the tracks you make in the sand"],
+        ["stormcurbed","the skies roil and bubble, and storm threatens to break (though it never does, here)"],
+        ["windsheared","it's remarkable that anything here withstands the local winds' ceaseless cut"],
+        ["quiet","the winds are calm right now"],
+        ["calm","the lavender sky is quiet right now"],
+        ["still","the air is almost totally still"],
+        #10
+        ["quiet","the sky rumbles discontentedly for half a minute before calming"],
+        ["hazy","the horizon blurs in the cloud formed by sand drifting upward out of the ground and into the sky"],
+      ]
+    },
     # "Taiga" => {
     #   :space_nouns_descript => [
     #     ["taiga.A","1"],
@@ -323,9 +352,20 @@ DATA = {
     ["picture frame","it holds a drawing of a cat"],
     ["gauntlet","it's hot"],
     ["device","it has buttons and an empty compartment in the back"],
-    ["ring","it bears a gem of crystal fire, clouded from use"],
-    ["2d6","the pair of ancient implements unveil unwelcome truths"],
+    ["ruby ring","it bears a gem of crystal fire, clouded from use"],
+    ["sapphire ring","it bears a gem of the deep sea, cracked"],
+    ["dice","the pair of ancient implements unveil unwelcome truths"],
     ["weighted die","it's a cheater's tool"],
+    ["telephone","it plays a single tone as it waits for input from an absent receiver"],
+    ["shellephone","when you speak into it, you hear your voice, echoing back, distorted"],
+    ["dagger","it's a small blade"],
+    #30
+    ["knife","the serration makes it useful for breaking bread precisely"],
+    ["sail","it's tattered and bleached"],
+    ["flag","centered on it is an unreadable emblem"],
+    ["hand crab","it fits right in your hand"],
+    ["incrementer","when you click it, the number on its display goes up by one"],
+    ["cup","it's a courtly grail"],
 
   ],
 
@@ -351,27 +391,43 @@ DATA = {
     ["articulated","it's made with flexible joints"],
     ["well-made","it's been artfully crafted"],
     ["woeful","you feel sad holding it"],
+    #20
     ["haunted","you think you hear crying"],
     ["balanced","holding it feels good"],
     ["cursed","you feel dread wash over you in waves when you hold this"],
     ["delicate","it would break easily if you used it carelessly"],
     ["digital","it seems to contain information for an old-world machine"],
     ["dowsing","when you hold it, you feel it pulling you in a direction"],
-    #20
     ["discarded","it's been crumpled and thrown away"],
     ["ornate","studded with precious stones"],
     ["ritual","the decoration seems to indicate that it was made with a ceremonial purpose in mind"],
     ["nemesis","it seems to mock you"],
+    #30
     ["beholder's","you feel something turn to look at you"],
+    ["cat's","it's covered in hair"],
+    ["dog's","it's well-worn from use"],
+    ["snake's","something about its form suggests twisting movement"],
 
 
   ]
 }
 
 def main
-  make_regions
+  delete_all
+  make_regions if Region.all.empty?
   make_spaces
   make_items
+  make_admin
+  # test_flags
+end
+
+def delete_all
+  Item.destroy_all
+  Space.destroy_all
+  ItemJourney.destroy_all
+  SpaceJourney.destroy_all
+  # Region.destroy_all
+  # Journey.destroy_all
 end
 
 def make_regions
@@ -388,7 +444,8 @@ def generate_attributes(part1, part2)
 
   get[:noun] = part1[0]
   get[:adjective] = part2[0]
-  get[:descript] = d20<=10 ? part1[1].capitalize+conjunction+part2[1]+"." : part2[1].capitalize+conjunction+part1[1]+"."
+  # get[:descript] = d20<=10 ? part1[1].capitalize+conjunction+part2[1]+"." : part2[1].capitalize+conjunction+part1[1]+"."
+  get[:descript] = part2[1].capitalize+conjunction+part1[1]+"."
   get
 end
 
@@ -424,6 +481,48 @@ def make_items
     
     item = Item.new(generate_attributes(part1,part2))
     item.save
+  end
+end
+
+def make_admin
+  admin = User.new(username:'admin', password:'admin', admin:true)
+  admin.save
+end
+
+def test_flags
+  [1,2,3,4,5].each do |e|
+    user = User.new(username:"shit#{e}", password:'p', flag:true)
+    user.save
+    2.times do
+      traveler = user.travelers.build(name:"nameshitSHIT#{e}", descript:"shitSHItshitdescript#{e}", flag:true)
+      traveler.save
+      journey = traveler.journeys.build(name:"shitJourneySHIT#{e}", region_id:Region.order('RANDOM()').last.id, user_id:user.id, flag:true)
+      journey.save
+
+      space1 = Space.order('RANDOM()').last
+      mem1 = Memory.new(mem_type:'begin', journey_id:journey.id, space_id:space1.id)
+      mem1.save
+
+      mem2 = Memory.new(mem_type:'traveler_leave', journey_id:journey.id, space_id:space1.id)
+      mem2.save
+
+      space2 = Space.order('RANDOM()').last
+      item1 = Item.order('RANDOM()').last
+      mem3 = Memory.new(mem_type:'item_pickup', journey_id:journey.id, item_id:item1.id, space_id:space2.id)
+      mem3.save
+      mem4 = Memory.new(mem_type:'item_drop', journey_id:journey.id, item_id:item1.id, space_id:space2.id)
+      mem4.save
+
+      new_item = journey.items.build(noun:"shitnoun#{e}", adjective:"shItadj#{e}", descript:"shitshiTtyshitdescript#{e}", flag:true)
+      new_item.save
+      mem5 = Memory.new(mem_type:"item_discovery", item_id:new_item.id, journey_id:journey.id, space_id:space2.id)
+      mem5.save
+
+      new_space = journey.spaces.build(noun:"SHiTnoun#{e}", adjective:"shitshitshitshitadj#{e}", descript:"shitshitshitSHITdescript#{e}", region_id:1, flag:true)
+      new_space.save
+      mem6 = Memory.new(mem_type:"space_discovery", space_id:new_space.id, journey_id:journey.id)
+      mem6.save
+    end
   end
 end
 

@@ -10,13 +10,15 @@ a:hover {
   text-decoration: underline;
 }
 
-div.form {
-  background-color: rgb(237, 241, 243);
-  width:fit-content;
-  height:fit-content;
-  margin-bottom: 10px;
-  padding:12px;
-  border-radius: 10px;
+.flash_notice {
+  font-style: italic;
+  font-size: 0.95em;
+}
+
+.flavor {
+  font-style: italic;
+  color: #313131;
+  font-size: 0.9em;
 }
 
 /*******************************/
@@ -61,25 +63,25 @@ div#sidebar:after {
 }
 
 div#main {
-  grid-area: nav-end/sidebar-end/bottom-end/right-end;
+  grid-area: nav-end/sidebar-end/bottom-end/col-2-end;
   /* background-color: rgb(166, 220, 245); */
-  padding: 0 3%;
+  padding: 0 5%;
 }
 
 div #main_no_sidebar {
-  grid-area: nav-end/left-end/bottom-end/right-end;
+  grid-area: nav-end/left-end/bottom-end/col-2-end;
   /* background-color: rgb(76, 189, 241); */
-  padding: 0 2%;
+  padding: 0 3%;
 }
 
-input[type='radio'] {
-  margin: 4px 8px 4px 0;
+div.vertical-margin-div {
+  margin: 30px 0 30px;
 }
 
-.flavor {
+div.flag-message {
+  font-size: 0.8em;
+  color: rgb(104, 104, 104);
   font-style: italic;
-  color: #313131;
-  font-size: 0.9em;
 }
 
 
@@ -126,48 +128,61 @@ div.sidebar_item {
 }
 
 
-/********************************/
-/****          Home          ****/
-/********************************/
-
-div.vertical-margin-div {
-  margin: 30px 0 30px;
-}
-
-
-/********************************/
-/****       New Journey      ****/
-/********************************/
-
-.new_journey_form_section {
-  background-color: rgb(237, 241, 243);
-  width:800px;
-  margin:14px 0 14px;
-  padding:18px;
-  border-radius:10px;
-}
-
-div.new_journey_form_section p:first-child {
-  margin-top:0;
-}
-
-div.new_journey_form_section p:last-child {
-  margin-bottom:0;
-}
-
-
-/*******************************/
-/****      Wrapup_cast      ****/
+/*********************************/
+/****        Memories        ****/
 /*******************************/
 
-div.wrapup_cast_item_select {
-  float:left;
-  margin-bottom:10px;
+div.mem_container.resource {
+  font-size: 0.9em;
+  color: rgba(0, 0, 0, 0);
+  margin-top: 3em;
 }
 
-div.wrapup_cast_item {
-  /* background-color:white; */
-  float:right;
-  width:300px;
-  padding:0px 10px 10px 6px;
+div.mem_container {
+  font-size: 0.9em;
+  color: rgb(110, 110, 110);
+  margin-top: 3em;
+}
+
+.mem_container.resource div.memory:first-child {
+  margin-top: 0em;
+  color: rgba(0, 0, 0, 1);
+}
+
+div.memory {
+  margin: 0.25em 0;
+}
+
+.mem_container.resource div.memory:nth-child(2) {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.mem_container.resource div.memory:nth-child(3) {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.mem_container.resource div.memory:nth-child(4) {
+  color: rgba(0, 0, 0, 0.7);
+}
+.mem_container.resource div.memory:nth-child(5) {
+  color: rgba(0, 0, 0, 0.6);
+}
+.mem_container.resource div.memory:nth-child(6) {
+  color: rgba(0, 0, 0, 0.5);
+}
+.mem_container.resource div.memory:nth-child(7) {
+  color: rgba(0, 0, 0, 0.4);
+}
+.mem_container.resource div.memory:nth-child(8) {
+  color: rgba(0, 0, 0, 0.3);
+}
+.mem_container.resource div.memory:nth-child(9) {
+  color: rgba(0, 0, 0, 0.2);
+}
+.mem_container.resource div.memory:nth-child(10) {
+  color: rgba(0, 0, 0, 0.1);
+}
+
+div#end-journey-info {
+  margin: 3em 0;
 }

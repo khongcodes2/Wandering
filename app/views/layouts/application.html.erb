@@ -5,9 +5,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
+    <link href="https://fonts.googleapis.com/css?family=Spectral:400,700&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%=  %>
   </head>
 
   <body>
@@ -15,7 +15,7 @@
       <%= render "layouts/navbar" %>
       
       
-      <% if current_journey %>
+      <% if current_journey && !current_journey.completed %>
 
         <div id='sidebar'>
           <%= render "layouts/sidebar" %>

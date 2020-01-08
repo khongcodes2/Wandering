@@ -6,11 +6,13 @@
 <p>User: <% if @traveler.user %>
             <%= link_to @traveler.username, @traveler.user %>
           <% else %>
-              none
+              <span class='flavor'>The text here is faded.</span>
           <% end %></p>
 
+<%= render partial:'layouts/flag', locals:{obj:@traveler} %>
+
 <p>Remembered items:
-  <ul><% @traveler.items.each do |i| %>
+  <ul><% @items.each do |i| %>
     <li>
       <%= link_to i.name, item_path(i) %><br>
       <small><%= i.descript %></small><br>
@@ -23,9 +25,9 @@
 </p>
 
 <p>Remembered regions:
-  <%= render partial:"layouts/list", locals:{objs:@traveler.journeys.map{|a|a.region}} %>
+  <%= render partial:"layouts/list", locals:{objs:@traveler.journeys.map{|a|a.region}.uniq} %>
 </p>
 
-<% if traveler_user_permission(@traveler) %>
+<% if traveler_user_permission(@traveler) || currently_admin %>
   <%= link_to "Edit #{@traveler.name}", edit_traveler_path(@traveler) %>
 <% end %>

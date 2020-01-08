@@ -1,6 +1,5 @@
 <% title @journey.name %>
 
-<!-- this represents history of current journey -->
 <p>Traveler: <%= show_journey_traveler_name(@journey) %></p>
 
 <p><%= @journey.name %></p>
@@ -12,8 +11,27 @@
 <p>Region: <%= link_to @journey.region.name, @journey.region %></p>
 
 <p>Spaces Traveled:
-<ul><% @journey.spaces.each do |s| %>
-    <li><%= link_to s.name, region_space_path(s.region, s) %><br>
-    <small><%= s.descript %></small></li>
-<% end %></ul>
+<% if !@journey.spaces.empty? %>
+  <ul><% @journey.spaces.uniq.each do |s| %>
+      <li><%= link_to s.name, region_space_path(s.region, s) %><br>
+      <small><%= s.descript %></small></li>
+  <% end %></ul>
+<% else %>
+  <span class='flavor'>The text here is faded.</span>
+<% end %>
+
 </p>
+
+<%= render partial:'layouts/flag', locals:{obj:@journey} %>
+
+<% if currently_admin %>
+  <%= link_to "Edit journey", edit_journey_path(@journey) %>
+<% end %>
+
+<div class="mem_container">
+  <% @journey.memories.each do |m| %>
+    <div class='item memory'>
+      <%= journey_memory_text(m) %>
+    </div>
+  <% end %>
+</div>

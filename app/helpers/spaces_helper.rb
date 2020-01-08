@@ -12,6 +12,17 @@ module SpacesHelper
   def space_was_just_on
     space = Space.find(session[:was_just_on])
   end
+
+  # USED: in Spaces controller, in memory creation
+  # Try to use this only in Spaces actions/helpers as params[:id] is vaid for other resources
+  def current_space
+    if params[:region_id]
+      space = Space.find(params[:id])
+    # may need to remove this else condition
+    else
+      space = Space.find(params[:id])
+    end
+  end
   
 
   # session[:map] looks something like this
@@ -36,7 +47,7 @@ module SpacesHelper
 
 
   def current_space_in_map
-    expanded_map.detect{|d|d[0]==Space.find(params[:id]).id.to_s}
+    expanded_map.detect{|d|d[0]==current_space.id.to_s}
   end
   # return value will look like this
   # ["189","a155","a170","a180"]

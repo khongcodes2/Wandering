@@ -2,13 +2,15 @@ class Journey < ActiveRecord::Base
     belongs_to :user, optional: true
     belongs_to :traveler
     belongs_to :region
+    has_many :memories
     has_many :space_journeys
     has_many :spaces, through: :space_journeys
     has_many :item_journeys
     has_many :items, through: :item_journeys
-    # has_many :memories
 
-    scope :last_10_completed,   -> {where(completed:true).last(10)}
+    scope :last_10_completed,   -> {where(completed:true).last(10).reverse}
+
+    scope :flagged,             -> {where(flag:true)}
 
     #just to allow checkboxes to be used in new_journey form
     attr_accessor :random_region_box, :random_traveler_box, :new_traveler_box
@@ -19,7 +21,6 @@ class Journey < ActiveRecord::Base
        
     def start
         self.clock = 0
-        # initialize array of no-random spaces to be added to with push
         save
     end
 
@@ -59,6 +60,14 @@ class Journey < ActiveRecord::Base
 
     def current_space
         spaces.last
+    end
+
+    def created_by_user
+        self.user
+    end
+
+    def created_by_traveler
+        self.traveler
     end
 
 end

@@ -1,13 +1,23 @@
 <% title "About Wandering"%>
 <h1>About Wandering</h1>
 
-<div style='max-width:800px;'>
-  <p>Wandering is a short, little game that relies on its persistent database to allow users (players) to create travelers to explore and wander through procedurally generated spaces and paths. Along the way, the traveler can pick up and drop items as their curiosity demands.</p>
+<div class='vertical-margin-div' style='max-width:700px;'>
+  <p>Wandering is a short little game that relies on its persistent database to allow users (players) to create travelers to explore and wander through procedurally linked spaces and paths. Along the way, the traveler can pick up and drop items as their curiosity demands.</p>
+</div>
+
+<div class='vertical-margin-div' style='max-width:680px;'>
+  <h3>The World Remembers</h3>
   <p>At the end of the journey, players are invited to add to the story of this world by describing either a new space or item they discover.</p>
+  <p>Changes in item locations caused by travelers' actions are persisted as associations in the database. New items and spaces are also persisted to the database. The connections between spaces are not persistent - each time a traveler journeys through a region, they will find that spaces are linked in new ways, and spaces reached in a previous journey may not be reachable - though new ones will be.</p>
+</div>
 
-  <p>Changes in item locations caused by travelers' actions are persisted in the database associations. New items and spaces are also persisted to the database. The connections between spaces are not persistent - each time a traveler journeys through a region, they will find that spaces are linked in new ways, and spaces reached in a previous journey may not be reachable - though new ones will be.</p>
+<div class='vertical-margin-div' style='max-width:700px;'>
+  <h3>Endings</h3>
   <p>The clock ticks down as travelers move from space to space. The more spaces the traveler passes through, the more time has passed since the journey has begun, and the more likely it is for the traveler to have to return to the Ether, where all travelers come from, and where they must all return.</p>
+  <p>You can view a history of journeys in <%= link_to "the Book of Journeys", journeys_path %>.</p>
+</div>
 
-  <p>Find more about the project <%= link_to "here", "https://github.com/khongcodes2/Wandering" %>.</p>
+<div class='vertical-margin-div' style='max-width:700px;'>
+  <p>You can find out more about the project <%= link_to "at the Github repo", "https://github.com/khongcodes2/Wandering" %>.</p>
   <!-- <p>Note - Log In with Twitter is a test-feature - use at your own risk.</p> -->
 </div>

@@ -1,11 +1,17 @@
 <% title "Your journey ends..."%>
 <h1>Your journey ends...</h1>
 
-<h3>Choose: </h3>
-<ul>
-  <li><%= link_to "The last thing #{@journey.traveler.name} sees in the distance (Create new space)", new_region_space_path(@journey.region) %></li>
-  <li><%= link_to "The last thing #{@journey.traveler.name} sees before their feet (Create new item)", new_item_path %></li>
-</ul>
+<p>The Ether calls, and you know it's time to return.</p>
+
+<p>As you turn back towards the nothing, your eyes pass over something that wasn't there before.</p>
+
+<div class='vertical-margin-div'>
+  <h3>Choose: </h3>
+  <ul>
+    <li><%= link_to "The last thing #{@journey.traveler.name} sees in the distance (Create new space)", new_region_space_path(@journey.region) %></li><br>
+    <li><%= link_to "The last thing #{@journey.traveler.name} sees before their feet (Create new item)", new_item_path %></li>
+  </ul>
+</div>
 
 <!--
 <p>session - journey_id: <%= session[:journey_id] %></p>

@@ -1,6 +1,9 @@
 <% title "Wandering"%>
 <h1>Wandering</h1>
 
+<p>Welcome to Wandering, a short rogue-like-like walking-simulator game.</p>
+<p><span class='flavor'>Please enable cookies if they are disabled - this game relies on them in order to work!</span></p>
+
 <div class='vertical-margin-div'>
     <% if session[:user_id].present? %>
         <h3>Welcome back, <%= current_user.username %></h3>
@@ -15,3 +18,7 @@
 
 <%= link_to "Begin Journey", new_journey_path %>
 <p><%= link_to "Book of Journeys", journeys_path %></p>
+
+<% if current_user && current_user.admin %>
+    <%= link_to "Admin Control Panel", control_panel_path %>
+<% end %>

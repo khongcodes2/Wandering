@@ -17,7 +17,7 @@ module ItemsHelper
   # if not on space (item view); was_just_on space
   def current_space_for_item_drop
       if params[:region_id]
-        space = params[:id]
+        space = Space.find(params[:id])
     else
         space = space_was_just_on
     end
@@ -26,6 +26,11 @@ module ItemsHelper
   # USED: Journeys#drop_item
   # delete item from current_journey and push to current space's items
   def drop_item_here(item)
+    
+    # create drop_item memory
+    memory = Memory.new(mem_type:'item_drop', journey_id:@journey.id, item_id:item.id, space_id:current_space_for_item_drop.id)
+    memory.save
+
     current_journey.items.delete(item)
     current_space_for_item_drop.items.push(item)
   end
@@ -33,10 +38,17 @@ module ItemsHelper
   # USED: Sessions#logout, Travelers#destroy, journeys/end_journey view
   # drop_item to all items
   def drop_all
-    space = current_space_for_item_drop
-    journey = current_journey
-    
+    current_journey.items.each do |i|
+      drop_item_here(i)
+    end
+  end
+
+  def delete_journey_drop_items(journey)
+    space = journey.memories.where.not(space_id:nil).last.space
     journey.items.each do |i|
+      memory = Memory.new(mem_type:'item_drop', journey_id:journey.id, item_id:i.id, space_id:space.id)
+      memory.save
+
       journey.items.delete(i)
       space.items.push(i)
     end

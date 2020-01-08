@@ -12,10 +12,15 @@ module SessionsHelper
     # affect layout, traveler/journey creation, edit permissions
     def current_user
         if session[:user_id].present? 
-            @user = User.find(session[:user_id])
+            User.find(session[:user_id])
         else
             nil
         end
+    end
+
+    # USED: in controllers to check permissions and clear flags
+    def currently_admin
+        current_user.admin if current_user
     end
     
     # USED: almost everywhere

@@ -2,11 +2,11 @@
 
 ## About
 
-Wandering is a short, little game that relies on its persistent database to allow users (players) to create travelers to explore and wander through procedurally generated spaces and paths. Along the way, the traveler can pick up and drop items as their curiosity demands. 
+Wandering is a short little game that relies on its persistent database to allow users (players) to create travelers to explore and wander through procedurally linked spaces and paths. Along the way, the traveler can pick up and drop items as their curiosity demands.
 
 At the end of the journey, players are invited to add to the story of this world by describing either a new space or item they discover.
 
-Changes in item locations caused by travelers' actions are persisted in the spaces saved to the databases. New items and spaces are also persisted in the database. The connections between spaces are not persisted - each time a traveler journeys through a region, they will find that spaces are linked in new ways, and spaces reached in a previous journey may not be reachable - though new ones will be.
+Changes in item locations caused by travelers' actions are persisted as associations in the database. New items and spaces are also persisted to the database. The connections between spaces are not persistent - each time a traveler journeys through a region, they will find that spaces are linked in new ways, and spaces reached in a previous journey may not be reachable - though new ones will be.
 
 The clock ticks down as travelers move from space to space. The more spaces the traveler passes through, the more time has passed since the journey has begun, and the more likely it is for the traveler to have to return to the Ether, where all travelers come from, and where they must all return.
 
@@ -34,24 +34,25 @@ $ rails db:seed
 
 The seed file contains hashes and arrays of strings describing items and spaces. When you run seed, you are generating these items and spaces! Please make sure to do this or else the database will not be populated and you will not be able to travel through spaces, and the project will not run as intended.
 
-This file heavily uses a cookie - please enable cookies on this site.
+This project relies heavily on a cookie - please enable cookies on this site.
 
 This web application was built on Ruby-2.6.1 with Rails 6.0.1.
 
 ## Future updates
  
- - A new object class and record type to log events, called Memories
-      - Spaces have Memories (footsteps)
-      - Journeys have Memories (travel log)
-      - Items have Memories (picked up by...dropped by...)
-      - Travelers have Memories (event log) through Journeys
- - Implement use of a profanity filter gem to moderate user input
- - Random events
+ - Additional spaces and items
+ - Random events and encounters
  
 
 ## Contributing
 
-  Bug reports and pull requests are welcome on GitHub at https://github.com/khongcodes2/Wandering
+  Bug reports and pull requests are welcome on GitHub at https://github.com/khongcodes2/Wandering.
+
+  Special thanks to Chris Fritz - his work on the LanguageFilter Ruby gem was very helpful for my efforts to design and implement a simple flagging and moderation system.
+
+  Find more about LanguageFilter - https://github.com/chrisvfritz/language_filter
+  
+  Chris on GitHub - https://github.com/chrisvfritz
 
 ## Authors
 

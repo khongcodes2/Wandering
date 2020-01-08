@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_21_194019) do
+ActiveRecord::Schema.define(version: 2019_12_06_033508) do
 
   create_table "item_journeys", force: :cascade do |t|
     t.integer "item_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_11_21_194019) do
     t.string "adjective"
     t.string "descript"
     t.string "space_id"
+    t.boolean "flag", default: false
   end
 
   create_table "journeys", force: :cascade do |t|
@@ -31,10 +32,19 @@ ActiveRecord::Schema.define(version: 2019_11_21_194019) do
     t.integer "traveler_id"
     t.integer "region_id"
     t.integer "clock"
+    t.boolean "flag", default: false
+  end
+
+  create_table "memories", force: :cascade do |t|
+    t.string "mem_type"
+    t.integer "item_id"
+    t.integer "space_id"
+    t.integer "journey_id"
   end
 
   create_table "regions", force: :cascade do |t|
     t.string "name"
+    t.boolean "flag", default: false
   end
 
   create_table "space_journeys", force: :cascade do |t|
@@ -47,18 +57,22 @@ ActiveRecord::Schema.define(version: 2019_11_21_194019) do
     t.string "adjective"
     t.string "descript"
     t.integer "region_id"
+    t.boolean "flag", default: false
   end
 
   create_table "travelers", force: :cascade do |t|
     t.string "name"
     t.string "descript"
     t.integer "user_id"
+    t.boolean "flag", default: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
     t.string "uid"
+    t.boolean "admin", default: false
+    t.boolean "flag", default: false
   end
 
 end

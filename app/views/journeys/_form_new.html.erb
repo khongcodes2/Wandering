@@ -26,7 +26,8 @@
       <%= f.check_box :new_traveler_box %><br>
       
       <% if !current_user %>
-        <small>Note: This traveler will not be associated with a user as you are not logged in.</small><br>
+        <p style='margin-top:-16px;margin-bottom:6px;'><small>Note: This traveler will not be associated with a user as you are not logged in.</small></p>
+        <%# <div style='height:0;'></div> %>
       <% end %>
 
       <%= f.fields_for :new_traveler do |tr| %>
@@ -47,28 +48,29 @@
   </div>
 
   <div class='new_journey_form_section'>
-    <p>
+    <p style='margin-bottom:0.5em'>
       <!-- dropdown selection from existing regions -->
       <!-- or checkbox to select region randomly    -->
       <%= f.label :region_id, "What region are you traveling through?" %><br>
       <%= f.collection_select :region_id, var[:regions], :id, :name %><br>
     </p>
 
-    <p>
+    <p style='margin-top:0.5em;'>
       <%= f.label :random_region_box, "(Or - select a random region for me)" %>
       <%= f.check_box :random_region_box %>
     </p>
   </div>
 
   <div class='new_journey_form_section'>
-    <p>
       <!-- Each time page is refreshed, pull 3 random items that are not associated to a space -->
       <!-- Optional -->
-      <%= f.label :items, "Which item do you bring with you from the Ether?" %><br>
+      <p class='new_journey_item'><%= f.label :items, "Which item do you bring with you from the Ether?" %></p>
       <% var[:starting_three].each do |i| %>
-        <%= f.radio_button :items, i.id %><%= i.name %>. <%= i.descript %><br>
+        <div class='new_journey_item_option_container'>
+          <div class='new_journey_item_radio'><%= f.radio_button :items, i.id %></div>
+          <div class='new_journey_item_descript'><%= i.name %>. <%= i.descript %></div>
+        </div>
       <% end %>
-    </p>
   </div>
 
   <%= f.submit "Begin Journey" %>

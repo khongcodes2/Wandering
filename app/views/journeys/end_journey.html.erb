@@ -4,19 +4,20 @@
 
 <p><%= @traveler %> left behind:</p>
 
-<% @items.each do |i| %>
-<p><li>name: <%= i.name %><br>
-location: <%= @space.name %></li></p>
-<% end %><br>
+<span class='flavor'>
+  <% @items.each do |i| %>
+  <p><li>name: <%= i.name %><br>
+  location: <%= @space.name %></li></p>
+  <% end %><br>
 
-brought <%= @cast %> into the Ether.<br>
+  brought <%= @cast %> into the Ether.<br>
+</span>
 
-<% drop_all %>
-<% clear_journey %>
-
-<p>
-Passages shift...<br>
-Space warps. The next time you return, the paths through space will be different.
-</p>
+<div id='end-journey-info'>
+  <p>
+  Passages shift...<br>
+  Space warps. The next time you return, the paths through space will be different.
+  </p>
+</div>
 
 <p><%= link_to 'Home', '/' %></p>

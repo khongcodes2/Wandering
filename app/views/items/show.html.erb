@@ -18,3 +18,17 @@
   <% end %>
 
 <% end %>
+
+<%= render partial:'layouts/flag', locals:{obj:@item} %>
+
+<% if currently_admin %>
+  <%= link_to "Edit item", edit_item_path(@item) %>
+<% end %>
+
+<div class="mem_container resource">
+  <% @item.memories.order(id: :desc).each do |m| %>
+    <div class='item-mem memory'>
+      <%= item_memory_text(m) %>
+    </div>
+  <% end %>
+</div>

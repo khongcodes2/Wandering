@@ -47,7 +47,7 @@ class SessionsController < ApplicationController
 
     def logged_in_and_root
         session[:user_id] = @user.id
-        redirect_to :root
+        redirect_to currently_admin ? control_panel_path : root_path
     end
 
 end
