@@ -55,6 +55,7 @@ class ItemsController < ApplicationController
     @item.assign_attributes(flag:false)
 
     if @item.save
+      # if admin makes change, do not flag
       Moderator.new.flag_if(@item) unless currently_admin
     end
     

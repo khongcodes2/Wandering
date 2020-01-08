@@ -24,8 +24,7 @@ class SpacesController < ApplicationController
 
       # if visited this space before? DON'T PUSH to session[:map]
       if @journey.spaces.include?(@space)
-        # remove :continue token
-        session.delete :continue if session[:continue]
+        remove_continue
 
         if expanded_map.any?{|a|a[0]==session[:was_just_on].to_s} && session[:was_just_on] != params[:id]
         # if so, make it the "from" link, and the other two the "to" links
@@ -92,7 +91,7 @@ class SpacesController < ApplicationController
          
         # only tick if not backtracking
         @journey.tick_clock if !session[:continue] || session[:was_just_on] != params[:id]
-        session.delete :continue if session[:continue]
+        remove_continue
 
         if @journey.clock == 9
           flash.now.notice = "You can feel your journey will end soon..."
@@ -196,6 +195,10 @@ class SpacesController < ApplicationController
 
   def space_params
     params.require(:space).permit(:noun,:adjective,:descript,:region_id)
+  end
+
+  def remove_continue
+    session.delete :continue if session[:continue]
   end
 end
 

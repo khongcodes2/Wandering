@@ -18,6 +18,7 @@ class Region < ActiveRecord::Base
         when "Plain"
         when "Marsh"
         when "Desert"
+            text = "Fading prints in the dust: "
         when "Taiga"
         when "Tundra"
         when "Mountain"
