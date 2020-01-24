@@ -1,5 +1,11 @@
 # Wandering
 
+![screenshot 1](https://i.imgur.com/kR8Pi6b.png)
+![screenshot 2](https://i.imgur.com/Q1EFLjX.png)
+![screenshot 3](https://i.imgur.com/QzrkAJe.png)
+![screenshot 4](https://i.imgur.com/0p8zMRZ.png)
+
+
 ## About
 
 Wandering is a short little game that relies on its persistent database to allow users (players) to create travelers to explore and wander through procedurally linked spaces and paths. Along the way, the traveler can pick up and drop items as their curiosity demands.
