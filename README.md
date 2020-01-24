@@ -2,8 +2,6 @@
 
 ![screenshot 1](https://i.imgur.com/kR8Pi6b.png)
 ![screenshot 2](https://i.imgur.com/Q1EFLjX.png)
-![screenshot 3](https://i.imgur.com/QzrkAJe.png)
-![screenshot 4](https://i.imgur.com/0p8zMRZ.png)
 
 
 ## About

@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - update yarn
 - transfer notes into dev_notes
 - updated Changelog
+- updated README with screenshots
 
 ## "Moderator" [1.3.0] - 2019-12-09
 ### Commit messages
