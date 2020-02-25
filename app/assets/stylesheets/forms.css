@@ -42,7 +42,7 @@ select {
 }
 
 .new_journey_form_section:last-of-type {
-  padding-bottom:36px;
+  padding-bottom:1.4em;
 }
 
 div.new_journey_form_section p:first-child {
@@ -57,24 +57,17 @@ p.new_journey_item {
   margin-bottom: 0.6em;
 }
 
-div.new_journey_item_option_container {
-  margin-top: 0.3em;
-  margin-bottom: 1em;
-  height: fit-content;
-  clear: both;
+table.new_journey_item_table {
+  width: 97%;
 }
 
-div.new_journey_item_radio {
-  float:left;
+.new_journey_item_table td {
+  padding-bottom: 0.4em;
 }
 
-div.new_journey_item_descript {
-  float: right;
-  width: 780px;
-  padding-top: 0.1em;
-  margin-bottom: 0.08em
+.new_journey_item_button input{
+  margin: 3px 8px 5px 0;
 }
-
 
 /*******************************/
 /****      Wrapup_cast      ****/
