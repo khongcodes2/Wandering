@@ -1,6 +1,8 @@
 <% title "New Traveler" %>
 <h1>New Traveler</h1>
 
+<%= javascript_pack_tag 'new_traveler_form_control' %>
+
 <% if current_user %>
   <p>Logged in as <%= current_user.username %></p>
 <% end %>
