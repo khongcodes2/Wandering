@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   # users
   resources :users
-  
+
   # sessions
   root 'sessions#home'
   get '/login', to: 'sessions#login'
