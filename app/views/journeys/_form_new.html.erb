@@ -39,6 +39,47 @@
     </p>
   </div>
 
+  <div class="new_journey_form_section">
+    
+    <div class="traveler_option_section">
+
+      <label for="traveler_option"> Traveler option </label><br>
+
+      <select name="traveler_option" id="traveler_option">
+        <option value="selected traveler">
+          <%= var[:traveler_label] %>
+        </option>
+
+        <option value="random traveler">
+          Randomly select an available traveler
+        </option>
+
+        <option value="new traveler">
+          Create a new traveler
+        </option>
+      </select>
+      
+    </div>
+
+    <div class="traveler_select_section">
+      <%= f.collection_select :traveler_id, var[:available_travelers], :id, :name %>
+    </div>
+
+    <div class="new_traveler_section">
+      <% if !current_user %>
+        <p style='margin-top:-16px;margin-bottom:6px;'><small>Note: This traveler will not be associated with a user as you are not logged in.</small></p>
+        <%# <div style='height:0;'></div> %>
+      <% end %>
+
+      <%= f.fields_for :new_traveler do |tr| %>
+        <%= tr.label :name %><br>
+        <%= tr.text_field :name %><br>
+        <%= tr.label :descript, "Description" %><br>
+        <%= tr.text_field :descript %><br>
+      <% end %>
+    </div>
+  </div>
+
   <div class='new_journey_form_section'>
     <p>
       <!-- if no name supplied, name= "traveler"'s name -->

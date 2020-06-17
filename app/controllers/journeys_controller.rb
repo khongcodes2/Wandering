@@ -33,13 +33,21 @@ class JourneysController < ApplicationController
         available_travelers = current_user ? current_user.travelers : Traveler.no_user
         
         # assign traveler: new OR random OR first in drop-down
-        if journey_params[:new_traveler_box]=="1"
+        case journey_params[:traveler_option]
+        when "new traveler"
             @journey.new_traveler(journey_params[:new_traveler])
-        elsif journey_params[:random_traveler_box]=="1"
+        when "random traveler"
             @journey.traveler = available_travelers.sample
-        else
+        when "selected traveler"
             @journey.traveler = Traveler.find(journey_params[:traveler_id])
         end
+        # if journey_params[:traveler_option]=="new traveler"
+        #     @journey.new_traveler(journey_params[:new_traveler])
+        # elsif journey_params[:random_traveler_box]=="1"
+        #     @journey.traveler = available_travelers.sample
+        # else
+        #     @journey.traveler = Traveler.find(journey_params[:traveler_id])
+        # end
         
         # assign region: random OR first in drop-down
         # assign journey name: "traveler.name's journey" if blank
@@ -228,7 +236,8 @@ class JourneysController < ApplicationController
 
     def journey_params
         params.require(:journey).permit(
-            :traveler_id, :random_traveler_box, :new_traveler_box,
+            :traveler_option,
+            :traveler_id,
             :region_id, :random_region_box,
             :name,
             :items,
