@@ -4,6 +4,7 @@ class JourneysController < ApplicationController
     include SpacesHelper
     include ItemsHelper
     include Moderated
+    include FormOptions
 
     before_action :set_journey, only:[:show, :edit, :update, :destroy]
     before_action :current_journey, only:[:drop_item, :pickup_item, :wrapup, :wrapup_cast, :wrapup_casting, :end_journey]
@@ -13,10 +14,19 @@ class JourneysController < ApplicationController
     def new
         # User can only create new journey if not already on journey
         if !session[:journey_id].present?
+
+            traveler_label = current_user ? "Pick one of your travelers" : "Pick a free traveler"
+            random_label = current_user ? "Randomly select one of your travelers" : "Randomly select a free traveler"
+
             @var_hash = {
                 journey: Journey.new,
-                traveler_label: current_user ? "Pick one of your travelers" : "Pick a free traveler",
+                traveler_options: [
+                    FormOption.new(traveler_label, "selected traveler"),
+                    FormOption.new(random_label, "random traveler"),
+                    FormOption.new("Create a new traveler", "new traveler")
+                ],
                 available_travelers: current_user ? current_user.travelers : Traveler.no_user,
+                region_options: (Region.all.collect {|region| FormOption.new(region.name, region.id)}).push(FormOption.new("Random region", "random")),
                 regions: Region.all,
                 starting_three: Item.starting_three
             }
@@ -53,7 +63,7 @@ class JourneysController < ApplicationController
         # assign journey name: "traveler.name's journey" if blank
         # assign user (nil if none)
         # assign item to journey if an item is selected
-        @journey.region = journey_params[:random_region_box]=="1" ? Region.all.sample : Region.find(journey_params[:region_id])
+        @journey.region = journey_params[:region_id]=="random" ? Region.all.sample : Region.find(journey_params[:region_id])
         @journey.name = journey_params[:name].present? ? journey_params[:name] : "#{@journey.traveler.name}'s journey"
         @journey.user = current_user
         @journey.items.push(Item.find(journey_params[:items])) unless journey_params[:items].nil?
@@ -236,9 +246,8 @@ class JourneysController < ApplicationController
 
     def journey_params
         params.require(:journey).permit(
-            :traveler_option,
-            :traveler_id,
-            :region_id, :random_region_box,
+            :traveler_option, :traveler_id,
+            :region_id,
             :name,
             :items,
             new_traveler:[

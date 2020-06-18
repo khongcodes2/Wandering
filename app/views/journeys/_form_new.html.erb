@@ -6,44 +6,14 @@
 <% end %>
 
 <%= form_for :journey do |f| %>
-  <div class='new_journey_form_section'>
-    <p>
-      <!-- If user is logged in,    pick from their travelers   -->
-      <!-- If no user is logged in, pick from no-user travelers -->
-      <%= f.label :traveler_id, var[:traveler_label] %><br>
-      <%= f.collection_select :traveler_id, var[:available_travelers], :id, :name %><br>
-    </p>
-    
-    <p>
-      <!-- Checkbox to select from available travelers randomly -->
-      <%= f.label :random_traveler_box, "(Or - check box to randomly select a traveler)" %>
-      <%= f.check_box :random_traveler_box %>
-    </p>
-
-    <p>
-      <!-- New traveler section -->
-      <%= f.label :new_traveler_box, "(Or - check box to create a new traveler)" %>
-      <%= f.check_box :new_traveler_box %><br>
-      
-      <% if !current_user %>
-        <p style='margin-top:-16px;margin-bottom:6px;'><small>Note: This traveler will not be associated with a user as you are not logged in.</small></p>
-        <%# <div style='height:0;'></div> %>
-      <% end %>
-
-      <%= f.fields_for :new_traveler do |tr| %>
-        <%= tr.label :name %><br>
-        <%= tr.text_field :name %><br>
-        <%= tr.label :descript, "Description" %><br>
-        <%= tr.text_field :descript %><br>
-      <% end %>
-    </p>
-  </div>
-
   <div class="new_journey_form_section">
     
     <div class="traveler_option_section">
+      <%= f.label :traveler_option, "Traveler option" %>
+      <%= f.collection_select :traveler_option, var[:traveler_options], :value, :text %>
 
-      <label for="traveler_option"> Traveler option </label><br>
+      <!--
+      <label for="traveler_option"> Traveler option </label>
 
       <select name="traveler_option" id="traveler_option">
         <option value="selected traveler">
@@ -51,13 +21,14 @@
         </option>
 
         <option value="random traveler">
-          Randomly select an available traveler
+          <%= var[:random_label] %>
         </option>
 
         <option value="new traveler">
           Create a new traveler
         </option>
       </select>
+      -->
       
     </div>
 
@@ -65,7 +36,7 @@
       <%= f.collection_select :traveler_id, var[:available_travelers], :id, :name %>
     </div>
 
-    <div class="new_traveler_section">
+    <div class="new_traveler_section hidden">
       <% if !current_user %>
         <p style='margin-top:-16px;margin-bottom:6px;'><small>Note: This traveler will not be associated with a user as you are not logged in.</small></p>
         <%# <div style='height:0;'></div> %>
@@ -89,16 +60,11 @@
   </div>
 
   <div class='new_journey_form_section'>
-    <p style='margin-bottom:0.5em'>
+    <p>
       <!-- dropdown selection from existing regions -->
       <!-- or checkbox to select region randomly    -->
       <%= f.label :region_id, "What region are you traveling through?" %><br>
-      <%= f.collection_select :region_id, var[:regions], :id, :name %><br>
-    </p>
-
-    <p style='margin-top:0.5em;'>
-      <%= f.label :random_region_box, "(Or - select a random region for me)" %>
-      <%= f.check_box :random_region_box %>
+      <%= f.collection_select :region_id, var[:region_options], :value, :text %><br>
     </p>
   </div>
 

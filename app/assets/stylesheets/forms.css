@@ -9,6 +9,7 @@ div.form {
   margin-bottom: 10px;
   padding:12px;
   border-radius: 10px;
+  /* --transition: visibility 0.2s, height 0.2s ease, opacity 0.2s ease; */
 }
 
 input[type = 'radio'] {
@@ -39,18 +40,36 @@ select {
   margin:14px 0 14px;
   padding:18px;
   border-radius:10px;
+  min-height: 44px;
 }
 
 .traveler_option_section {
-
+  height: fit-content;
+  margin-bottom: 8px;
 }
 
-.traveler_select_section {
+.traveler_option_section select, .traveler_select_section select { display: block; }
 
+.traveler_select_section {
+  height: 20px;
 }
 
 .new_traveler_section {
-  
+  margin-top: 12px;
+  height: 110px;
+}
+
+.traveler_select_section, .new_traveler_section {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0.2s, height 0.2s ease, opacity 0.2s ease;
+}
+
+.traveler_select_section.hidden, .new_traveler_section.hidden {
+  height: 0px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s, height 0.2s ease, opacity 0.2s ease;
 }
 
 .new_journey_form_section:last-of-type {
