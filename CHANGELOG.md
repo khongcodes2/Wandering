@@ -6,13 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## "New beginnings" [2.1.0] - 2020-07-18
 - Improved New-journey form with DOM manipulation
+- End-of-journey page redirects home after 3 seconds
 ### Commit Messages
 - update gems
 - update yarn packages
 - begin implementing javascript on new journey
 - begin to scaffold out new traveler-option select system in new journey form
 - improved new-journey-form with JS and simplified options
-- updated README
+- begin thorough user-testing
+- create JS redirect at end-journey page and add error handling for improper traveler name on New Journey form
+- moved Adjective to top of space/item creation forms
+- updated screenshot 1 in README
+- updated CHANGELOG
 
 ## "PHD (PostgreSQL, Heroku, and Deploy)" [2.0.0] - 2020-02-24
 - Cleanup old omniauth functionality made to satisfy project requirements

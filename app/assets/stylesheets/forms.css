@@ -43,12 +43,22 @@ select {
   min-height: 44px;
 }
 
+.new_journey_form_section input[type='text'], #journey_region_id {
+  margin-top: 5px;
+  min-width: 244px;
+}
+
 .traveler_option_section {
   height: fit-content;
   margin-bottom: 8px;
 }
 
-.traveler_option_section select, .traveler_select_section select { display: block; }
+.traveler_option_section select, .traveler_select_section select { 
+  display: block;
+  min-width: 244px;
+  margin-top: 6px;
+
+}
 
 .traveler_select_section {
   height: 20px;

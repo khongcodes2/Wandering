@@ -1,6 +1,6 @@
 # Wandering
 
-![screenshot 1](https://i.imgur.com/kR8Pi6b.png)
+![screenshot 1](https://i.imgur.com/opR0E1M.png)
 ![screenshot 2](https://i.imgur.com/Q1EFLjX.png)
 [Video demo](https://youtu.be/BpN95zZWpxY)
 
