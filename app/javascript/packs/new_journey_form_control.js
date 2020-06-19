@@ -27,11 +27,17 @@ const sectionClassNames = {
   "new traveler": [travelerSelectionVisible(false), newTravelerSectionVisible(true)]
 };
 
+const switchVisibleSections = (value) => {
+  sections.travelerSelect().className = sectionClassNames[value][0];
+  sections.newTraveler().className = sectionClassNames[value][1];
+}
+
 const setUpTravelerOptionControl = () => {
+  const initialTravelerOption = sections.travelerOption().value;
+  switchVisibleSections(initialTravelerOption);
+
   sections.travelerOption().addEventListener('change', (event) => {
-    const newChoice = event.target.value;
-    // debugger;
-    sections.travelerSelect().className = sectionClassNames[newChoice][0];
-    sections.newTraveler().className = sectionClassNames[newChoice][1];
+    const selectedTravelerOption = event.target.value;
+    switchVisibleSections(selectedTravelerOption);
   })
 };

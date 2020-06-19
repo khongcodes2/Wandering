@@ -4,6 +4,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## "New beginnings" [2.1.0] - 2020-07-18
+- Improved New-journey form with DOM manipulation
+### Commit Messages
+- update gems
+- update yarn packages
+- begin implementing javascript on new journey
+- begin to scaffold out new traveler-option select system in new journey form
+- improved new-journey-form with JS and simplified options
+- updated README
+
+## "PHD (PostgreSQL, Heroku, and Deploy)" [2.0.0] - 2020-02-24
+- Cleanup old omniauth functionality made to satisfy project requirements
+- Convert database to PostgreSQL for Heroku deployment
+### Commit Messages
+- changes to repo link in about; test youtube in readme
+- remove video demo link by thumbnail
+- prepare converting database to PostgreSQL
+- disable and hide omniauth functionality
+- test adding rake as gem
+- disable omniauth initializer
+- update nokogiri dependency
+- reformat item choice radio buttons in new journey
+
 ## [1.3.1] - 2020-01-08
 - Merged "Moderator" and "Memories" into Master
 - some cleanup work

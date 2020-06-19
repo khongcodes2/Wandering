@@ -17,15 +17,23 @@ class JourneysController < ApplicationController
 
             traveler_label = current_user ? "Pick one of your travelers" : "Pick a free traveler"
             random_label = current_user ? "Randomly select one of your travelers" : "Randomly select a free traveler"
-
-            @var_hash = {
-                journey: Journey.new,
-                traveler_options: [
+            
+            available_travelers = current_user ? current_user.travelers : Traveler.no_user
+            traveler_options = available_travelers.length == 0 ? 
+                [
+                    FormOption.new("Create a new traveler", "new traveler")
+                ] 
+                : 
+                [
                     FormOption.new(traveler_label, "selected traveler"),
                     FormOption.new(random_label, "random traveler"),
                     FormOption.new("Create a new traveler", "new traveler")
-                ],
-                available_travelers: current_user ? current_user.travelers : Traveler.no_user,
+                ]
+
+            @var_hash = {
+                journey: Journey.new,
+                traveler_options: traveler_options,
+                available_travelers: available_travelers,
                 region_options: (Region.all.collect {|region| FormOption.new(region.name, region.id)}).push(FormOption.new("Random region", "random")),
                 regions: Region.all,
                 starting_three: Item.starting_three
