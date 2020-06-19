@@ -18,6 +18,10 @@ class Journey < ActiveRecord::Base
     def new_traveler(hash)
         self.traveler = Traveler.new(name:hash[:name],descript:hash[:descript])
     end
+
+    def traveler_option
+        # empty method allowing for passing of traveler_option key in options hash into New Journey form
+    end
        
     def start
         self.clock = 0

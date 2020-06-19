@@ -4,7 +4,7 @@
 
 
   <% if !session[:journey_id].present? %>
-    <%= link_to "Begin Journey", new_journey_path, class:'nav_link' %>
+    <%= link_to "Begin Journey", new_journey_path, class:'nav_link', data: {turbolinks: false} %>
 
   <% elsif !session[:wrapup].present? %>
     <%= link_to "Continue Journey", continue_path, class:'nav_link' %>

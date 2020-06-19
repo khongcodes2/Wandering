@@ -1,6 +1,6 @@
 <% title "Initiate Journey" %>
 
-<%#= javascript_pack_tag 'new_journey_form_control' %>
+<%= javascript_pack_tag 'new_journey_form_control' %>
 
 <% if !session[:journey_id].present? %>
   <%= render partial:"form_new", locals:{var:@var_hash} %>

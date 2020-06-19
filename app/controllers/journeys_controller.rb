@@ -14,36 +14,14 @@ class JourneysController < ApplicationController
     def new
         # User can only create new journey if not already on journey
         if !session[:journey_id].present?
-
-            traveler_label = current_user ? "Pick one of your travelers" : "Pick a free traveler"
-            random_label = current_user ? "Randomly select one of your travelers" : "Randomly select a free traveler"
-            
-            available_travelers = current_user ? current_user.travelers : Traveler.no_user
-            traveler_options = available_travelers.length == 0 ? 
-                [
-                    FormOption.new("Create a new traveler", "new traveler")
-                ] 
-                : 
-                [
-                    FormOption.new(traveler_label, "selected traveler"),
-                    FormOption.new(random_label, "random traveler"),
-                    FormOption.new("Create a new traveler", "new traveler")
-                ]
-
-            @var_hash = {
-                journey: Journey.new,
-                traveler_options: traveler_options,
-                available_travelers: available_travelers,
-                region_options: (Region.all.collect {|region| FormOption.new(region.name, region.id)}).push(FormOption.new("Random region", "random")),
-                regions: Region.all,
-                starting_three: Item.starting_three
-            }
+            initialize_journey_form
         else
             @journey = Journey.find(session[:journey_id])
         end
     end
 
     def create
+        
         @journey = Journey.new
 
         # only allow logged-in user to select from user's travelers
@@ -66,6 +44,8 @@ class JourneysController < ApplicationController
         # else
         #     @journey.traveler = Traveler.find(journey_params[:traveler_id])
         # end
+
+        # raise params.inspect
         
         # assign region: random OR first in drop-down
         # assign journey name: "traveler.name's journey" if blank
@@ -92,13 +72,12 @@ class JourneysController < ApplicationController
             redirect_to region_space_path(@journey.region, @journey.region.spaces.sample) and return
         else
             # save failed - prepare to reinitialize form
-            @var_hash = {
-                journey: @journey,
-                traveler_label: current_user ? "Pick one of your travelers" : "Pick a free traveler",
-                available_travelers: available_travelers,
-                regions: Region.all,
-                starting_three: Item.starting_three
-            }
+            initialize_journey_form
+            # raise params.inspect
+            # render :new
+            @var_hash[:journey].errors.add(:base, "Please enter text for new traveler name and description")
+            # raise params.inspect
+            # redirect_to new_journey_path
             render :new
         end
     end
@@ -263,6 +242,32 @@ class JourneysController < ApplicationController
                 :descript
             ]
         )
+    end
+
+    def initialize_journey_form
+        traveler_label = current_user ? "Pick one of your travelers" : "Pick a free traveler"
+        random_label = current_user ? "Randomly select one of your travelers" : "Randomly select a free traveler"
+        
+        available_travelers = current_user ? current_user.travelers : Traveler.no_user
+        traveler_options = available_travelers.length == 0 ? 
+            [
+                FormOption.new("Create a new traveler", "new traveler")
+            ] 
+            : 
+            [
+                FormOption.new(traveler_label, "selected traveler"),
+                FormOption.new(random_label, "random traveler"),
+                FormOption.new("Create a new traveler", "new traveler")
+            ]
+
+        @var_hash = {
+            journey: Journey.new,
+            traveler_options: traveler_options,
+            available_travelers: available_travelers,
+            region_options: (Region.all.collect {|region| FormOption.new(region.name, region.id)}).push(FormOption.new("Random region", "random")),
+            regions: Region.all,
+            starting_three: Item.starting_three
+        }
     end
 
     def select_item
