@@ -27,7 +27,7 @@ a:hover {
 
 div#view_wrapper {
   width:98vw;
-  height:100vw;
+  min-height: 96vh;
   display: grid;
   grid-template:
     [top-end]
