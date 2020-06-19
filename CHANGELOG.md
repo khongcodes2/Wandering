@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create JS redirect at end-journey page and add error handling for improper traveler name on New Journey form
 - moved Adjective to top of space/item creation forms
 - updated screenshot 1 in README
+- refresh ABOUT page
+- fix page height in basic_layout.css
 - updated CHANGELOG
 
 ## "PHD (PostgreSQL, Heroku, and Deploy)" [2.0.0] - 2020-02-24
